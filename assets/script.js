@@ -16,7 +16,8 @@ console.log(currentHour);
 var midnightHour = moment().hour(23).format('HH');
 console.log(midnightHour);
 var hasRunOnce = false;
-
+var quoteHere = $("#quote-here");
+var quoteAuthor = $("#author");
 
 displayRandExerc();
 getQuotesApi();
@@ -58,6 +59,7 @@ function displayRandExerc() {
 }
 
 //Inspirational Quotes API
+
 function getQuotesApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
@@ -70,9 +72,9 @@ function getQuotesApi() {
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
         quoteAuthor.append(data[randomIndex].author)
-  })
+    })
 };
-
+getQuotesApi();
 // fetches recipe for display
 function getRecipe () {
   var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
