@@ -47,7 +47,6 @@ displayRandExerc();
 //         hasRunOnce = false;
 //         return;
 //     }
-    
 // })
 
 function displayRandExerc() {
