@@ -5,13 +5,13 @@ var sanskName = $('.sanskrit-name');
 
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
-console.log(currentHour);
+// console.log(currentHour);
 var midnightHour = moment().hour(23).format('HH');
-console.log(midnightHour);
+// console.log(midnightHour);
 var hasRunOnce = false;
 
 
-displayRandExerc();
+// displayRandExerc();
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 // $(document).ready('load', function() {
@@ -34,10 +34,10 @@ function displayRandExerc() {
         })
         .then(function (data) {
             console.log(data);
-            var yogaData = data[randIndex]
+            var yogaData = data[randIndex];
             console.log(yogaData);
-            yogaImg.attr('src', yogaData.img_url)
-            yogaName.text(yogaData.english_name)
+            yogaImg.attr('src', yogaData.img_url);
+            yogaName.text(yogaData.english_name);
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }
@@ -52,12 +52,28 @@ function getApi() {
         return response.json();
       })
       .then(function (data) {  
-        var randomIndex = Math.floor(Math.random() * data.length)   
-        console.log(data)
+        var randomIndex = Math.floor(Math.random() * data.length);  
+        console.log(data);
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
-        quoteAuthor.append(data[randomIndex].author)
+        quoteAuthor.append(data[randomIndex].author);
   })
 };
 
-getApi();
+// getApi();
+
+// fetches recipe for display
+function getRecipe () {
+  var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
+
+  fetch(testRecipeUrl)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log("getting recipe");
+    console.log(data);
+  });
+}
+
+// getRecipe ();
