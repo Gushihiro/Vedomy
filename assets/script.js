@@ -30,6 +30,7 @@ getRecipe(); //api key has 150 request daily quota
 $(document).ready(function() {
     //initializers        
     $('#modal1').modal();
+    $('#modal2').modal();
     $('select').formSelect();
 
     // if (!hasRunOnce) {
