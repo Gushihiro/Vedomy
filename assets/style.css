@@ -58,11 +58,38 @@ blockquote {
     margin: 0 0 8px 30px;
 }
 
-.exercise-choice.input-field.col.s12 {
+.modal-q.input-field.col.s12 {
     display: flex;
 }
 
-.hours-title {
+.hours-title, .diet-title {
     display: flex;
     align-items: center;
+}
+
+.modal-content {
+    padding-bottom: 0px;
+}
+
+.mood-button {
+    display: flex;
+}
+
+.modal-trigger {
+    margin: auto;
+}
+
+.checkbox-container {
+    color: black;
+    padding-left: 20px;
+}
+
+[type="checkbox"]+span:not(.lever) {
+    position: relative;
+    padding-left: 25px;
+}
+
+.exercise {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
