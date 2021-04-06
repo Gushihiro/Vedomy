@@ -10,3 +10,9 @@
 .card-title {
     color: black;
 }
+
+
+
+#quote-here {
+    flex-wrap:wrap;
+}
