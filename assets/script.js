@@ -16,8 +16,7 @@ var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughOfDay = $('#thought-of-day');
 
-// array for sleep tip
-var sleepTip = ["Sleep in a Pitch Black Room",];
+
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
 console.log(currentHour);
@@ -29,15 +28,24 @@ var quoteAuthor = $("#author");
 
 displayRandExerc();
 getQuotesApi();
-// getRecipe();
+getRecipe(); //api key has 150 request daily quota
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 $(document).ready(function() {
+<<<<<<< HEAD
   //initializers        
   $('#modal1').modal();
   $('select').formSelect();
   
   // if (!hasRunOnce) {
+=======
+    //initializers        
+    $('#modal1').modal();
+    $('#modal2').modal();
+    $('select').formSelect();
+
+    // if (!hasRunOnce) {
+>>>>>>> develop
     //     displayRandExerc();
     //     hasRunOnce = true;
     // } else if (midnightHour > currentHour) {
@@ -67,9 +75,9 @@ function displayRandExerc() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             var yogaData = data[randIndex]
-            console.log(yogaData);
+            // console.log(yogaData);
             yogaImg.attr('src', yogaData.img_url)
             yogaName.text(yogaData.english_name)
             var dropDownIcon = $('<i></i>').text('more_vert');
@@ -91,7 +99,7 @@ function getQuotesApi() {
         var randomIndex = Math.floor(Math.random() * data.length)   
         console.log(data)
         console.log(data[randomIndex].text, data[randomIndex].author);
-        quoteHere.append('"' + data[randomIndex].text + '"');
+        quoteHere.append(data[randomIndex].text);
         if (data[randomIndex].author == null) {
             quoteAuthor.append("Author Unknown")
         } else {
@@ -103,7 +111,7 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
-  var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
+  var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
 
   fetch(testRecipeUrl)
   .then(function (response) {

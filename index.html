@@ -24,24 +24,30 @@
 
 <body class="teal lighten-4">
     <header class="container-fluid">
-        <div class="row">
+        <div class="row valign-wrapper">
             <div class="col s3 left">
-                <blockquote class="left" id="quote-here">
-                    
+                <!-- Quote Section -->
+                <blockquote class="left">
+                    <q id="quote-here">
+
+                    </q>
+                    <br>
+                    <p class="col 1 left" id="author">
+                    </p>
                 </blockquote>
-                <br>
-                <p class="col 1 left" id="author">
-                </p>
             </div>
+            <!-- Mid Header -->
             <div class="col s6 center-align">
                 <h1>
                     MoodTracker
                 </h1>
             </div>
-            <div class="col s3">
-                <h4>
-                    Timer: 
-                </h4>
+            <!-- Box Breathing Modal Button -->
+            <div class="col s3 center-align">
+                <div class="row center-align">
+                <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">access_time</i></a>
+                <h5 class="col">Start Timer</h5>
+                </div>
             </div>
         </div>
     </header>
@@ -72,12 +78,11 @@
                             <span class="card-title grey-text text-darken-4 yoga-name"><i class="material-icons right">close</i></span>
                             <p class="sanskrit-name"></p>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            <!-- SLeep aid of the day -->
+            <!-- Sleep aid of the day -->
             <div class="row sleep-card">
                 <div class="col s12">
                     <div class="card hoverable">
@@ -85,7 +90,7 @@
                         <div class="card-image waves-effect waves-block waves-light">
                             <img src="./assets/sleep.jpg" alt="sleep">
                             <p id="sleep-tip">Sleep in a Pitch Black Room</p>
-                            <button id="generate">CLick for Sleep Tip</button>
+                            <button id="generate">Click for Sleep Tip</button>
                         </div>
                         <div class="card-content">
                             
@@ -95,11 +100,30 @@
                         <div class="card-reveal">
                             
                         </div>
-    
                     </div>
                 </div>
             </div>
 
+            <!-- recipe of the day -->
+            <div class="row food-card">
+                <div class="col s12">
+                    <div class="card hoverable">
+                        <div class="card-title center-align">Daily Recipe</div>
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="https://cdn.cancercenter.com/-/media/ctca/images/others/blogs/2019/06-june/02-blog-healthy-food-l.jpg?h=630&w=1200&hash=3D4BC987633AAF6F46F19458FC1C5E97" alt="food">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4 center-align">reveal content</span>
+                            <div class="divider"></div>
+                            <p class="section"><a href="#">More food</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                            <p>more content here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
             
@@ -210,6 +234,20 @@
                     <a href="#!" id='add-mood' class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
                 </div>
             </div>
+            <!-- Modal 2 -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                  <h4 class="center-align">Relax...Take Time to Breathe</h4>
+                  <br>
+                  <p class="center-align">
+                      It's important to take time to find your rhythm for the day. We implement a box-breathing exercise to assist you
+                      in making time to find your center.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
 
         </div>
             
