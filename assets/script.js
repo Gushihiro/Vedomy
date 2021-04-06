@@ -6,28 +6,6 @@ var closeIcon = $('#close-icon')
 var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 
-// fetches JSON data from News API
-// API key: 72274a0b422f439fb0c2d607f98ef1ad
-//function checkNewsApi () {
-// var NewsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=72274a0b422f439fb0c2d607f98ef1ad';
-// fetch(NewsUrl)
-// .then(function (response) {
-//   return response.json();
-// })
-// .then(function (data) {     
-//   console.log(data);
-// })
-//}
-
-//checkNewsApi();
-
-// page link test
-console.log("js linked");
-
-// moment js test
-var timeCheck = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-console.log("Current date and time is " + timeCheck);
-
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
 console.log(currentHour);
@@ -48,7 +26,6 @@ displayRandExerc();
 //         hasRunOnce = false;
 //         return;
 //     }
-    
 // })
 
 function displayRandExerc() {
@@ -88,4 +65,5 @@ function getApi() {
         quoteAuthor.append(data[randomIndex].author)
   })
 };
+
 getApi();
