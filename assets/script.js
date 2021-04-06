@@ -7,6 +7,9 @@ var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
+var checkBox = $('.checkbox')
+var yesExercise = $('#yes-exercise')
+var noExercise = $('#no-exercise')
 
 
 // Creating a current hour and midnight hour as a conditional for daily refresh
@@ -58,8 +61,8 @@ function displayRandExerc() {
         });
 }
 
-//Inspirational Quotes API
 
+//Inspirational Quotes API
 function getQuotesApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
@@ -71,7 +74,12 @@ function getQuotesApi() {
         console.log(data)
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
-        quoteAuthor.append(data[randomIndex].author)
+        if (data[randomIndex].author == null) {
+            quoteAuthor.append("Author Unknown")
+        } else {
+            quoteAuthor.append(data[randomIndex].author)
+        }
+        console.log(data[randomIndex].author)
     })
 };
 
@@ -89,5 +97,22 @@ function getRecipe () {
   });
 }
 
+function ckCheckbox(ckType){
+  var checked = document.getElementById(ckType.id);
 
+  if (checked.checked) {
+    for(var i=0; i < checkBox.length; i++){
 
+        if(!checkBox[i].checked){
+            checkBox[i].disabled = true;
+        }else{
+            checkBox[i].disabled = false;
+        }
+    } 
+  }
+  else {
+    for(var i=0; i < checkBox.length; i++){
+      checkBox[i].disabled = false;
+    } 
+  }    
+}
