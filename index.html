@@ -23,8 +23,6 @@
 </head>
 
 <body class="teal lighten-4">
-
-<body class="teal lighten-3">
     <header class="container-fluid">
         <div class="row">
             <div class="col s3 left">
@@ -123,22 +121,25 @@
                 <div class="modal-content">
                     <h4 class="center modal-title">Today's Mood</h4>
 
-                    <p>How are you feeling? Position the slider to determine.</p>
+                    <p class="slider-text">How are you feeling? Position the slider to determine.</p>
                     <p class="range-field">
                         <input type="range" id="test5" min="0" max="10" />
                     </p>
                     <div class="row emoticons">
-                        <div class="col s2"><i class="material-icons">sentiment_very_dissatisfied</i></div>
-                        <div class="col s2"><i class="material-icons">sentiment_dissatisfied</i></div>
-                        <div class="col s2"><i class="material-icons">sentiment_neutral</i></div>
-                        <div class="col s2"><i class="material-icons">sentiment_satisfied</i></div>
-                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
-                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons red-text">sentiment_very_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons orange-text">sentiment_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons yellow-text accent-3">sentiment_neutral</i></div>
+                        <div class="col s2"><i class="material-icons lime-text">sentiment_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons light-green-text">sentiment_very_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons green-text">sentiment_very_satisfied</i></div>
                     </div>
 
-                    <div class="exercise-choiceinput-field col s12">
-                        <select>
-                          <option value="" disabled selected>How much sleep did you get last night?</option>
+                    <div class="exercise-choice input-field col s12">
+                        <div class="hours-title">
+                            How much sleep did you get last night?
+                        </div>
+                        <select class="inline-block">
+                          <option value="" disabled selected>Choose hours</option>
                           <option value="0">None</option>
                           <option value="1">One hour</option>
                           <option value="2">Two hours</option>
@@ -156,11 +157,11 @@
                     <div class="col s12">
                         Did you exercise today?
                         <label>
-                            <input type="checkbox" />
+                            <input type="checkbox" class='checkbox' id="yes-exercise" onClick="ckCheckbox(this)" />
                             <span>Yes</span>
                         </label>
                         <label>
-                            <input type="checkbox" />
+                            <input type="checkbox" class='checkbox' id="no-exercise" onClick="ckCheckbox(this)"/>
                             <span>No</span>
                         </label>
                     </div>

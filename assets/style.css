@@ -42,3 +42,20 @@
 .modal-title {
     margin-bottom: 3rem;
 }
+
+.slider-text {
+    padding: 0 .75rem;
+}
+
+.select-wrapper input.select-dropdown {
+    margin: 0 0 8px 30px;
+}
+
+.exercise-choice.input-field.col.s12 {
+    display: flex;
+}
+
+.hours-title {
+    display: flex;
+    align-items: center;
+}
