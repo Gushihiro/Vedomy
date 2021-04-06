@@ -10,6 +10,11 @@ var quoteAuthor = $("#author");
 var checkBox = $('.checkbox')
 var yesExercise = $('#yes-exercise')
 var noExercise = $('#no-exercise')
+var addMoodBtn = $('#add-mood');
+var moodRange = $("#test5");
+var sleepNum = $('.hour-amount');
+var dietChoices = $('.diet-choices');
+var thoughOfDay = $('#thought-of-day');
 
 // array for sleep tip
 var sleepTip = ["Sleep in a Pitch Black Room",];
@@ -28,19 +33,31 @@ getQuotesApi();
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 $(document).ready(function() {
-    //initializers        
-    $('#modal1').modal();
-    $('select').formSelect();
-
-    // if (!hasRunOnce) {
+  //initializers        
+  $('#modal1').modal();
+  $('select').formSelect();
+  
+  // if (!hasRunOnce) {
     //     displayRandExerc();
     //     hasRunOnce = true;
     // } else if (midnightHour > currentHour) {
-    //     displayRandExerc();
-    //     hasRunOnce = false;
-    //     return;
-    // }
+      //     displayRandExerc();
+      //     hasRunOnce = false;
+      //     return;
+      // }
+    })
+    
+addMoodBtn.on('click', function() {
+  console.log(moodRange.val());
+  console.log(sleepNum.val());
+  // console.log(yesExercise.getAttribute('checked'));
+  console.log(noExercise.prop('checked'));
+  console.log(dietChoices.val());
+  console.log(thoughOfDay.val());
+  console.log(moment().format('MM DD YYYY hh mm ss'))
 })
+
+
 
 function displayRandExerc() {
     var randIndex = Math.floor(Math.random() * 48);
@@ -117,4 +134,4 @@ function ckCheckbox(ckType){
     } 
   }    
 }
- 
+

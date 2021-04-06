@@ -148,19 +148,19 @@
                         <div class="hours-title">
                             How much sleep did you get last night?
                         </div>
-                        <select class="inline-block">
-                          <option value="" disabled selected>Choose hours</option>
-                          <option value="0">None</option>
-                          <option value="1">One hour</option>
-                          <option value="2">Two hours</option>
-                          <option value="3">Three hours</option>
-                          <option value="4">Four hours</option>
-                          <option value="5">Five hours</option>
-                          <option value="6">Six hours</option>
-                          <option value="7">Seven hours</option>
-                          <option value="8">Eight hours</option>
-                          <option value="9">Nine hours</option>
-                          <option value="10">Ten hours</option>
+                        <select class="hour-amount inline-block">
+                          <option class='hour-option' value="" disabled selected>Choose hours</option>
+                          <option class='hour-option' value="0">None</option>
+                          <option class='hour-option' value="1">One hour</option>
+                          <option class='hour-option' value="2">Two hours</option>
+                          <option class='hour-option' value="3">Three hours</option>
+                          <option class='hour-option' value="4">Four hours</option>
+                          <option class='hour-option' value="5">Five hours</option>
+                          <option class='hour-option' value="6">Six hours</option>
+                          <option class='hour-option' value="7">Seven hours</option>
+                          <option class='hour-option' value="8">Eight hours</option>
+                          <option class='hour-option' value="9">Nine hours</option>
+                          <option class='hour-option' value="10">Ten hours</option>
                         </select>
                     </div>
                     
@@ -180,13 +180,13 @@
                         <div class="diet-title">
                             Did you eat healthy today?
                         </div>
-                        <select class="inline-block">
-                          <option value="" disabled selected>Today's Diet</option>
-                          <option value="0">I ate very healthy!</option>
-                          <option value="1">Mostly healthy, with some exceptions.</option>
-                          <option value="2">Had some healthy food, but also ate junk.</option>
-                          <option value="3">Mostly junk food.</option>
-                          <option value="4">Oof. All crappy food...</option>
+                        <select class="diet-choices inline-block">
+                          <option class="diet-option" value="" disabled selected>Today's Diet</option>
+                          <option class="diet-option" value="0">I ate very healthy!</option>
+                          <option class="diet-option" value="1">Mostly healthy, with some exceptions.</option>
+                          <option class="diet-option" value="2">Had some healthy food, but also ate junk.</option>
+                          <option class="diet-option" value="3">Mostly junk food.</option>
+                          <option class="diet-option" value="4">Oof. All crappy food...</option>
                         </select>
                     </div>
 
@@ -194,8 +194,8 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                <label for="icon_prefix2">Thoughts of the day:</label>
+                                <textarea id="thought-of-day" class="materialize-textarea"></textarea>
+                                <label for="thought-of-day">Thoughts of the day:</label>
                             </div>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
+                    <a href="#!" id='add-mood' class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
                 </div>
             </div>
 
