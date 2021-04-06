@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body class="teal lighten-4">
 
 <body class="teal lighten-3">
     <header class="container-fluid">
@@ -42,11 +42,14 @@
     </header>
 
 
-    <div class="row">
+    <div class="row main-body">
         <!-- Tips of the day panel -->
-        <div class="col s12 m4 l3">
+        <div class="col s12 m4 l3 tips-of-day">
+            <!-- Modal button -->
+            <a class="waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
+
             <!-- Yoga Pose of the day Card -->
-            <div class="row">
+            <div class="row yoga-card">
                 <div class="col s12">
                     <div class="card hoverable">
                         <div class="card-title center-align">Yoga Pose of the Day</div>
@@ -54,7 +57,7 @@
                             <img class="activator yoga-img" src="">
                         </div>
                         <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4 center-align yoga-name"><i class="material-icons right">more_vert</i></span>
+                            <span class="card-title activator grey-text text-darken-4 center-align yoga-name"></span>
                             <div class="divider"></div>
                             <p class="section"><a href="https://www.yogajournal.com/poses/" target="_blank">More Poses</a></p>
                         </div>
@@ -66,41 +69,111 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <!-- Tips of the day panel -->
-            <div class="col s12 m4 l3">
-                <!-- SLeep aid of the day -->
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card hoverable">
-                            <div class="card-title center-align">Daily Mental Sleep Aid</div>
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img src="./assets/sleep.jpg" alt="sleep">
-                                <p id="sleep-tip">Sleep in a Pitch Black Room</p>
-                                <button id="generate">CLick for Sleep Tip</button>
-                            </div>
-                            <div class="card-content">
-                                
-                                <div class="divider"></div>
-                                <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                
-                            </div>
-    
+            <!-- SLeep aid of the day -->
+            <div class="row sleep-card">
+                <div class="col s12">
+                    <div class="card hoverable">
+                        <div class="card-title center-align">Daily Mental Sleep Aid</div>
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="./assets/sleep.jpg" alt="sleep">
+                            <p id="sleep-tip">Sleep in a Pitch Black Room</p>
+                            <button id="generate">CLick for Sleep Tip</button>
                         </div>
+                        <div class="card-content">
+                            
+                            <div class="divider"></div>
+                            <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            
+                        </div>
+    
                     </div>
                 </div>
             </div>
+
+        </div>
+
             
   
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- Modal -->
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4 class="center modal-title">Today's Mood</h4>
+
+                    <p>How are you feeling? Position the slider to determine.</p>
+                    <p class="range-field">
+                        <input type="range" id="test5" min="0" max="10" />
+                    </p>
+                    <div class="row emoticons">
+                        <div class="col s2"><i class="material-icons">sentiment_very_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_neutral</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
+                    </div>
+
+                    <div class="exercise-choiceinput-field col s12">
+                        <select>
+                          <option value="" disabled selected>How much sleep did you get last night?</option>
+                          <option value="0">None</option>
+                          <option value="1">One hour</option>
+                          <option value="2">Two hours</option>
+                          <option value="3">Three hours</option>
+                          <option value="4">Four hours</option>
+                          <option value="5">Five hours</option>
+                          <option value="6">Six hours</option>
+                          <option value="7">Seven hours</option>
+                          <option value="8">Eight hours</option>
+                          <option value="9">Nine hours</option>
+                          <option value="10">Ten hours</option>
+                        </select>
+                    </div>
+
+                    <div class="col s12">
+                        Did you exercise today?
+                        <label>
+                            <input type="checkbox" />
+                            <span>Yes</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" />
+                            <span>No</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
+                </div>
+            </div>
+
         </div>
-  
+            
+            
       </div>
 
 

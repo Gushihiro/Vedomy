@@ -1,7 +1,12 @@
 //  JQuery DOM Variables here:
 var yogaImg = $('.yoga-img');
 var yogaName = $('.yoga-name');
+var yogaLink = $('#yoga-link')
+var closeIcon = $('#close-icon')
+var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
+var quoteHere = $("#quote-here");
+var quoteAuthor = $("#author");
 
 // array for sleep tip
 var sleepTip = ["Sleep in a Pitch Black Room",];
@@ -15,18 +20,23 @@ var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
 
 displayRandExerc();
+getQuotesApi();
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
-// $(document).ready('load', function() {
-//     if (!hasRunOnce) {
-//         displayRandExerc();
-//         hasRunOnce = true;
-//     } else if (midnightHour > currentHour) {
-//         displayRandExerc();
-//         hasRunOnce = false;
-//         return;
-//     }
-// })
+$(document).ready(function() {
+    //initialize modal          
+    $('#modal1').modal();
+    $('select').formSelect();
+
+    // if (!hasRunOnce) {
+    //     displayRandExerc();
+    //     hasRunOnce = true;
+    // } else if (midnightHour > currentHour) {
+    //     displayRandExerc();
+    //     hasRunOnce = false;
+    //     return;
+    // }
+})
 
 function displayRandExerc() {
     var randIndex = Math.floor(Math.random() * 48);
@@ -41,13 +51,16 @@ function displayRandExerc() {
             console.log(yogaData);
             yogaImg.attr('src', yogaData.img_url)
             yogaName.text(yogaData.english_name)
+            var dropDownIcon = $('<i></i>').text('more_vert');
+            dropDownIcon.attr('class', 'material-icons right');
+            yogaName.append(dropDownIcon);
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }
 
 //Inspirational Quotes API
 
-function getZenquote() {
+function getQuotesApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
       .then(function (response) {
@@ -61,7 +74,7 @@ function getZenquote() {
         quoteAuthor.append(data[randomIndex].author)
     })
 };
-getZenquote();
+getQuotesApi();
 // fetches recipe for display
 function getRecipe () {
   var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
