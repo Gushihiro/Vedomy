@@ -1,6 +1,9 @@
 //  JQuery DOM Variables here:
 var yogaImg = $('.yoga-img');
 var yogaName = $('.yoga-name');
+var yogaLink = $('#yoga-link')
+var closeIcon = $('#close-icon')
+var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 
 // fetches JSON data from News API
@@ -61,6 +64,9 @@ function displayRandExerc() {
             console.log(yogaData);
             yogaImg.attr('src', yogaData.img_url)
             yogaName.text(yogaData.english_name)
+            var dropDownIcon = $('<i></i>').text('more_vert');
+            dropDownIcon.attr('class', 'material-icons right');
+            yogaName.append(dropDownIcon);
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }

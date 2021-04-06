@@ -1,0 +1,27 @@
+Milestones:
+4/5
+- know materialize
+- assign tasks
+- begin tasks
+- get APIs working (see data)
+
+4/6
+- header w/ news
+- all features psuedo/partially coded
+
+4/7
+- features functioning
+- bring features together
+- work on layout 
+- start styling it
+
+4/8 thurs
+- basic page complete with styling
+- add optional features?
+- test website as whole
+- make it live?
+
+cloudenary widget
+
+
+
