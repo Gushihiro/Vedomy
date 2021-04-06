@@ -10,6 +10,8 @@ var quoteAuthor = $("#author");
 var checkBox = $('.checkbox')
 var yesExercise = $('#yes-exercise')
 var noExercise = $('#no-exercise')
+var breatheBox = $('#breatheBox')
+var boxBtn = $('#boxBtn')
 
 // array for sleep tip
 var sleepTip = ["Sleep in a Pitch Black Room",];
@@ -118,3 +120,10 @@ function ckCheckbox(ckType){
     } 
   }    
 }
+
+//BreatheBox
+function animateBox() {
+    breatheBox.style.transform = 'scale(0.2)';
+    requestAnimationFrame(animateBox);
+}
+boxBtn.on("click", animateBox)   
