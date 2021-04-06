@@ -21,10 +21,11 @@ var quoteAuthor = $("#author");
 
 displayRandExerc();
 getQuotesApi();
+// getRecipe();
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 $(document).ready(function() {
-    //initialize modal          
+    //initializers        
     $('#modal1').modal();
     $('select').formSelect();
 
@@ -74,7 +75,7 @@ function getQuotesApi() {
         quoteAuthor.append(data[randomIndex].author)
     })
 };
-getQuotesApi();
+
 // fetches recipe for display
 function getRecipe () {
   var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
@@ -89,6 +90,5 @@ function getRecipe () {
   });
 }
 
-// getRecipe ();
 
 
