@@ -14,7 +14,10 @@ var addMoodBtn = $('#add-mood');
 var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
-var thoughOfDay = $('#thought-of-day');
+var thoughtOfDay = $('#thought-of-day');
+
+var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+
 
 
 // Creating a current hour and midnight hour as a conditional for daily refresh
@@ -30,22 +33,20 @@ displayRandExerc();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
-// ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 $(document).ready(function() {
-<<<<<<< HEAD
+  // future moodbox creation on page-load
+  // var localMoodArr = JSON.parse(localStorage.getItem('urlArr')) || [];
+  // for (i = 0; i <localMoodArr.length; i++ ) {
+  //   createMoodBox(localMoodArr[i])
+  // }
+
   //initializers        
   $('#modal1').modal();
+  $('#modal2').modal();
   $('select').formSelect();
   
-  // if (!hasRunOnce) {
-=======
-    //initializers        
-    $('#modal1').modal();
-    $('#modal2').modal();
-    $('select').formSelect();
-
+  // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
     // if (!hasRunOnce) {
->>>>>>> develop
     //     displayRandExerc();
     //     hasRunOnce = true;
     // } else if (midnightHour > currentHour) {
@@ -53,16 +54,26 @@ $(document).ready(function() {
       //     hasRunOnce = false;
       //     return;
       // }
-    })
+})
     
+
 addMoodBtn.on('click', function() {
-  console.log(moodRange.val());
-  console.log(sleepNum.val());
-  // console.log(yesExercise.getAttribute('checked'));
-  console.log(noExercise.prop('checked'));
-  console.log(dietChoices.val());
-  console.log(thoughOfDay.val());
-  console.log(moment().format('MM DD YYYY hh mm ss'))
+  var modalSubmit = {
+    time: moodBoxTime,
+    mood: moodRange.val(),
+    sleep: sleepNum.val(),
+    exercise: yesExercise.prop('checked'),
+    diet: dietChoices.val(),
+    thoughts: thoughtOfDay.val(),
+  }
+
+  var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
+  localMoodArr.push(modalSubmit);
+  console.log(localMoodArr);
+  localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
+
+  console.log(modalSubmit)
+
 })
 
 
