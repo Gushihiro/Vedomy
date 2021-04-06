@@ -1,4 +1,12 @@
-/* test page link */
-body {
-    background-color: blue;
+.yoga-img {
+    padding: 10px;
+    height: 14rem;
+}
+
+.card-content {
+    border-radius: 0 0 2px 2px;
+}
+
+.card-title {
+    color: black;
 }
