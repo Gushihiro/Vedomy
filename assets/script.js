@@ -65,3 +65,14 @@ function displayRandExerc() {
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }
+function getApi() {
+    var zenQuote = 'https://type.fit/api/quotesgi';
+    fetch(zenQuote)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {     
+        console.log(data)
+  })
+};
+getApi();
