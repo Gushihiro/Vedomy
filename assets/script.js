@@ -5,6 +5,8 @@ var yogaLink = $('#yoga-link')
 var closeIcon = $('#close-icon')
 var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
+var quoteHere = $("#quote-here");
+var quoteAuthor = $("#author");
 
 // array for sleep tip
 var sleepTip = ["Sleep in a Pitch Black Room",];
@@ -17,18 +19,23 @@ var hasRunOnce = false;
 
 
 displayRandExerc();
+getQuotesApi();
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
-// $(document).ready('load', function() {
-//     if (!hasRunOnce) {
-//         displayRandExerc();
-//         hasRunOnce = true;
-//     } else if (midnightHour > currentHour) {
-//         displayRandExerc();
-//         hasRunOnce = false;
-//         return;
-//     }
-// })
+$(document).ready(function() {
+    //initialize modal          
+    $('#modal1').modal();
+    $('select').formSelect();
+
+    // if (!hasRunOnce) {
+    //     displayRandExerc();
+    //     hasRunOnce = true;
+    // } else if (midnightHour > currentHour) {
+    //     displayRandExerc();
+    //     hasRunOnce = false;
+    //     return;
+    // }
+})
 
 function displayRandExerc() {
     var randIndex = Math.floor(Math.random() * 48);
@@ -51,9 +58,7 @@ function displayRandExerc() {
 }
 
 //Inspirational Quotes API
-var quoteHere = $("#quote-here");
-var quoteAuthor = $("#author");
-function getApi() {
+function getQuotesApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
       .then(function (response) {
