@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Krona+One&family=Pacifico&family=Roboto:wght@700&display=swap"
+    rel="stylesheet"
+  />
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -17,7 +21,18 @@
     <title>MoodTracker</title>
 
 </head>
+
 <body class="teal lighten-4">
+
+<body>
+
+    <container class="status-card">
+        <h6>How is your mood today?</h6>
+        <button>update</button>
+
+    </container>  
+
+<body class="teal lighten-3">
     <header>
         <div class="container">
             <q id="quote-here">
@@ -30,8 +45,8 @@
         </div>
     </header>
 
-    <div class="row">
 
+    <div class="row">
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3">
             <!-- Yoga Pose of the day Card -->
@@ -56,6 +71,34 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <!-- Tips of the day panel -->
+            <div class="col s12 m4 l3">
+                <!-- SLeep aid of the day -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card hoverable">
+                            <div class="card-title center-align">Daily Mental Sleep Aid</div>
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img src="./assets/sleep.jpg" alt="sleep">
+                                <p id="sleep-tip">Sleep in a Pitch Black Room</p>
+                                <button id="generate">CLick for Sleep Tip</button>
+                            </div>
+                            <div class="card-content">
+                                
+                                <div class="divider"></div>
+                                <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
   
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
@@ -65,8 +108,10 @@
   
       </div>
 
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <!-- Moment JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
@@ -77,6 +122,7 @@
 
     <!-- FaceSpace JS -->
     <script src="assets/script.js"></script>
+    <script src="assets/sidebar.js"></script>
 
 </body>
 

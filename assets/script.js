@@ -6,6 +6,8 @@ var closeIcon = $('#close-icon')
 var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 
+// array for sleep tip
+var sleepTip = ["Sleep in a Pitch Black Room",];
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
 console.log(currentHour);
@@ -66,4 +68,20 @@ function getApi() {
   })
 };
 
-getApi();
+// fetches recipe for display
+function getRecipe () {
+  var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
+
+  fetch(testRecipeUrl)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log("getting recipe");
+    console.log(data);
+  });
+}
+
+// getRecipe ();
+
+
