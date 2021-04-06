@@ -7,7 +7,6 @@ var sanskName = $('.sanskrit-name');
 // API key: 72274a0b422f439fb0c2d607f98ef1ad
 function checkNewsApi () {
   var NewsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=72274a0b422f439fb0c2d607f98ef1ad';
-
   fetch(NewsUrl)
   .then(function (response) {
     return response.json();
@@ -66,7 +65,7 @@ function displayRandExerc() {
         });
 }
 function getApi() {
-    var zenQuote = 'https://type.fit/api/quotesgi';
+    var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
       .then(function (response) {
         return response.json();
