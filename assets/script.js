@@ -7,6 +7,9 @@ var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
+var checkBox = $('.checkbox')
+var yesExercise = $('#yes-exercise')
+var noExercise = $('#no-exercise')
 
 // array for sleep tip
 var sleepTip = ["Sleep in a Pitch Black Room",];
@@ -59,8 +62,8 @@ function displayRandExerc() {
         });
 }
 
-//Inspirational Quotes API
 
+//Inspirational Quotes API
 function getQuotesApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
@@ -95,5 +98,22 @@ function getRecipe () {
   });
 }
 
+function ckCheckbox(ckType){
+  var checked = document.getElementById(ckType.id);
 
+  if (checked.checked) {
+    for(var i=0; i < checkBox.length; i++){
 
+        if(!checkBox[i].checked){
+            checkBox[i].disabled = true;
+        }else{
+            checkBox[i].disabled = false;
+        }
+    } 
+  }
+  else {
+    for(var i=0; i < checkBox.length; i++){
+      checkBox[i].disabled = false;
+    } 
+  }    
+}
