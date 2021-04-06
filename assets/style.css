@@ -11,6 +11,10 @@
     color: black;
 }
 
+button generate {
+    text-align: center;
+}
+
 #quote-here {
     flex-wrap:wrap;
 }

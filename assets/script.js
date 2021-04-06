@@ -8,8 +8,7 @@ var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
 
-// array for sleep tip
-var sleepTip = ["Sleep in a Pitch Black Room",];
+
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
 console.log(currentHour);
