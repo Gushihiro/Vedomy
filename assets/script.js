@@ -71,8 +71,13 @@ function getQuotesApi() {
         var randomIndex = Math.floor(Math.random() * data.length)   
         console.log(data)
         console.log(data[randomIndex].text, data[randomIndex].author);
-        quoteHere.append(data[randomIndex].text);
-        quoteAuthor.append(data[randomIndex].author)
+        quoteHere.append('"' + data[randomIndex].text + '"');
+        if (data[randomIndex].author == null) {
+            quoteAuthor.append("Author Unknown")
+        } else {
+            quoteAuthor.append(data[randomIndex].author)
+        }
+        console.log(data[randomIndex].author)
     })
 };
 
