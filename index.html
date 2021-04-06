@@ -34,6 +34,7 @@
 
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3">
+            <a class="waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
             <!-- Yoga Pose of the day Card -->
             <div class="row">
                 <div class="col s12">
@@ -60,22 +61,48 @@
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
             <!-- Modal button -->
-            <a class="waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
             
             <!-- Modal -->
-            <div id="modal1" class="modal">
+            <div id="modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h4>Today's Mood</h4>
+                    <h4 class="center modal-title">Today's Mood</h4>
+
                     <p>How are you feeling? Position the slider to determine.</p>
                     <p class="range-field">
                         <input type="range" id="test5" min="0" max="10" />
                     </p>
-                    <div class="row">
-                        div.col s
+                    <div class="row emoticons">
+                        <div class="col s2"><i class="material-icons">sentiment_very_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_dissatisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_neutral</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
+                        <div class="col s2"><i class="material-icons">sentiment_very_satisfied</i></div>
                     </div>
+
+                    <div class="exercise-choiceinput-field col s12">
+                        <select>
+                          <option value="" disabled selected>How much sleep did you get last night?</option>
+                          <option value="1">Yes</option>
+                          <option value="2">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col s12">
+                        Did you exercise today?
+                        <label>
+                            <input type="checkbox" />
+                            <span>Yes</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" />
+                            <span>No</span>
+                        </label>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
                 </div>
             </div>
 

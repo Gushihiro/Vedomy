@@ -23,6 +23,7 @@ getQuotesApi();
 $(document).ready(function() {
     //initialize modal          
     $('#modal1').modal();
+    $('select').formSelect();
 
     // if (!hasRunOnce) {
     //     displayRandExerc();

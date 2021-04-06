@@ -10,3 +10,28 @@
 .card-title {
     color: black;
 }
+
+.emoticons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.emoticons:after {
+    content: none;
+}
+
+.row .col.s2 {
+    width: auto;
+    margin-left: 0px;
+    left: auto;
+    right: auto;
+}
+
+.range-field {
+    margin-bottom: 0px;
+}
+
+.modal-title {
+    margin-bottom: 3rem;
+}
