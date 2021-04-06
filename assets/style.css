@@ -15,6 +15,62 @@
     color: black;
 }
 
+button generate {
+    text-align: center;
+}
+
+#quote-here {
+    flex-wrap:wrap;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding-left: 1.5rem;
+    border-left: 5px solid #414141; /* Just change the color value and that's it*/
+  }
+
 .sleep-text {
     text-align: center;
+}
+
+.emoticons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.emoticons:after {
+    content: none;
+}
+
+.row .col.s2 {
+    width: auto;
+    margin-left: 0px;
+    left: auto;
+    right: auto;
+}
+
+.range-field {
+    margin-bottom: 0px;
+}
+
+.modal-title {
+    margin-bottom: 3rem;
+}
+
+.slider-text {
+    padding: 0 .75rem;
+}
+
+.select-wrapper input.select-dropdown {
+    margin: 0 0 8px 30px;
+}
+
+.exercise-choice.input-field.col.s12 {
+    display: flex;
+}
+
+.hours-title {
+    display: flex;
+    align-items: center;
 }
