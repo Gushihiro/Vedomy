@@ -15,8 +15,9 @@ var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
-
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+var breatheBox = $('#breatheBox')
+var boxBtn = $('#boxBtn')
 
 
 
@@ -154,3 +155,9 @@ function ckCheckbox(ckType){
   }    
 }
 
+//BreatheBox
+function animateBox() {
+    breatheBox.style.transform = 'scale(0.2)';
+    requestAnimationFrame(animateBox);
+}
+boxBtn.on("click", animateBox)   
