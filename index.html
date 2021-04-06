@@ -24,15 +24,6 @@
 
 <body class="teal lighten-4">
 
-<body>
-
-    <container class="status-card">
-        <h6>How is your mood today?</h6>
-        <button>update</button>
-
-    </container>  
-
-<body class="teal lighten-3">
     <header>
         <div class="container">
             <q id="quote-here">
@@ -46,12 +37,14 @@
     </header>
 
 
-    <div class="row">
+    <div class="row main-body">
         <!-- Tips of the day panel -->
-        <div class="col s12 m4 l3">
+        <div class="col s12 m4 l3 tips-of-day">
+            <!-- Modal button -->
             <a class="waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
+
             <!-- Yoga Pose of the day Card -->
-            <div class="row">
+            <div class="row yoga-card">
                 <div class="col s12">
                     <div class="card hoverable">
                         <div class="card-title center-align">Yoga Pose of the Day</div>
@@ -71,39 +64,54 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <!-- Tips of the day panel -->
-            <div class="col s12 m4 l3">
-                <!-- SLeep aid of the day -->
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card hoverable">
-                            <div class="card-title center-align">Daily Mental Sleep Aid</div>
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img src="./assets/sleep.jpg" alt="sleep">
-                                <p id="sleep-tip">Sleep in a Pitch Black Room</p>
-                                <button id="generate">CLick for Sleep Tip</button>
-                            </div>
-                            <div class="card-content">
-                                
-                                <div class="divider"></div>
-                                <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                
-                            </div>
-    
+            <!-- SLeep aid of the day -->
+            <div class="row sleep-card">
+                <div class="col s12">
+                    <div class="card hoverable">
+                        <div class="card-title center-align">Daily Mental Sleep Aid</div>
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="./assets/sleep.jpg" alt="sleep">
+                            <p id="sleep-tip">Sleep in a Pitch Black Room</p>
+                            <button id="generate">CLick for Sleep Tip</button>
                         </div>
+                        <div class="card-content">
+                            
+                            <div class="divider"></div>
+                            <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            
+                        </div>
+    
                     </div>
                 </div>
             </div>
+
+        </div>
+
             
   
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
-            <!-- Modal button -->
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             <!-- Modal -->
             <div id="modal1" class="modal modal-fixed-footer">
@@ -126,8 +134,17 @@
                     <div class="exercise-choiceinput-field col s12">
                         <select>
                           <option value="" disabled selected>How much sleep did you get last night?</option>
-                          <option value="1">Yes</option>
-                          <option value="2">No</option>
+                          <option value="0">None</option>
+                          <option value="1">One hour</option>
+                          <option value="2">Two hours</option>
+                          <option value="3">Three hours</option>
+                          <option value="4">Four hours</option>
+                          <option value="5">Five hours</option>
+                          <option value="6">Six hours</option>
+                          <option value="7">Seven hours</option>
+                          <option value="8">Eight hours</option>
+                          <option value="9">Nine hours</option>
+                          <option value="10">Ten hours</option>
                         </select>
                     </div>
 
