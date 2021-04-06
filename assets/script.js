@@ -80,6 +80,6 @@ function getApi() {
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
         quoteAuthor.append(data[randomIndex].author)
-  })
+    })
 };
 getApi();
