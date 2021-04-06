@@ -5,18 +5,18 @@ var sanskName = $('.sanskrit-name');
 
 // fetches JSON data from News API
 // API key: 72274a0b422f439fb0c2d607f98ef1ad
-function checkNewsApi () {
-  var NewsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=72274a0b422f439fb0c2d607f98ef1ad';
-  fetch(NewsUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {     
-    console.log(data);
-  })
-}
+//function checkNewsApi () {
+// var NewsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=72274a0b422f439fb0c2d607f98ef1ad';
+// fetch(NewsUrl)
+// .then(function (response) {
+//   return response.json();
+// })
+// .then(function (data) {     
+//   console.log(data);
+// })
+//}
 
-checkNewsApi();
+//checkNewsApi();
 
 // page link test
 console.log("js linked");
@@ -64,14 +64,22 @@ function displayRandExerc() {
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }
+
+//Inspirational Quotes API
+var quoteHere = $("#quote-here");
+var quoteAuthor = $("#author");
 function getApi() {
     var zenQuote = 'https://type.fit/api/quotes';
     fetch(zenQuote)
       .then(function (response) {
         return response.json();
       })
-      .then(function (data) {     
+      .then(function (data) {  
+        var randomIndex = Math.floor(Math.random() * data.length)   
         console.log(data)
+        console.log(data[randomIndex].text, data[randomIndex].author);
+        quoteHere.append(data[randomIndex].text);
+        quoteAuthor.append(data[randomIndex].author)
   })
 };
 getApi();
