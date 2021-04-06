@@ -21,7 +21,7 @@ var quoteAuthor = $("#author");
 
 displayRandExerc();
 getQuotesApi();
-// getRecipe();
+getRecipe(); //api key has 150 request daily quota
 
 // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
 $(document).ready(function() {
@@ -47,9 +47,9 @@ function displayRandExerc() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             var yogaData = data[randIndex]
-            console.log(yogaData);
+            // console.log(yogaData);
             yogaImg.attr('src', yogaData.img_url)
             yogaName.text(yogaData.english_name)
             var dropDownIcon = $('<i></i>').text('more_vert');
@@ -78,7 +78,7 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
-  var testRecipeUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=c4a52647f4a64446b59c7602af76c88b&includeNutrition=true";
+  var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
 
   fetch(testRecipeUrl)
   .then(function (response) {
