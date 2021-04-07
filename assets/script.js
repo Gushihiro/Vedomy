@@ -27,7 +27,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-displayRandExerc();
+GetYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -107,7 +107,7 @@ function createSideNavLinks(post) {
 }
 
 // Yoga pose API fetching/displaying
-function displayRandExerc() {
+function GetYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
     console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
@@ -148,19 +148,6 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
-<<<<<<< HEAD
-  var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
-
-  fetch(testRecipeUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log("getting recipe");
-    console.log(data);
-  });
-=======
-
   // retrieve data from local storage
   var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
 
@@ -185,7 +172,6 @@ function getRecipe () {
       localStorage.setItem("recipes", JSON.stringify(data));
     });
   }
->>>>>>> develop
 }
 
 // returns true if page has been visited in last 24 hr
@@ -211,6 +197,7 @@ function dayCheck () {
 
   // page not visited in last 24 hrs OR no reference time found
   return false;
+}
 
 // This function checks to see if checkbox is checked, then disbales the other
 function ckCheckbox(ckType){
