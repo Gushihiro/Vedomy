@@ -39,11 +39,6 @@ $(document).ready(function() {
 
   // for every object in local storage:
   for (i = 0; i <localMoodArr.length; i++ ) {
-<<<<<<< HEAD
-    // future moodbox creation on page-load:
-    //   createMoodBox(localMoodArr[i])
-=======
->>>>>>> develop
     
     // Regenerates side nave links
     createMoodBox(localMoodArr[i])
