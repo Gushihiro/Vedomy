@@ -27,14 +27,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-// Creating a current hour and midnight hour as a conditional for daily refresh
-var currentHour = moment().hour();
-console.log(currentHour);
-var midnightHour = moment().hour(23).format('HH');
-console.log(midnightHour);
-var hasRunOnce = false;
-
-displayRandExerc();
+GetYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -48,7 +41,7 @@ $(document).ready(function() {
     // future moodbox creation on page-load:
     //   createMoodBox(localMoodArr[i])
     
-    // Regenerates side nav links
+    // Regenerates side nave links
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -86,7 +79,7 @@ addMoodBtn.on('click', function() {
 
 })
 
-// This function creates sidenav links based off user post objects
+// This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
   var statusIcon;
 
@@ -114,9 +107,9 @@ function createSideNavLinks(post) {
 }
 
 // Yoga pose API fetching/displaying
-function displayRandExerc() {
+function GetYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
-    console.log(randIndex);
+    // console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
         .then(function (response) {
             return response.json();
@@ -154,17 +147,15 @@ function getQuotesApi() {
 };
 
 // fetches recipe for display
+// passes an array of recipes to writeRecipe()
 function getRecipe () {
-
   // retrieve data from local storage
   var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
 
-  // if local storage exists and page visited in last 24 hrs
+  // if local storage exists and page visited in last 24 hrs, use that data
   if (savedRecipes && hasVisitedRecently) {
 
-    // use that data
-    console.log("saved recipe contents:");
-    console.log(savedRecipes);
+    writeRecipe(savedRecipes.results);
 
   // else there was nothing in local storage or > 24 hrs since last visit
   // fetch new API data and save to local storage
@@ -178,11 +169,38 @@ function getRecipe () {
     })
     .then(function (data) {
       localStorage.setItem("recipes", JSON.stringify(data));
+      writeRecipe(data.results);
     });
   }
 }
 
+// takes recipe info and writes it to recipe card
+// recipeArray: an array of recipe info pulled from API data fetch request
+function writeRecipe (recipeArray) {
+  var randomIndex = Math.floor(Math.random() * recipeArray.length);
+  dailyRecipe = recipeArray[randomIndex]; // select a random recipe from the array
+
+// write recipe title to card and add an icon
+  var titleSpan = $("#recipe-title");
+  titleSpan.text(dailyRecipe.title);
+  var dropDownIcon = $('<i></i>').text('more_vert');
+  dropDownIcon.attr('class', 'material-icons right');
+  titleSpan.append(dropDownIcon);
+
+  // write image and alt text to card
+  $("#recipe-image").attr("src", dailyRecipe.image);
+  $("#recipe-image").attr("alt", dailyRecipe.title);
+
+  // write source url to anchor
+  $("#recipe-source").attr("href", dailyRecipe.sourceUrl);
+
+  // write summary to card
+  $("#recipe-summary").html(dailyRecipe.summary);
+
+}
+
 // returns true if page has been visited in last 24 hr
+// else returns false
 function dayCheck () {
   var currentTime = moment().unix();
   var referenceTime = parseInt(localStorage.getItem("refTime"));
@@ -230,7 +248,8 @@ function ckCheckbox(ckType){
 
 //BreatheBox
 function animateBox() {
-    breatheBox.style.transform = 'scale(0.2)';
-    requestAnimationFrame(animateBox);
+    breatheBox.style.height = "100px";
+    breatheBox.style.width = "100px";
+    
 }
 boxBtn.on("click", animateBox); 
