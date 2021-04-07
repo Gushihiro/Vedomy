@@ -27,14 +27,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-// Creating a current hour and midnight hour as a conditional for daily refresh
-var currentHour = moment().hour();
-console.log(currentHour);
-var midnightHour = moment().hour(23).format('HH');
-console.log(midnightHour);
-var hasRunOnce = false;
-
-displayRandExerc();
+GetYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -48,7 +41,7 @@ $(document).ready(function() {
     // future moodbox creation on page-load:
     //   createMoodBox(localMoodArr[i])
     
-    // Regenerates side nav links
+    // Regenerates side nave links
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -86,7 +79,7 @@ addMoodBtn.on('click', function() {
 
 })
 
-// This function creates sidenav links based off user post objects
+// This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
   var statusIcon;
 
@@ -114,7 +107,7 @@ function createSideNavLinks(post) {
 }
 
 // Yoga pose API fetching/displaying
-function displayRandExerc() {
+function GetYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
     console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
@@ -155,7 +148,6 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
-
   // retrieve data from local storage
   var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
 
