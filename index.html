@@ -4,87 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    href="https://fonts.googleapis.com/css2?family=Krona+One&family=Pacifico&family=Roboto:wght@700&display=swap"
-    rel="stylesheet"
-  />
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Google Font 'Dosis' -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    
     <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link href ="https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700" rel="stylesheet">
 
     <!-- FaceSpace CSS -->
     <link rel="stylesheet" href="./assets/style.css">
 
     <link rel="mood.css" href="./assets/mood.css">
-
+    
+    <!-- FaceSpace CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+    
     <title>MoodTracker</title>
-
+    
 </head>
 
-<body>
 
-
-
-
-
-    <header>
-        <h1 id>
-            FaceSpace
-        </h1>
-    </header>    
-
-<body class="teal lighten-3">
-    <header>
-        <div class="container">
-            <q id="quote-here">
-            </q>
-            <p id="author">
-            </p>
-            <h1 class="center-align" id>
-                MoodTracker
-            </h1>
-<body class="teal lighten-4">
-    <header class="container-fluid">
+<body class="deep-purple lighten-5">
+    <header class="container">
         <div class="row valign-wrapper">
-            <div class="col s3 left">
-                <!-- Quote Section -->
+            <!-- Quote Section -->
+            <div class="col s12 m4 l3 left">
                 <blockquote class="left">
+                    <p class="quotetitle">Quote of the day</p>
+                    <div class="divider quote-divider"></div>
                     <q id="quote-here">
-
+                        
                     </q>
                     <br>
                     <p class="col 1 left" id="author">
+                        -
                     </p>
                 </blockquote>
             </div>
             <!-- Mid Header -->
-            <div class="col s6 center-align">
-                <h1>
-                    MoodTracker
-                </h1>
+            <div class="col s12 m4 l6 center-align">
+                <img src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo">
+                <p class="subtitle center-align">A place to breathe, write, and reflect.</p>
             </div>
             <!-- Box Breathing Modal Button -->
-            <div class="col s3 center-align">
+            <div class="col s12 m4 l3 center-align">
                 <div class="row center-align">
-                <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">access_time</i></a>
-                <h5 class="col">Start Timer</h5>
+                    <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">access_time</i></a>
+                    <h5 class="col">Start Timer</h5>
                 </div>
             </div>
+            <div class="row mood-button show-mobile">
+                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Post</a>
+            </div>
         </div>
+
+        <!-- Side nav (hidden) -->
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+              <div class="background deep-purple lighten-5">
+                <!-- <img src="./assets/images/2811647.jpg"> -->
+              </div>
+              <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+              <a href="#name"><span class="white-text name center-align"> <img src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo"></span></a>
+            </div></li>
+            <li><a class="subheader">Previous Posts:</a></li>
+            <li><div class="divider"></div></li>
+            <ul class="sidenav-posts"></ul>
+
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
     </header>
 
+    <div class="divider"></div>
 
-    <div class="row main-body">
+    <main class="row main-body">
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3 tips-of-day">
             <!-- Modal button -->
-            <div class="row mood-button">
-                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
+            <div class="row mood-button hide-mobile">
+                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Update</a>
             </div>
 
             <!-- Yoga Pose of the day Card -->
@@ -95,7 +97,7 @@
                         <div class="card-image waves-effect waves-block waves-light">
                             <img class="activator yoga-img" src="">
                         </div>
-                        <div class="card-content">
+                        <div class="card-content yoga-content">
                             <span class="card-title activator grey-text text-darken-4 center-align yoga-name"></span>
                             <div class="divider"></div>
                             <p class="section"><a href="https://www.yogajournal.com/poses/" target="_blank">More Poses</a></p>
@@ -112,18 +114,19 @@
                     <div class="card hoverable">
                         <div class="card-title center-align">Daily Tips for Sleep</div>
                         <div class="card-image waves-effect waves-block waves-light">
-                                <img src="./assets/sleep.jpg" alt="sleep">
-                                <p id="sleep-tip">Sleep in a Pitch Black Room</p>
-                                <button id="generate">Click Here</button>
-                                </div>
-                            <div class="card-content">
-                                <div class="divider"></div>
-                                <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
-                                
-                                <div class="card-reveal">
-                                
-                                </div>
-                             </div>
+                            <img src="./assets/images/sleep.jpg" alt="sleep">
+                            <p id="sleep-tip">Sleep in a Pitch Black Room</p>
+                            <div class="sleep-button"><a class="col s6 waves-effect waves-light btn" id="generate">Sleep Tip</a></div>
+                        </div>
+                        <div class="card-content">
+                            
+                            <div class="divider"></div>
+                            <p class="section"><a href="https://bestsleepaidreviews.com/" target="_blank">In-depth look at sleep</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -149,17 +152,9 @@
                 </div>
             </div>
         </div>
-    </div>
-                        
-    
-
-        
-        
     
 
 
-            
-  
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
             
@@ -180,9 +175,10 @@
                             <div class="card-action">
                             <a href="#">This is a link</a>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                    <div>
+              </div>
+         </div>
+       </main>
                         
                             
                             
@@ -274,50 +270,45 @@
                         Life is tough. But so are you.
                     </div>
 
-                </div>
-
-                <div class="modal-footer">
-                    <a href="#!" id='add-mood' class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
-                </div>
-            </div>
-            <!-- Modal 2 -->
-            <div id="modal2" class="modal">
-                <div class="modal-content">
-                  <h4 class="center-align">Relax...Take Time to Breathe</h4>
-                  <br>
-                  <p class="center-align">
-                      It's important to take time to find your rhythm for the day. We implement a box-breathing exercise to assist you
-                      in making time to find your center.
-                  </p>
-                  <div class="center-align" id="breatheBox"></div>
-                  <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
-                </div>
-                <div class="modal-footer">
-                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
-              </div>
-
         </div>
-            
-            
+    
+        <div class="modal-footer">
+            <a href="#!" id='add-mood' class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
+        </div>
     </div>
 
-
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Relax...Take Time to Breathe</h4>
+            <br>
+            <p class="center-align">
+                It's important to take time to find your rhythm for the day. We implement a box-breathing exercise to assist you
+                in making time to find your center.
+            </p>
+            <div class="center-align" id="breatheBox"></div>
+            <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
+    
     <!-- Moment JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     ></script>
 
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    
     <!-- FaceSpace JS -->
     <script src="assets/script.js"></script>
     <script src="assets/sidebar.js"></script>
-
+    
 </body>
 
 </html>
