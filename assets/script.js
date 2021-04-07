@@ -27,18 +27,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-<<<<<<< HEAD
-// Creating a current hour and midnight hour as a conditional for daily refresh
-// var currentHour = moment().hour();
-// console.log(currentHour);
-// var midnightHour = moment().hour(23).format('HH');
-// console.log(midnightHour);
-// var hasRunOnce = false;
-
-displayRandExerc();
-=======
 GetYogaApi();
->>>>>>> develop
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -120,7 +109,6 @@ function createSideNavLinks(post) {
 // Yoga pose API fetching/displaying
 function GetYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
-    // console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
         .then(function (response) {
             return response.json();

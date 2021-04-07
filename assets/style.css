@@ -82,6 +82,12 @@ body {
     background-color: #7e57c2;
 }
 
+.btn-floating.btn-large {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+}
+
 #quote-here {
     flex-wrap:wrap;
     margin-top: 10px;
@@ -205,6 +211,11 @@ blockquote {
         width: 85%;
     }
 }
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+}
 
 @media only screen and (max-device-width: 480px) {
     .show-mobile {
@@ -213,7 +224,24 @@ blockquote {
     .hide-mobile {
       display: none;
     }
+    .logo-column {
+        z-index: 1;
+        order: 1;
+    }
+    
+    .quote-column {
+        z-index: 2;
+        order: 2;
+    }
+    
+    .breath-index {
+        z-index: 3;
+        order: 3;
+    }
+
   }
+
+
 
 @media only screen and (min-device-width: 481px) {
     .show-mobile {
