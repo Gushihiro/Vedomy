@@ -11,6 +11,9 @@
     border-radius: 0 0 2px 2px;
 }
 
+.card-image {
+    text-align: center;
+}
 
 
 .card-title {
@@ -100,6 +103,11 @@ blockquote {
     padding-left: 20px;
 }
 
+.timestamp-container {
+    border-radius: 10px 10px;
+    border-color: black;
+}
+
 [type="checkbox"]+span:not(.lever) {
     position: relative;
     padding-left: 25px;
@@ -115,4 +123,8 @@ blockquote {
     height: 200px;
     border:1px solid black;
     background-color:cornflowerblue;
+}
+
+.zen-pic {
+    padding: 10%;
 }
