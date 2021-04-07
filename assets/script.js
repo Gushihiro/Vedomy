@@ -7,14 +7,15 @@ var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
-var checkBox = $('.checkbox')
-var yesExercise = $('#yes-exercise')
-var noExercise = $('#no-exercise')
+var checkBox = $('.checkbox');
+var yesExercise = $('#yes-exercise');
+var noExercise = $('#no-exercise');
 var addMoodBtn = $('#add-mood');
 var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
+
 var breatheBox = $('#breatheBox')
 var boxBtn = $('#boxBtn')
 var sideNavPosts = $('.sidenav-posts')
@@ -25,13 +26,15 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
+// Creating a current hour and midnight hour as a conditional for daily refresh:
+// var currentHour = moment().hour();
+// console.log(currentHour);
+// var midnightHour = moment().hour(23).format('HH');
+// console.log(midnightHour);
+// var hasRunOnce = false;
 
-// Creating a current hour and midnight hour as a conditional for daily refresh
-var currentHour = moment().hour();
-console.log(currentHour);
-var midnightHour = moment().hour(23).format('HH');
-console.log(midnightHour);
-var hasRunOnce = false;
+// true if page visited within last 24 hrs
+var hasVisitedRecently = dayCheck();
 
 displayRandExerc();
 getQuotesApi();
@@ -202,4 +205,30 @@ function animateBox() {
     breatheBox.style.transform = 'scale(0.2)';
     requestAnimationFrame(animateBox);
 }
-boxBtn.on("click", animateBox)   
+boxBtn.on("click", animateBox);
+
+
+// returns true if page has been visited in last 24 hrs
+function dayCheck () {
+    var currentTime = moment().unix();
+    var referenceTime = parseInt(localStorage.getItem("refTime"));
+
+    // if a reference time exists, check against current time
+    if (referenceTime) {
+        var difference = currentTime - referenceTime;
+    
+        // if time since last visit is less than 24 hrs, return true
+        if (difference <= 86400) {
+            return true;
+        }
+
+    // else system could not retrieve a reference time
+    // set reference time for the system
+    } else {
+        referenceTime = currentTime;
+        localStorage.setItem('refTime', referenceTime);
+    }
+    
+    // page not visited in last 24 hrs OR no reference time found
+    return false;
+}
