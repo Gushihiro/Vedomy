@@ -22,3 +22,7 @@ var setTip = () => {
     sleepTipButton.addEventListener("click", setTip);
 
     setTip();
+
+    
+    
+    

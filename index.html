@@ -15,8 +15,12 @@
     <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link href ="https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700" rel="stylesheet">
+
     <!-- FaceSpace CSS -->
     <link rel="stylesheet" href="./assets/style.css">
+
+    <link rel="mood.css" href="./assets/mood.css">
 
     <title>MoodTracker</title>
 
@@ -79,7 +83,9 @@
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3 tips-of-day">
             <!-- Modal button -->
-            <a class="waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
+            <div class="row mood-button">
+                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Mood</a>
+            </div>
 
             <!-- Yoga Pose of the day Card -->
             <div class="row yoga-card">
@@ -157,77 +163,121 @@
         <!-- Mood-Updates content  -->
         <div class="col s12 m8 l9">
             
+         
+                <div class="col s12 m15">
+                    
+                    <div class="card horizontal">
+                    <div class="card-image" >
+                        
+                        <img src="./assets/zen.jpg" >
+                        <div><h6>status update</h6></div>
+                        
+                    
+                        <div class="card-stacked">
+                            <div class="card-content">
+                            <p>Feeling good about stuff</p>
+                            </div>
+                            <div class="card-action">
+                            <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                            
+                            
+                            
             
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+        
             
             
             
             <!-- Modal -->
             <div id="modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h4 class="center modal-title">Today's Mood</h4>
-
-                    <p class="slider-text">How are you feeling? Position the slider to determine.</p>
-                    <p class="range-field">
-                        <input type="range" id="test5" min="0" max="10" />
-                    </p>
-                    <div class="row emoticons">
-                        <div class="col s2"><i class="material-icons red-text">sentiment_very_dissatisfied</i></div>
-                        <div class="col s2"><i class="material-icons orange-text">sentiment_dissatisfied</i></div>
-                        <div class="col s2"><i class="material-icons yellow-text accent-3">sentiment_neutral</i></div>
-                        <div class="col s2"><i class="material-icons lime-text">sentiment_satisfied</i></div>
-                        <div class="col s2"><i class="material-icons light-green-text">sentiment_very_satisfied</i></div>
-                        <div class="col s2"><i class="material-icons green-text">sentiment_very_satisfied</i></div>
+                    <div class="modal-q col s12">
+                        <h4 class="center modal-title">Today's Mood</h4>
+                        <p class="slider-text">How are you feeling? Position the slider to determine.</p>
+                        <p class="range-field">
+                            <input type="range" id="test5" min="0" max="10" />
+                        </p>
+                        <div class="row emoticons">
+                            <div class="col s2"><i class="material-icons red-text">sentiment_very_dissatisfied</i></div>
+                            <div class="col s2"><i class="material-icons orange-text">sentiment_dissatisfied</i></div>
+                            <div class="col s2"><i class="material-icons yellow-text accent-3">sentiment_neutral</i></div>
+                            <div class="col s2"><i class="material-icons lime-text">sentiment_satisfied</i></div>
+                            <div class="col s2"><i class="material-icons light-green-text">sentiment_very_satisfied</i></div>
+                            <div class="col s2"><i class="material-icons green-text">sentiment_very_satisfied</i></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-choice input-field col s12">
+                    <div class="modal-q sleep input-field col s12">
                         <div class="hours-title">
                             How much sleep did you get last night?
                         </div>
-                        <select class="inline-block">
-                          <option value="" disabled selected>Choose hours</option>
-                          <option value="0">None</option>
-                          <option value="1">One hour</option>
-                          <option value="2">Two hours</option>
-                          <option value="3">Three hours</option>
-                          <option value="4">Four hours</option>
-                          <option value="5">Five hours</option>
-                          <option value="6">Six hours</option>
-                          <option value="7">Seven hours</option>
-                          <option value="8">Eight hours</option>
-                          <option value="9">Nine hours</option>
-                          <option value="10">Ten hours</option>
+                        <select class="hour-amount inline-block">
+                          <option class='hour-option' value="" disabled selected>Choose hours</option>
+                          <option class='hour-option' value="0">None</option>
+                          <option class='hour-option' value="1">One hour</option>
+                          <option class='hour-option' value="2">Two hours</option>
+                          <option class='hour-option' value="3">Three hours</option>
+                          <option class='hour-option' value="4">Four hours</option>
+                          <option class='hour-option' value="5">Five hours</option>
+                          <option class='hour-option' value="6">Six hours</option>
+                          <option class='hour-option' value="7">Seven hours</option>
+                          <option class='hour-option' value="8">Eight hours</option>
+                          <option class='hour-option' value="9">Nine hours</option>
+                          <option class='hour-option' value="10">Ten hours</option>
                         </select>
                     </div>
-
-                    <div class="col s12">
+                    
+                    <div class="modal-q exercise col s12">
                         Did you exercise today?
-                        <label>
+                        <label class="checkbox-container">
                             <input type="checkbox" class='checkbox' id="yes-exercise" onClick="ckCheckbox(this)" />
                             <span>Yes</span>
                         </label>
-                        <label>
+                        <label class="checkbox-container">
                             <input type="checkbox" class='checkbox' id="no-exercise" onClick="ckCheckbox(this)"/>
                             <span>No</span>
                         </label>
                     </div>
 
+                    <div class="modal-q diet input-field col s12">
+                        <div class="diet-title">
+                            Did you eat healthy today?
+                        </div>
+                        <select class="diet-choices inline-block">
+                          <option class="diet-option" value="" disabled selected>Today's Diet</option>
+                          <option class="diet-option" value="0">I ate very healthy!</option>
+                          <option class="diet-option" value="1">Mostly healthy, with some exceptions.</option>
+                          <option class="diet-option" value="2">Had some healthy food, but also ate junk.</option>
+                          <option class="diet-option" value="3">Mostly junk food.</option>
+                          <option class="diet-option" value="4">Oof. All crappy food...</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-q thoughts col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="thought-of-day" class="materialize-textarea"></textarea>
+                                <label for="thought-of-day">Thoughts of the day:</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-q encourage col s12 center">
+                        Life is tough. But so are you.
+                    </div>
+
                 </div>
+
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
+                    <a href="#!" id='add-mood' class="modal-close waves-effect waves-green btn-flat">Add Mood</a>
                 </div>
             </div>
             <!-- Modal 2 -->
@@ -239,6 +289,8 @@
                       It's important to take time to find your rhythm for the day. We implement a box-breathing exercise to assist you
                       in making time to find your center.
                   </p>
+                  <div class="center-align" id="breatheBox"></div>
+                  <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -248,7 +300,7 @@
         </div>
             
             
-      </div>
+    </div>
 
 
     <!-- jQuery -->

@@ -11,6 +11,8 @@
     border-radius: 0 0 2px 2px;
 }
 
+
+
 .card-title {
     color: black;
 }
@@ -66,11 +68,50 @@ blockquote {
     margin: 0 0 8px 30px;
 }
 
-.exercise-choice.input-field.col.s12 {
+.modal-q.input-field.col.s12 {
     display: flex;
 }
 
-.hours-title {
+.hours-title, .diet-title {
     display: flex;
     align-items: center;
+}
+
+.modal-content {
+    padding-bottom: 0px;
+}
+
+.mood-button {
+    display: flex;
+}
+
+.row {
+    padding-right: 10px;
+}
+   
+
+
+.modal-trigger {
+    margin: auto;
+}
+
+.checkbox-container {
+    color: black;
+    padding-left: 20px;
+}
+
+[type="checkbox"]+span:not(.lever) {
+    position: relative;
+    padding-left: 25px;
+}
+
+.exercise {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+#breatheBox {
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-color:cornflowerblue;
 }
