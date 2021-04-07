@@ -15,8 +15,8 @@ var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
-var breatheBox = $('#breatheBox')
-var boxBtn = $('#boxBtn')
+var breatheBox = $('#breatheBox');
+var boxBtn = $('div#boxBtn');
 var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
@@ -255,7 +255,7 @@ function ckCheckbox(ckType){
 
 //BreatheBox
 function animateBox() {
-    breatheBox.style.transform = "scale(0.5)";
+    breatheBox.style.transform = "scale(0.5, 0.5)";
     
 }
 boxBtn.on("click", animateBox()); 
