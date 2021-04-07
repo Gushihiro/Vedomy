@@ -7,6 +7,8 @@
     border-radius: 0 0 2px 2px;
 }
 
+
+
 .card-title {
     color: black;
 }
@@ -78,6 +80,12 @@ blockquote {
 .mood-button {
     display: flex;
 }
+
+.row {
+    padding-right: 10px;
+}
+   
+
 
 .modal-trigger {
     margin: auto;
