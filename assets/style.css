@@ -1,9 +1,18 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.subtitle {
+    margin-top: 0px;
+}
+
+.col.s12.m4.l3.left {
+    padding-left: 20px;
+}
+
 .row {
     padding-top: 10px;
     margin-top: 5px;
-}
-.body {
-    font-family: 'Dosis', sans-serif;
 }
 
 .main-body {

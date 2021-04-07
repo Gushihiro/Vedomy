@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Google Font 'Dosis' -->
-    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+
+    <!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@500&display=swap" rel="stylesheet">
     
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -28,8 +29,8 @@
 
 
 <body class="deep-purple lighten-5">
-    <header class="container">
-        <div class="row valign-wrapper">
+    <header class="container-fluid">
+        <div class="row">
             <!-- Quote Section -->
             <div class="col s12 m4 l3 left">
                 <blockquote class="left">
@@ -74,7 +75,7 @@
             <ul class="sidenav-posts"></ul>
 
         </ul>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"></a>
 
     </header>
 
@@ -136,16 +137,18 @@
                     <div class="card hoverable">
                         <div class="card-title center-align">Daily Recipe</div>
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="https://cdn.cancercenter.com/-/media/ctca/images/others/blogs/2019/06-june/02-blog-healthy-food-l.jpg?h=630&w=1200&hash=3D4BC987633AAF6F46F19458FC1C5E97" alt="food">
+                            <img id="recipe-image" class="activator" src="" alt="">
                         </div>
                         <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4 center-align">reveal content</span>
+                            <span id="recipe-title" class="card-title activator grey-text text-darken-4 center-align"></span>
                             <div class="divider"></div>
-                            <p class="section"><a href="#">More food</a></p>
+                            <p class="section">
+                                <a id="recipe-source" href="" target="_blank">Make this recipe!</a>
+                            </p>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-                            <p>more content here</p>
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+                            <p id="recipe-summary"></p>
                         </div>
                     </div>
                 </div>
