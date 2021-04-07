@@ -1,3 +1,7 @@
+.row {
+    padding-top: 10px;
+    margin-top: 5px;
+}
 .body {
     font-family: 'Dosis', sans-serif;
 }
@@ -27,6 +31,7 @@
 .card-content {
     border-radius: 0 0 2px 2px;
 }
+
 
 .yoga-content {
     padding-top: 0px;
@@ -141,6 +146,12 @@ blockquote {
 .mood-button {
     display: flex;
 }
+
+.row {
+    padding-right: 10px;
+}
+   
+
 
 .modal-trigger {
     margin: auto;
