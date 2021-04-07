@@ -15,8 +15,17 @@
     color: black;
 }
 
-button generate {
-    text-align: center;
+#generate {
+
+}
+
+.sleep-button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #4527a0;
 }
 
 #quote-here {

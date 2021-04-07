@@ -26,13 +26,6 @@ var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 
-// Creating a current hour and midnight hour as a conditional for daily refresh
-var currentHour = moment().hour();
-console.log(currentHour);
-var midnightHour = moment().hour(23).format('HH');
-console.log(midnightHour);
-var hasRunOnce = false;
-
 displayRandExerc();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
@@ -47,7 +40,7 @@ $(document).ready(function() {
     // future moodbox creation on page-load:
     //   createMoodBox(localMoodArr[i])
     
-    // Regenerates side nav links
+    // Regenerates side nave links
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -85,7 +78,7 @@ addMoodBtn.on('click', function() {
 
 })
 
-// This function creates sidenav links based off user post objects
+// This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
   var statusIcon;
 
@@ -154,32 +147,16 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
+  var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
 
-  // retrieve data from local storage
-  var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
-
-  // if local storage exists and page visited in last 24 hrs
-  if (savedRecipes && hasVisitedRecently) {
-
-    // use that data
-    console.log("saved recipe contents:");
-    console.log(savedRecipes);
-
-  // else there was nothing in local storage or > 24 hrs since last visit
-  // fetch new API data and save to local storage
-  } else {
-    
-    console.log("fetching new data: ");
-    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
-
-    fetch(recipeUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      localStorage.setItem("recipes", JSON.stringify(data));
-    });
-  }
+  fetch(testRecipeUrl)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log("getting recipe");
+    console.log(data);
+  });
 }
 
 // This function checks to see if checkbox is checked, then disbales the other
