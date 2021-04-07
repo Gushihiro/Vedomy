@@ -25,6 +25,7 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
+var hasVisitedRecently = dayCheck();
 
 displayRandExerc();
 getQuotesApi();
@@ -147,6 +148,7 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
+<<<<<<< HEAD
   var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
 
   fetch(testRecipeUrl)
@@ -157,7 +159,58 @@ function getRecipe () {
     console.log("getting recipe");
     console.log(data);
   });
+=======
+
+  // retrieve data from local storage
+  var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
+
+  // if local storage exists and page visited in last 24 hrs
+  if (savedRecipes && hasVisitedRecently) {
+
+    // use that data
+    console.log("saved recipe contents:");
+    console.log(savedRecipes);
+
+  // else there was nothing in local storage or > 24 hrs since last visit
+  // fetch new API data and save to local storage
+  } else {
+    
+    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
+
+    fetch(recipeUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      localStorage.setItem("recipes", JSON.stringify(data));
+    });
+  }
+>>>>>>> develop
 }
+
+// returns true if page has been visited in last 24 hr
+function dayCheck () {
+  var currentTime = moment().unix();
+  var referenceTime = parseInt(localStorage.getItem("refTime"));
+
+  // if a reference time exists, check against current time
+  if (referenceTime) {
+      var difference = currentTime - referenceTime;
+
+      // if time since last visit is less than 24 hrs, return true
+      if (difference <= 86400) {
+          return true;
+      }
+
+  // else system could not retrieve a reference time
+  // set reference time for the system
+  } else {
+      referenceTime = currentTime;
+      localStorage.setItem('refTime', referenceTime);
+  }
+
+  // page not visited in last 24 hrs OR no reference time found
+  return false;
 
 // This function checks to see if checkbox is checked, then disbales the other
 function ckCheckbox(ckType){
