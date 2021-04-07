@@ -7,15 +7,14 @@ var openIcon = $('#open-icon')
 var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
-var checkBox = $('.checkbox');
-var yesExercise = $('#yes-exercise');
-var noExercise = $('#no-exercise');
+var checkBox = $('.checkbox')
+var yesExercise = $('#yes-exercise')
+var noExercise = $('#no-exercise')
 var addMoodBtn = $('#add-mood');
 var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
-
 var breatheBox = $('#breatheBox')
 var boxBtn = $('#boxBtn')
 var sideNavPosts = $('.sidenav-posts')
@@ -26,22 +25,20 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
-// Creating a current hour and midnight hour as a conditional for daily refresh:
-// var currentHour = moment().hour();
-// console.log(currentHour);
-// var midnightHour = moment().hour(23).format('HH');
-// console.log(midnightHour);
-// var hasRunOnce = false;
 
-// true if page visited within last 24 hrs
-var hasVisitedRecently = dayCheck();
+// Creating a current hour and midnight hour as a conditional for daily refresh
+var currentHour = moment().hour();
+console.log(currentHour);
+var midnightHour = moment().hour(23).format('HH');
+console.log(midnightHour);
+var hasRunOnce = false;
 
 displayRandExerc();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
 $(document).ready(function() {
-  // clears side nav links
+  // clears side nav 
   sideNavPosts.empty();
   var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 
@@ -50,7 +47,7 @@ $(document).ready(function() {
     // future moodbox creation on page-load:
     //   createMoodBox(localMoodArr[i])
     
-    // Regenerates side nave links
+    // Regenerates side nav links
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -61,17 +58,6 @@ $(document).ready(function() {
   $('select').formSelect();
   $('.sidenav').sidenav();
 
-  // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
-    // if (!hasRunOnce) {
-    //     displayRandExerc();
-
-    
-    //     hasRunOnce = true;
-    // } else if (midnightHour > currentHour) {
-      //     displayRandExerc();
-      //     hasRunOnce = false;
-      //     return;
-      // }
 })
     
 
@@ -99,10 +85,11 @@ addMoodBtn.on('click', function() {
 
 })
 
-
+// This function creates sidenav links based off user post objects
 function createSideNavLinks(post) {
   var statusIcon;
 
+    // depending on mood of post, will display different emoticon on link
     if (post.mood <= 1) {
       statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
     } else if (post.mood > 1 & post.mood < 4) {
@@ -119,13 +106,13 @@ function createSideNavLinks(post) {
 
   // this variable will go in href, to navigate to post on page.
   var grabTime;
-
+  // adds an html string to the sidenav
   navTemplate += `<li><a href="#!">${statusIcon}${post.navTime}</a></li>`;
 
   sideNavPosts.html(navTemplate);
 }
 
-
+// Yoga pose API fetching/displaying
 function displayRandExerc() {
     var randIndex = Math.floor(Math.random() * 48);
     console.log(randIndex);
@@ -143,7 +130,6 @@ function displayRandExerc() {
             sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
         });
 }
-
 
 //Inspirational Quotes API
 function getQuotesApi() {
@@ -196,6 +182,7 @@ function getRecipe () {
   }
 }
 
+// This function checks to see if checkbox is checked, then disbales the other
 function ckCheckbox(ckType){
   var checked = document.getElementById(ckType.id);
 
@@ -221,30 +208,4 @@ function animateBox() {
     breatheBox.style.transform = 'scale(0.2)';
     requestAnimationFrame(animateBox);
 }
-boxBtn.on("click", animateBox);
-
-
-// returns true if page has been visited in last 24 hrs
-function dayCheck () {
-    var currentTime = moment().unix();
-    var referenceTime = parseInt(localStorage.getItem("refTime"));
-
-    // if a reference time exists, check against current time
-    if (referenceTime) {
-        var difference = currentTime - referenceTime;
-    
-        // if time since last visit is less than 24 hrs, return true
-        if (difference <= 86400) {
-            return true;
-        }
-
-    // else system could not retrieve a reference time
-    // set reference time for the system
-    } else {
-        referenceTime = currentTime;
-        localStorage.setItem('refTime', referenceTime);
-    }
-    
-    // page not visited in last 24 hrs OR no reference time found
-    return false;
-}
+boxBtn.on("click", animateBox)   
