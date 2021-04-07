@@ -1,3 +1,7 @@
+.main-body {
+    padding: 30px;
+}
+
 .yoga-img {
     padding: 10px;
     height: 14rem;
@@ -105,6 +109,7 @@ blockquote {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
 #breatheBox {
     width: 200px;
     height: 200px;
