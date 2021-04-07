@@ -20,10 +20,11 @@ var boxBtn = $('#boxBtn')
 var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
+var moodBoxTemplate = '';
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
-var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-var navBoxTime = moment().format("dddd, MMMM Do YYYY");
+var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
+var navBoxTime = moment().format("dddd, MMMM Do");
 
 var hasVisitedRecently = dayCheck();
 
@@ -38,10 +39,14 @@ $(document).ready(function() {
 
   // for every object in local storage:
   for (i = 0; i <localMoodArr.length; i++ ) {
+<<<<<<< HEAD
     // future moodbox creation on page-load:
     //   createMoodBox(localMoodArr[i])
+=======
+>>>>>>> develop
     
     // Regenerates side nave links
+    createMoodBox(localMoodArr[i])
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -74,10 +79,53 @@ addMoodBtn.on('click', function() {
   // console.log(localMoodArr);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  // creates a post link in side nav
-  createSideNavLinks(modalSubmit)
+  // creates a post, and post link in side nav
+  createMoodBox(modalSubmit);
+  createSideNavLinks(modalSubmit);
+  moodRange.val("");
+  sleepNum.val("");
+  dietChoices.val("");
+  thoughtOfDay.val("");
 
 })
+
+function createMoodBox(post) {
+
+  if (post.mood <= 1) {
+    statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
+  } else if (post.mood > 1 & post.mood < 4) {
+    statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
+  } else if (post.mood > 3 & post.mood < 6) {
+    statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
+  } else if (post.mood > 5 & post.mood < 8) {
+    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
+  } else if (post.mood > 7 & post.mood < 10) {
+    statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+  } else {
+    statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+  }
+    moodBoxTemplate += `
+    <div class="card row horizontal mood-box">
+      <div class="col s12 timestamp-container">
+          <div class="row status">
+          <div class="col s4 status-time">${post.time}</div>
+              <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
+              <div class="col s4 status-placeholder">placeholder</div>
+          </div>
+          <div class="divider"></div>
+          <div class="row zenthoughts-container">
+              <div class="col s2 card-image zen-box">
+                  <img class="zen-pic materialboxed circle" src="./assets/images/zen.jpg" > 
+              </div>
+              <div class="col s10 thoughts-box"><p class="thoughts-text">"${post.thoughts}"</p></div>  
+          </div>
+      </div>
+    </div>`
+
+$('.mood-box-content').html(moodBoxTemplate);  
+
+
+}
 
 // This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
@@ -99,7 +147,6 @@ function createSideNavLinks(post) {
     }
 
   // this variable will go in href, to navigate to post on page.
-  var grabTime;
   // adds an html string to the sidenav
   navTemplate += `<li><a href="#!">${statusIcon}${post.navTime}</a></li>`;
 
@@ -109,6 +156,7 @@ function createSideNavLinks(post) {
 // Yoga pose API fetching/displaying
 function getYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
+    // console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
         .then(function (response) {
             return response.json();
