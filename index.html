@@ -23,14 +23,14 @@
     <!-- FaceSpace CSS -->
     <link rel="stylesheet" href="./assets/style.css">
     
-    <title>MoodTracker</title>
+    <title>Vedomy</title>
     
 </head>
 
 
 <body class="deep-purple lighten-5">
     <header class="container-fluid">
-        <div class="row">
+        <div class="row header-elements">
             <!-- Quote Section -->
             <div class="col s12 m4 l3 left">
                 <blockquote class="left">
@@ -46,14 +46,14 @@
             </div>
             <!-- Mid Header -->
             <div class="col s12 m4 l6 center-align">
-                <img src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo">
+                <img class='vedomy-logo' src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo">
                 <p class="subtitle center-align">A place to breathe, write, and reflect.</p>
             </div>
             <!-- Box Breathing Modal Button -->
             <div class="col s12 m4 l3 center-align">
                 <div class="row center-align">
-                    <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">access_time</i></a>
-                    <h5 class="col">Start Timer</h5>
+                    <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">air</i></a>
+                    <h5 class="col">Breathe</h5>
                 </div>
             </div>
             <div class="row mood-button show-mobile">
@@ -166,7 +166,7 @@
                     <div class="card horizontal">
                     <div class="card-image" >
                         
-                        <img src="./assets/zen.jpg" >
+                        <img src="./assets/images/zen.jpg" >
                         <div><h6>status update</h6></div>
                         
                     
@@ -285,11 +285,12 @@
             <h4 class="center-align">Relax...Take Time to Breathe</h4>
             <br>
             <p class="center-align">
-                It's important to take time to find your rhythm for the day. We implement a box-breathing exercise to assist you
-                in making time to find your center.
+                It's important to take time to find your rhythm for the day. Box-breathing is a four-part, four-second interval breathing pattern that forces you to slow down your breath, and in turn, your internal pace. Once you click begin, follow the prompts to reset yourself back to a state you can be happy in. 
             </p>
             <div class="center-align" id="breatheBox"></div>
-            <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
+            <div class="breathButton">
+                <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
+            </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>

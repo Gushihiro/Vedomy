@@ -27,7 +27,8 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-GetYogaApi();
+getYogaApi();
+
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -107,7 +108,7 @@ function createSideNavLinks(post) {
 }
 
 // Yoga pose API fetching/displaying
-function GetYogaApi() {
+function getYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
     // console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
@@ -121,7 +122,7 @@ function GetYogaApi() {
             var dropDownIcon = $('<i></i>').text('more_vert');
             dropDownIcon.attr('class', 'material-icons right');
             yogaName.append(dropDownIcon);
-            sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
+            sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
         });
 }
 
