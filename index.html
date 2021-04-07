@@ -32,7 +32,7 @@
     <header class="container-fluid">
         <div class="row header-elements">
             <!-- Quote Section -->
-            <div class="col s12 m4 l3 left">
+            <div class="col s12 m4 l3 left quote-column">
                 <blockquote class="left">
                     <p class="quotetitle">Quote of the day</p>
                     <div class="divider quote-divider"></div>
@@ -44,15 +44,18 @@
                     </p>
                 </blockquote>
             </div>
-            <!-- Mid Header -->
-            <div class="col s12 m4 l6 center-align">
-                <img class='vedomy-logo' src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo">
+            <!-- Mid Header MAIN LOGO-->
+            <div class="col s12 m4 l6 center-align logo-column">
+                <img class='responsive-img' src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" alt="vedomy-logo">
+              
                 <p class="subtitle center-align">A place to breathe, write, and reflect.</p>
             </div>
             <!-- Box Breathing Modal Button -->
-            <div class="col s12 m4 l3 center-align">
+            <div class="col s12 m4 l3 center-align breathe-column">
                 <div class="row center-align">
-                    <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><i class="material-icons">air</i></a>
+                  
+                    <a data-target="modal2" class="btn-floating pulse btn-large waves-effect waves-light black modal-trigger col"><span class="material-icons">air</span></a>
+
                     <h5 class="col">Breathe</h5>
                 </div>
             </div>
@@ -137,18 +140,16 @@
                     <div class="card hoverable">
                         <div class="card-title center-align">Daily Recipe</div>
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img id="recipe-image" class="activator" src="" alt="">
+                            <img class="activator" src="https://cdn.cancercenter.com/-/media/ctca/images/others/blogs/2019/06-june/02-blog-healthy-food-l.jpg?h=630&w=1200&hash=3D4BC987633AAF6F46F19458FC1C5E97" alt="food">
                         </div>
                         <div class="card-content">
-                            <span id="recipe-title" class="card-title activator grey-text text-darken-4 center-align"></span>
+                            <span class="card-title activator grey-text text-darken-4 center-align">reveal content</span>
                             <div class="divider"></div>
-                            <p class="section">
-                                <a id="recipe-source" href="" target="_blank">Make this recipe!</a>
-                            </p>
+                            <p class="section"><a href="#">More food</a></p>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                            <p id="recipe-summary"></p>
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                            <p>more content here</p>
                         </div>
                     </div>
                 </div>
