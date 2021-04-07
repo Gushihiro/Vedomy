@@ -205,6 +205,7 @@ function dayCheck () {
 
   // page not visited in last 24 hrs OR no reference time found
   return false;
+}
 
 // This function checks to see if checkbox is checked, then disbales the other
 function ckCheckbox(ckType){
@@ -232,4 +233,4 @@ function animateBox() {
     breatheBox.style.transform = 'scale(0.2)';
     requestAnimationFrame(animateBox);
 }
-boxBtn.on("click", animateBox)   
+boxBtn.on("click", animateBox); 
