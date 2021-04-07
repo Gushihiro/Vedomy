@@ -15,10 +15,15 @@ var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
-var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var breatheBox = $('#breatheBox')
 var boxBtn = $('#boxBtn')
+var sideNavPosts = $('.sidenav-posts')
 
+var navTemplate = '';
+var instance = M.Sidenav.getInstance($('.sidenav'));
+
+var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 
 // Creating a current hour and midnight hour as a conditional for daily refresh
@@ -27,28 +32,37 @@ console.log(currentHour);
 var midnightHour = moment().hour(23).format('HH');
 console.log(midnightHour);
 var hasRunOnce = false;
-var quoteHere = $("#quote-here");
-var quoteAuthor = $("#author");
 
 displayRandExerc();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
 $(document).ready(function() {
-  // future moodbox creation on page-load
-  // var localMoodArr = JSON.parse(localStorage.getItem('urlArr')) || [];
-  // for (i = 0; i <localMoodArr.length; i++ ) {
-  //   createMoodBox(localMoodArr[i])
+  // clears side nav links
+  sideNavPosts.empty();
+  var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
+
+  // for every object in local storage:
+  for (i = 0; i <localMoodArr.length; i++ ) {
+    // future moodbox creation on page-load:
+    //   createMoodBox(localMoodArr[i])
+    
+    // Regenerates side nave links
+    createSideNavLinks(localMoodArr[i]);
   // }
+  }
 
   //initializers        
   $('#modal1').modal();
   $('#modal2').modal();
   $('select').formSelect();
-  
+  $('.sidenav').sidenav();
+
   // ATTEMPTING TO CREATE A "ONCE-A-DAY" REFRESH OF TIPS. FEEL FREE TO MESS WITH IT
     // if (!hasRunOnce) {
     //     displayRandExerc();
+
+    
     //     hasRunOnce = true;
     // } else if (midnightHour > currentHour) {
       //     displayRandExerc();
@@ -59,7 +73,10 @@ $(document).ready(function() {
     
 
 addMoodBtn.on('click', function() {
+  
+  // creates object based on results of modal
   var modalSubmit = {
+    navTime: navBoxTime,
     time: moodBoxTime,
     mood: moodRange.val(),
     sleep: sleepNum.val(),
@@ -68,15 +85,42 @@ addMoodBtn.on('click', function() {
     thoughts: thoughtOfDay.val(),
   }
 
+  // gets stred array, puts new object in, and re-stores it.
   var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
   localMoodArr.push(modalSubmit);
   console.log(localMoodArr);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  console.log(modalSubmit)
+  // creates a post link in side nav
+  createSideNavLinks(modalSubmit)
 
 })
 
+
+function createSideNavLinks(post) {
+  var statusIcon;
+
+    if (post.mood <= 1) {
+      statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
+    } else if (post.mood > 1 & post.mood < 4) {
+      statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
+    } else if (post.mood > 3 & post.mood < 6) {
+      statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
+    } else if (post.mood > 5 & post.mood < 8) {
+      statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
+    } else if (post.mood > 7 & post.mood < 10) {
+      statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+    } else {
+      statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+    }
+
+  // this variable will go in href, to navigate to post on page.
+  var grabTime;
+
+  navTemplate += `<li><a href="#!">${statusIcon}${post.navTime}</a></li>`;
+
+  sideNavPosts.html(navTemplate);
+}
 
 
 function displayRandExerc() {
@@ -87,9 +131,7 @@ function displayRandExerc() {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
             var yogaData = data[randIndex]
-            // console.log(yogaData);
             yogaImg.attr('src', yogaData.img_url)
             yogaName.text(yogaData.english_name)
             var dropDownIcon = $('<i></i>').text('more_vert');
