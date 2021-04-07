@@ -10,6 +10,11 @@ body {
     padding-left: 20px;
 }
 
+.row {
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
 .main-body {
     padding: 30px;
 }
@@ -35,6 +40,7 @@ body {
 .card-content {
     border-radius: 0 0 2px 2px;
 }
+
 
 .yoga-content {
     padding-top: 0px;
@@ -149,6 +155,12 @@ blockquote {
 .mood-button {
     display: flex;
 }
+
+.row {
+    padding-right: 10px;
+}
+   
+
 
 .modal-trigger {
     margin: auto;

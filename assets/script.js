@@ -225,4 +225,4 @@ function animateBox() {
     breatheBox.style.transform = 'scale(0.2)';
     requestAnimationFrame(animateBox);
 }
-boxBtn.on("click", animateBox)   
+boxBtn.on("click", animateBox); 
