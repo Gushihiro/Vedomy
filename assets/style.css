@@ -1,0 +1,272 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+img.vedomy-logo {
+    height: 13rem;
+}
+
+.subtitle {
+    margin-top: 0px;
+}
+
+.divider {
+    height: 1.5px;
+    overflow: hidden;
+    background-color: #7e57c2;
+}
+
+.col.s12.m4.l3.left {
+    padding-left: 20px;
+}
+
+.row {
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+.header-elements {
+    display: flex;
+    align-items: center;
+}
+
+.main-body {
+    padding: 30px;
+}
+
+.yoga-img {
+    padding: 10px;
+    height: 14rem;
+}
+
+.card .card-image {
+    position: relative;
+    padding: 10px;
+}
+
+.yoga-card {
+    text-align: center;
+}
+
+.food-card {
+    text-align: center;
+}
+
+.card-content {
+    border-radius: 0 0 2px 2px;
+}
+
+
+.yoga-content {
+    padding-top: 0px;
+}
+
+.card-title {
+    color: black;
+    padding-top: 10px;
+}
+
+p.section {
+    text-align: center;
+}
+
+#breatheBox {
+    margin: 0 auto;
+}
+
+.breathButton {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.row .col.s6 {
+    width: 50%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    margin-right: auto;
+}
+
+.sleep-button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #4527a0;
+    letter-spacing: 0px;
+}
+
+.btn:hover {
+    background-color: #7e57c2;
+}
+
+.btn-floating.btn-large {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+}
+
+#quote-here {
+    flex-wrap:wrap;
+    margin-top: 10px;
+}
+
+.quotetitle {
+    margin-bottom: 0px;
+    font-weight: 700;
+}
+
+.quote-divider {
+    margin-bottom: 10px;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding-left: 1.5rem;
+    border-left: 0px solid #4527a0; /* Just change the color value and that's it*/
+    padding-top: 10px;
+  }
+
+#author {
+    padding-left: 0;
+    font-style: italic;
+}
+
+
+.sleep-card {
+    text-align: center;
+}
+
+.emoticons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.emoticons:after {
+    content: none;
+}
+
+.row .col.s2 {
+    width: auto;
+    margin-left: 0px;
+    left: auto;
+    right: auto;
+}
+
+.range-field {
+    margin-bottom: 0px;
+}
+
+.modal-title {
+    margin-bottom: 3rem;
+}
+
+.slider-text {
+    padding: 0 .75rem;
+}
+
+.select-wrapper input.select-dropdown {
+    margin: 0 0 8px 30px;
+}
+
+.modal-q.input-field.col.s12 {
+    display: flex;
+}
+
+.hours-title, .diet-title {
+    display: flex;
+    align-items: center;
+}
+
+.modal-content {
+    padding-bottom: 0px;
+}
+
+.mood-button {
+    display: flex;
+}
+
+.row {
+    padding-right: 10px;
+}
+   
+
+
+.modal-trigger {
+    margin: auto;
+}
+
+.checkbox-container {
+    color: black;
+    padding-left: 20px;
+}
+
+[type="checkbox"]+span:not(.lever) {
+    position: relative;
+    padding-left: 25px;
+}
+
+.exercise {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.valign-wrapper {
+    margin-bottom: 0px;
+}
+
+#breatheBox {
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-color:cornflowerblue;
+}
+
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+}
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-device-width: 480px) {
+    .show-mobile {
+      display: flex;
+    }
+    .hide-mobile {
+      display: none;
+    }
+    .logo-column {
+        z-index: 1;
+        order: 1;
+    }
+    
+    .quote-column {
+        z-index: 2;
+        order: 2;
+    }
+    
+    .breath-index {
+        z-index: 3;
+        order: 3;
+    }
+
+  }
+
+
+
+@media only screen and (min-device-width: 481px) {
+    .show-mobile {
+      display: none;
+    }
+    .hide-mobile {
+      display: flex;
+    }
+  }
