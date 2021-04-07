@@ -154,16 +154,32 @@ function getQuotesApi() {
 
 // fetches recipe for display
 function getRecipe () {
-  var testRecipeUrl = "https://api.spoonacular.com/recipes/random?number=1&apiKey=c4a52647f4a64446b59c7602af76c88b";
 
-  fetch(testRecipeUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log("getting recipe");
-    console.log(data);
-  });
+  // retrieve data from local storage
+  var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
+
+  // if local storage exists and page visited in last 24 hrs
+  if (savedRecipes && hasVisitedRecently) {
+
+    // use that data
+    console.log("saved recipe contents:");
+    console.log(savedRecipes);
+
+  // else there was nothing in local storage or > 24 hrs since last visit
+  // fetch new API data and save to local storage
+  } else {
+    
+    console.log("fetching new data: ");
+    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
+
+    fetch(recipeUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      localStorage.setItem("recipes", JSON.stringify(data));
+    });
+  }
 }
 
 // This function checks to see if checkbox is checked, then disbales the other
