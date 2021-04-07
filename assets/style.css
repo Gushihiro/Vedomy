@@ -1,29 +1,92 @@
+.body {
+    font-family: 'Dosis', sans-serif;
+}
+
+.main-body {
+    padding: 30px;
+}
+
 .yoga-img {
     padding: 10px;
     height: 14rem;
+}
+
+.card .card-image {
+    position: relative;
+    padding: 10px;
+}
+
+.yoga-card {
+    text-align: center;
+}
+
+.food-card {
+    text-align: center;
 }
 
 .card-content {
     border-radius: 0 0 2px 2px;
 }
 
+.yoga-content {
+    padding-top: 0px;
+}
+
 .card-title {
     color: black;
 }
 
-button generate {
-    text-align: center;
+#generate {
+
+}
+
+.row .col.s6 {
+    width: 50%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    margin-right: auto;
+}
+
+.sleep-button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #4527a0;
+}
+
+.btn:hover {
+    background-color: #7e57c2;
 }
 
 #quote-here {
     flex-wrap:wrap;
+    margin-top: 10px;
+}
+
+.quotetitle {
+    margin-bottom: 0px;
+    font-weight: 700;
+}
+
+.quote-divider {
+    margin-bottom: 10px;
 }
 
 blockquote {
     margin: 20px 0;
     padding-left: 1.5rem;
-    border-left: 5px solid #414141; /* Just change the color value and that's it*/
+    border-left: 0px solid #4527a0; /* Just change the color value and that's it*/
+    padding-top: 10px;
   }
+
+#author {
+    padding-left: 0;
+    font-style: italic;
+}
+
 
 .sleep-card {
     text-align: center;
@@ -97,6 +160,11 @@ blockquote {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.valign-wrapper {
+    margin-bottom: 0px;
+}
+
 #breatheBox {
     width: 200px;
     height: 200px;
@@ -104,4 +172,27 @@ blockquote {
     background-color:cornflowerblue;
 }
 
-@media only screen
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-device-width: 480px) {
+    .show-mobile {
+      display: flex;
+    }
+    .hide-mobile {
+      display: none;
+    }
+  }
+
+@media only screen and (min-device-width: 481px) {
+    .show-mobile {
+      display: none;
+    }
+    .hide-mobile {
+      display: flex;
+    }
+  }
