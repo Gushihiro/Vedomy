@@ -27,13 +27,6 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-// Creating a current hour and midnight hour as a conditional for daily refresh
-// var currentHour = moment().hour();
-// console.log(currentHour);
-// var midnightHour = moment().hour(23).format('HH');
-// console.log(midnightHour);
-// var hasRunOnce = false;
-
 GetYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
