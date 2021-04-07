@@ -222,8 +222,7 @@ function ckCheckbox(ckType){
 
 //BreatheBox
 function animateBox() {
-    breatheBox.style.height = "100px";
-    breatheBox.style.width = "100px";
+    breatheBox.style.transform = "scale(0.5)";
     
 }
-boxBtn.on("click", animateBox); 
+boxBtn.on("click", animateBox()); 
