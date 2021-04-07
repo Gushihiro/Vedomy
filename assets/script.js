@@ -28,6 +28,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 var hasVisitedRecently = dayCheck();
 
 getYogaApi();
+
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
