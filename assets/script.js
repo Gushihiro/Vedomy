@@ -27,7 +27,7 @@ var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
 var hasVisitedRecently = dayCheck();
 
-GetYogaApi();
+getYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
@@ -107,7 +107,7 @@ function createSideNavLinks(post) {
 }
 
 // Yoga pose API fetching/displaying
-function GetYogaApi() {
+function getYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
         .then(function (response) {
@@ -247,7 +247,8 @@ function ckCheckbox(ckType){
 
 //BreatheBox
 function animateBox() {
-    breatheBox.style.transform = 'scale(0.2)';
-    requestAnimationFrame(animateBox);
+    breatheBox.style.height = "100px";
+    breatheBox.style.width = "100px";
+    
 }
 boxBtn.on("click", animateBox); 
