@@ -157,7 +157,8 @@ function ckCheckbox(ckType){
 
 //BreatheBox
 function animateBox() {
-    breatheBox.style.transform = 'scale(0.2)';
-    requestAnimationFrame(animateBox);
+    breatheBox.style.height = "100px";
+    breatheBox.style.width = "100px";
+    
 }
 boxBtn.on("click", animateBox)   
