@@ -120,7 +120,7 @@ function getYogaApi() {
             var dropDownIcon = $('<i></i>').text('more_vert');
             dropDownIcon.attr('class', 'material-icons right');
             yogaName.append(dropDownIcon);
-            sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".`);
+            sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
         });
 }
 

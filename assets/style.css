@@ -2,6 +2,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+img.vedomy-logo {
+    height: 13rem;
+}
+
 .subtitle {
     margin-top: 0px;
 }
@@ -19,6 +23,11 @@ body {
 .row {
     padding-top: 10px;
     margin-top: 5px;
+}
+
+.header-elements {
+    display: flex;
+    align-items: center;
 }
 
 .main-body {
@@ -54,10 +63,20 @@ body {
 
 .card-title {
     color: black;
+    padding-top: 10px;
 }
 
-#generate {
+p.section {
+    text-align: center;
+}
 
+#breatheBox {
+    margin: 0 auto;
+}
+
+.breathButton {
+    text-align: center;
+    margin-top: 10px;
 }
 
 .row .col.s6 {
