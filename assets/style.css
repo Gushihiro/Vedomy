@@ -41,7 +41,12 @@ img.vedomy-logo {
 
 .card .card-image {
     position: relative;
-    padding: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+.card-image {
+    width: 100%;
 }
 
 .yoga-card {
@@ -56,6 +61,9 @@ img.vedomy-logo {
     border-radius: 0 0 2px 2px;
 }
 
+.card-image {
+    text-align: center;
+}
 
 .yoga-content {
     padding-top: 0px;
@@ -201,6 +209,11 @@ blockquote {
 .checkbox-container {
     color: black;
     padding-left: 20px;
+}
+
+.timestamp-container {
+    border-radius: 10px 10px;
+    border-color: black;
 }
 
 [type="checkbox"]+span:not(.lever) {
