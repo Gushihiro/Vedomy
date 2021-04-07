@@ -25,6 +25,7 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var navBoxTime = moment().format("dddd, MMMM Do YYYY");
 
+var hasVisitedRecently = dayCheck();
 
 // Creating a current hour and midnight hour as a conditional for daily refresh
 var currentHour = moment().hour();
@@ -169,7 +170,6 @@ function getRecipe () {
   // fetch new API data and save to local storage
   } else {
     
-    console.log("fetching new data: ");
     var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
 
     fetch(recipeUrl)
@@ -181,6 +181,30 @@ function getRecipe () {
     });
   }
 }
+
+// returns true if page has been visited in last 24 hr
+function dayCheck () {
+  var currentTime = moment().unix();
+  var referenceTime = parseInt(localStorage.getItem("refTime"));
+
+  // if a reference time exists, check against current time
+  if (referenceTime) {
+      var difference = currentTime - referenceTime;
+
+      // if time since last visit is less than 24 hrs, return true
+      if (difference <= 86400) {
+          return true;
+      }
+
+  // else system could not retrieve a reference time
+  // set reference time for the system
+  } else {
+      referenceTime = currentTime;
+      localStorage.setItem('refTime', referenceTime);
+  }
+
+  // page not visited in last 24 hrs OR no reference time found
+  return false;
 
 // This function checks to see if checkbox is checked, then disbales the other
 function ckCheckbox(ckType){
