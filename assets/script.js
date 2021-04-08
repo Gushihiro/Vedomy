@@ -51,6 +51,7 @@ $(document).ready(function() {
   $('#modal2').modal();
   $('select').formSelect();
   $('.sidenav').sidenav();
+  $('.collapsible').collapsible();
 
 })
     
@@ -77,9 +78,14 @@ addMoodBtn.on('click', function() {
   // creates a post, and post link in side nav
   createMoodBox(modalSubmit);
   createSideNavLinks(modalSubmit);
+
   moodRange.val("");
-  sleepNum.val("");
-  dietChoices.val("");
+
+  console.log(sleepNum.val())
+  sleepNum.attr('value', '');
+  console.log(sleepNum.val())
+  sleepNum.val('');
+  dietChoices.attr('tabindex', 0);
   thoughtOfDay.val("");
 
 })
@@ -99,8 +105,32 @@ function createMoodBox(post) {
   } else {
     statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
   }
+
+  var exerciseText;
+
+  if (post.exercise) {
+    exerciseText = 'I exercised!'
+  } else {
+    exerciseText = 'I will exercise tomorrow!'
+  }
+
+  var dietText;
+
+  if (post.diet < 3 && post.diet > 0) {
+    dietText = 'I ate healthy!'
+  } else if (post.diet > 2) {
+    dietText = 'Gonna try to eat better tomorrow!'
+  } else {
+    dietText = ''
+  }
+
+  var sleepText = `I slept ${post.sleep} hours.`
+  if (post.sleep === null) {
+    sleepText = '';
+  }
+
     moodBoxTemplate += `
-    <div class="card row horizontal mood-box">
+    <div class="card row horizontal mood-box id=${post.time.trim()}">
       <div class="col s12 timestamp-container">
           <div class="row status">
           <div class="col s4 status-time">${post.time}</div>
@@ -113,6 +143,12 @@ function createMoodBox(post) {
                   <img class="zen-pic materialboxed circle" src="./assets/images/zen.jpg" > 
               </div>
               <div class="col s10 thoughts-box"><p class="thoughts-text">"${post.thoughts}"</p></div>  
+              <div class="col s12 divider"></div>
+              <div class="col s12 status">
+              <div class="col s4 status-time">${sleepText}</div>
+                  <div class="col s4 status-emoticon"><p class="feeling-text">${exerciseText}</p></div>
+                  <div class="col s4 status-placeholder">${dietText}</div>
+              </div>
           </div>
       </div>
     </div>`
@@ -142,8 +178,9 @@ function createSideNavLinks(post) {
     }
 
   // this variable will go in href, to navigate to post on page.
+
   // adds an html string to the sidenav
-  navTemplate += `<li><a href="#!">${statusIcon}${post.navTime}</a></li>`;
+  navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
 
   sideNavPosts.html(navTemplate);
 }
