@@ -65,6 +65,7 @@ addMoodBtn.on('click', function() {
     mood: moodRange.val(),
     sleep: sleepNum.val(),
     exercise: yesExercise.prop('checked'),
+    notExercise: noExercise.prop('checked'),
     diet: dietChoices.val(),
     thoughts: thoughtOfDay.val(),
   }
@@ -110,8 +111,10 @@ function createMoodBox(post) {
 
   if (post.exercise) {
     exerciseText = 'I exercised!'
-  } else {
+  } else if (post.notExercise) {
     exerciseText = 'I will exercise tomorrow!'
+  } else {
+    exerciseText = '';
   }
 
   var dietText;
@@ -129,8 +132,11 @@ function createMoodBox(post) {
     sleepText = '';
   }
 
+  if (post.thoughts === null) {
+    $('.thoughts-text').text();
+  }
     moodBoxTemplate += `
-    <div class="card row horizontal mood-box id=${post.time.trim()}">
+    <div class="card row horizontal mood-box" id=${post.time.trim()}">
       <div class="col s12 timestamp-container">
           <div class="row status">
           <div class="col s4 status-time">${post.time}</div>

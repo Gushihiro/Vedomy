@@ -14,6 +14,12 @@ header {
     ;
 }
 
+.collapsible-header {
+    opacity: .7;
+    height: 3rem;
+    align-items: center;
+}
+
 .collapsible-body {
     background-color: white;
 }
@@ -57,7 +63,9 @@ img.responsive-img, video.responsive-video {
     margin-bottom: 0;
 }
 
-
+.col.s12.m4.l3.mood-button.hide-mobile {
+    align-self: flex-end;
+}
 
 .col.s12.m4.l3.left {
     padding-left: 20px;
@@ -75,6 +83,11 @@ img.responsive-img, video.responsive-video {
     margin-top: 0px;
 }
 
+.col.s12.m4.l3.left.quote-column {
+    display: flex;
+    justify-content: center;
+}
+
 .main-body {
     padding: 30px;
     padding-top: 15px;
@@ -83,6 +96,10 @@ img.responsive-img, video.responsive-video {
 .yoga-img {
     padding: 10px;
     height: 14rem;
+}
+
+.add-update-box {
+    
 }
 
 .card .card-image {
@@ -97,6 +114,13 @@ img.responsive-img, video.responsive-video {
 
 .yoga-card {
     text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+
+}
+
+.card.hoverable {
+    margin-top: 0px;
 }
 
 .food-card {
@@ -253,6 +277,7 @@ h5.col {
 
 .modal-trigger {
     margin: 0;
+    z-index: 0;
 }
 
 .checkbox-container {
@@ -320,6 +345,11 @@ h5.col {
     margin-top: 10px;
 }
 
+.placeholder-text {
+    font-style: italic;
+    margin-top: 5rem;
+}
+
 .row .col.s4 {
     display: flex;
 }
@@ -331,6 +361,10 @@ h5.col {
 .card.horizontal .card-image {
     max-width: 10rem;
     padding: 0px;
+}
+
+.card-image.waves-effect.waves-block.waves-light {
+    padding-bottom: 0px;
 }
 
 i.material-icons.light-green-text {
@@ -365,11 +399,7 @@ img.col.s2.zen-pic.materialboxed {
         width: 85%;
     }
 }
-@media only screen and (min-width: 993px) {
-    .container {
-        width: 85%;
-    }
-}
+
 
 @media only screen and (max-device-width: 480px) {
     .show-mobile {
