@@ -14,6 +14,12 @@ header {
     ;
 }
 
+.collapsible-header {
+    opacity: .7;
+    height: 3rem;
+    align-items: center;
+}
+
 .collapsible-body {
     background-color: white;
 }
@@ -51,13 +57,22 @@ img.responsive-img, video.responsive-video {
     background-color: #c1b5d6;
 }
 
+
 .row.center-align.breathe-column {
     display: flex;
     justify-content: center;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0px;
+
 }
 
+.mood-button.hide-mobile {
+    min-width: 15rem;
+}
 
+a.col.s6.waves-effect.waves-light.btn.modal-trigger {
+    width: 75%;
+}
 
 .col.s12.m4.l3.left {
     padding-left: 20px;
@@ -75,6 +90,11 @@ img.responsive-img, video.responsive-video {
     margin-top: 0px;
 }
 
+.col.s12.m4.l3.left.quote-column {
+    display: flex;
+    justify-content: center;
+}
+
 .main-body {
     padding: 30px;
     padding-top: 15px;
@@ -83,6 +103,11 @@ img.responsive-img, video.responsive-video {
 .yoga-img {
     padding: 10px;
     height: 14rem;
+}
+
+.add-update-box {
+    display: flex;
+    justify-content: center;
 }
 
 .card .card-image {
@@ -97,6 +122,13 @@ img.responsive-img, video.responsive-video {
 
 .yoga-card {
     text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+
+}
+
+.card.hoverable {
+    margin-top: 0px;
 }
 
 .food-card {
@@ -253,6 +285,7 @@ h5.col {
 
 .modal-trigger {
     margin: 0;
+    z-index: 0;
 }
 
 .checkbox-container {
@@ -313,6 +346,7 @@ h5.col {
 .mood-box {
     padding-top: 0px;
     padding-right: 10px;
+    margin-top: 0px;
 }
 
 .row.status {
@@ -340,6 +374,11 @@ h5.col {
     margin-top: 10px;
 }
 
+.placeholder-text {
+    font-style: italic;
+    margin-top: 5rem;
+}
+
 .row .col.s4 {
     display: flex;
 }
@@ -351,6 +390,10 @@ h5.col {
 .card.horizontal .card-image {
     max-width: 10rem;
     padding: 0px;
+}
+
+.card-image.waves-effect.waves-block.waves-light {
+    padding-bottom: 0px;
 }
 
 i.material-icons.light-green-text {
@@ -402,11 +445,7 @@ img.col.s2.zen-pic.materialboxed {
         width: 85%;
     }
 }
-@media only screen and (min-width: 993px) {
-    .container {
-        width: 85%;
-    }
-}
+
 
 @media only screen and (max-device-width: 480px) {
     .show-mobile {

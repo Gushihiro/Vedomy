@@ -23,13 +23,13 @@
     <!-- FaceSpace CSS -->
     <link rel="stylesheet" href="./assets/style.css">
     
-    <title>Vedomy</title>
+    <title>vedomy</title>
     
 </head>
 
 
-<body class="deep-purple lighten-5">
-    <header class="container-fluid deep-purple lighten-4">
+<body class="grey lighten-4">
+    <header class="container-fluid grey lighten-4">
         <ul class="col 12 collapsible popout">
             <li>
               <div class="collapsible-header"><img src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" class="collapsible-img ">About this site</div>
@@ -57,9 +57,7 @@
                 <p class="subtitle center-align">A place to breathe, write, and reflect.</p>
             </div>
             <!-- Box Breathing Modal Button -->
-            <div class="col s12 m4 l3 mood-button hide-mobile">
-                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Update</a>
-                <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+            <div class="col s12 m4 l3">
             </div>
         </div>
 
@@ -80,18 +78,27 @@
         
     </header>
     
+    <div class="divider"></div>
+
     <main class="row main-body">
+        <div class="row">
+            <div class="col s12 m4 l3">
+                <div class="row center-align center-align breathe-column">
+                    <a data-target="modal2" class="btn btn-floating pulse btn-large waves-effect waves-light modal-trigger col"><span class="material-icons">air</span></a>
+                    <h5 class="col">Breathe</h5>
+                </div>
+            </div>
+            <div class="col s12 m8 l9 add-update-box">
+                <div class="mood-button hide-mobile">
+                    <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Update</a>
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+                </div>
+            </div>
+        </div>
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3 tips-of-day">
             
             <!-- Modal button -->
-            <div class="row center-align center-align breathe-column">
-                <a data-target="modal2" class="btn btn-floating pulse btn-large waves-effect waves-light modal-trigger col"><span class="material-icons">air</span></a>
-                <h5 class="col">Breathe</h5>
-            </div>
-            <div class="row mood-button show-mobile">
-                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Post</a>
-            </div>
 
             <!-- Yoga Pose of the day Card -->
             <div class="row yoga-card">
@@ -162,7 +169,8 @@
 
         </div>
         <!-- Mood-Updates content  -->
-        <div class="col s12 m8 l9 mood-box-content">            
+        <div class="col s12 m8 l9 mood-box-content"> 
+            <div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>           
          
         </div>
 
