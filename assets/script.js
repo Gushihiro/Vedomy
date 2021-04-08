@@ -20,10 +20,11 @@ var boxBtn = $('div#boxBtn');
 var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
+var moodBoxTemplate = '';
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
-var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-var navBoxTime = moment().format("dddd, MMMM Do YYYY");
+var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
+var navBoxTime = moment().format("dddd, MMMM Do");
 
 var hasVisitedRecently = dayCheck();
 
@@ -38,11 +39,9 @@ $(document).ready(function() {
 
   // for every object in local storage:
   for (i = 0; i <localMoodArr.length; i++ ) {
-    // future moodbox creation on page-load:
-    
-    //   createMoodBox(localMoodArr[i])
     
     // Regenerates side nave links
+    createMoodBox(localMoodArr[i])
     createSideNavLinks(localMoodArr[i]);
   // }
   }
@@ -52,6 +51,7 @@ $(document).ready(function() {
   $('#modal2').modal();
   $('select').formSelect();
   $('.sidenav').sidenav();
+  $('.collapsible').collapsible();
 
 })
     
@@ -72,13 +72,91 @@ addMoodBtn.on('click', function() {
   // gets stred array, puts new object in, and re-stores it.
   var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
   localMoodArr.push(modalSubmit);
-  console.log(localMoodArr);
+  // console.log(localMoodArr);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  // creates a post link in side nav
-  createSideNavLinks(modalSubmit)
+  // creates a post, and post link in side nav
+  createMoodBox(modalSubmit);
+  createSideNavLinks(modalSubmit);
+
+  moodRange.val("");
+
+  console.log(sleepNum.val())
+  sleepNum.attr('value', '');
+  console.log(sleepNum.val())
+  sleepNum.val('');
+  dietChoices.attr('tabindex', 0);
+  thoughtOfDay.val("");
 
 })
+
+function createMoodBox(post) {
+
+  if (post.mood <= 1) {
+    statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
+  } else if (post.mood > 1 & post.mood < 4) {
+    statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
+  } else if (post.mood > 3 & post.mood < 6) {
+    statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
+  } else if (post.mood > 5 & post.mood < 8) {
+    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
+  } else if (post.mood > 7 & post.mood < 10) {
+    statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+  } else {
+    statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+  }
+
+  var exerciseText;
+
+  if (post.exercise) {
+    exerciseText = 'I exercised!'
+  } else {
+    exerciseText = 'I will exercise tomorrow!'
+  }
+
+  var dietText;
+
+  if (post.diet < 3 && post.diet > 0) {
+    dietText = 'I ate healthy!'
+  } else if (post.diet > 2) {
+    dietText = 'Gonna try to eat better tomorrow!'
+  } else {
+    dietText = ''
+  }
+
+  var sleepText = `I slept ${post.sleep} hours.`
+  if (post.sleep === null) {
+    sleepText = '';
+  }
+
+    moodBoxTemplate += `
+    <div class="card row horizontal mood-box id=${post.time.trim()}">
+      <div class="col s12 timestamp-container">
+          <div class="row status">
+          <div class="col s4 status-time">${post.time}</div>
+              <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
+              <div class="col s4 status-placeholder">placeholder</div>
+          </div>
+          <div class="divider"></div>
+          <div class="row zenthoughts-container">
+              <div class="col s2 card-image zen-box">
+                  <img class="zen-pic materialboxed circle" src="./assets/images/zen.jpg" > 
+              </div>
+              <div class="col s10 thoughts-box"><p class="thoughts-text">"${post.thoughts}"</p></div>  
+              <div class="col s12 divider"></div>
+              <div class="col s12 status">
+              <div class="col s4 status-time">${sleepText}</div>
+                  <div class="col s4 status-emoticon"><p class="feeling-text">${exerciseText}</p></div>
+                  <div class="col s4 status-placeholder">${dietText}</div>
+              </div>
+          </div>
+      </div>
+    </div>`
+
+$('.mood-box-content').html(moodBoxTemplate);  
+
+
+}
 
 // This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
@@ -100,9 +178,9 @@ function createSideNavLinks(post) {
     }
 
   // this variable will go in href, to navigate to post on page.
-  var grabTime;
+
   // adds an html string to the sidenav
-  navTemplate += `<li><a href="#!">${statusIcon}${post.navTime}</a></li>`;
+  navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
 
   sideNavPosts.html(navTemplate);
 }
@@ -110,6 +188,7 @@ function createSideNavLinks(post) {
 // Yoga pose API fetching/displaying
 function getYogaApi() {
     var randIndex = Math.floor(Math.random() * 48);
+    // console.log(randIndex);
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
         .then(function (response) {
             return response.json();
@@ -134,7 +213,7 @@ function getQuotesApi() {
       })
       .then(function (data) {  
         var randomIndex = Math.floor(Math.random() * data.length)   
-        console.log(data)
+        // console.log(data)
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
         if (data[randomIndex].author == null) {
@@ -199,30 +278,21 @@ function writeRecipe (recipeArray) {
 
 }
 
-// returns true if page has been visited in last 24 hr
+// returns true if page has been visited today
 // else returns false
 function dayCheck () {
-  var currentTime = moment().unix();
-  var referenceTime = parseInt(localStorage.getItem("refTime"));
+  var currentDay = parseInt(moment().format("DDD"));
+  var referenceDay = parseInt(localStorage.getItem("refDay"));
 
-  // if a reference time exists, check against current time
-  if (referenceTime) {
-      var difference = currentTime - referenceTime;
+  // if a reference day exists and page visited today, return true
+  if (referenceDay && currentDay == referenceDay) {
+    return true;
 
-      // if time since last visit is less than 24 hrs, return true
-      if (difference <= 86400) {
-          return true;
-      }
-
-  // else system could not retrieve a reference time
-  // set reference time for the system
+  // otherwise save today to be reference and return false
   } else {
-      referenceTime = currentTime;
-      localStorage.setItem('refTime', referenceTime);
+    localStorage.setItem('refDay', currentDay);
+    return false;
   }
-
-  // page not visited in last 24 hrs OR no reference time found
-  return false;
 }
 
 // This function checks to see if checkbox is checked, then disbales the other
