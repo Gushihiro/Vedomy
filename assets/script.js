@@ -268,6 +268,8 @@ function getRecipe() {
   }
 }
 
+var testArray;  // DEBUGGING
+
 // takes recipe info and writes it to recipe card
 // recipeArray: an array of recipe info pulled from API data fetch request
 function writeRecipe(recipeArray) {
@@ -282,14 +284,49 @@ function writeRecipe(recipeArray) {
   titleSpan.append(dropDownIcon);
 
   // write image and alt text to card
-  $("#recipe-image").attr("src", dailyRecipe.image);
-  $("#recipe-image").attr("alt", dailyRecipe.title);
+  $("#recipe-image").attr("src", dailyRecipe.image).attr("alt", dailyRecipe.title);
 
   // write source url to anchor
   $("#recipe-source").attr("href", dailyRecipe.sourceUrl);
 
+  // grab summary
+  var recipeSum = dailyRecipe.summary;
+
+  // split summary into str array
+  // note that this also splits dollar amounts
+  var sumArray = recipeSum.split(".");
+
+  // create new summary to write to card
+  var revisedSummmary = "";
+
+  // loop over summary array
+  for (let i = 0; i < sumArray.length - 1; i++) {
+
+    // skip sentences that contain unwanted data
+    if (!sumArray[i].includes("<a") 
+    && !sumArray[i].includes("a>") 
+    && !sumArray[i].includes("tried")
+    && !sumArray[i].includes("made")
+    && !sumArray[i].includes("found")
+    && !sumArray[i].includes("impressed")
+    && !sumArray[i].includes("liked")
+    && !sumArray[i].includes("brought")
+    && !sumArray[i].includes("score")) {
+
+      // if the str includes a dollar sign, concat strings so $ per serving displays correctly
+      if (sumArray[i].includes("$")) {
+        revisedSummmary += sumArray[i] + "." + sumArray[i+1] + ". ";
+        i += 2;
+
+      // else concat as normal  
+      } else {
+        revisedSummmary += sumArray[i] + ". ";
+      }
+    }
+  }
+
   // write summary to card
-  $("#recipe-summary").html(dailyRecipe.summary);
+  $("#recipe-summary").html(revisedSummmary);
 
 }
 
