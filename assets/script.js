@@ -16,7 +16,7 @@ var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
 var breatheBox = $('#breatheBox')
-var boxBtn = $('#boxBtn')
+var boxBtn = $('#boxBtn');
 var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
@@ -73,7 +73,7 @@ addMoodBtn.on('click', function() {
   // gets stred array, puts new object in, and re-stores it.
   var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
   localMoodArr.push(modalSubmit);
-  console.log(localMoodArr);
+  // console.log(localMoodArr);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
   // creates a post, and post link in side nav
@@ -219,7 +219,7 @@ function getQuotesApi() {
       })
       .then(function (data) {  
         var randomIndex = Math.floor(Math.random() * data.length)   
-        console.log(data)
+        // console.log(data)
         console.log(data[randomIndex].text, data[randomIndex].author);
         quoteHere.append(data[randomIndex].text);
         if (data[randomIndex].author == null) {
@@ -284,30 +284,21 @@ function writeRecipe (recipeArray) {
 
 }
 
-// returns true if page has been visited in last 24 hr
+// returns true if page has been visited today
 // else returns false
 function dayCheck () {
-  var currentTime = moment().unix();
-  var referenceTime = parseInt(localStorage.getItem("refTime"));
+  var currentDay = parseInt(moment().format("DDD"));
+  var referenceDay = parseInt(localStorage.getItem("refDay"));
 
-  // if a reference time exists, check against current time
-  if (referenceTime) {
-      var difference = currentTime - referenceTime;
+  // if a reference day exists and page visited today, return true
+  if (referenceDay && currentDay == referenceDay) {
+    return true;
 
-      // if time since last visit is less than 24 hrs, return true
-      if (difference <= 86400) {
-          return true;
-      }
-
-  // else system could not retrieve a reference time
-  // set reference time for the system
+  // otherwise save today to be reference and return false
   } else {
-      referenceTime = currentTime;
-      localStorage.setItem('refTime', referenceTime);
+    localStorage.setItem('refDay', currentDay);
+    return false;
   }
-
-  // page not visited in last 24 hrs OR no reference time found
-  return false;
 }
 
 // This function checks to see if checkbox is checked, then disbales the other
@@ -332,9 +323,9 @@ function ckCheckbox(ckType){
 }
 
 //BreatheBox
-function animateBox() {
-    breatheBox.style.height = "100px";
-    breatheBox.style.width = "100px";
+//function animateBox() {
     
-}
-boxBtn.on("click", animateBox); 
+//}
+boxBtn.on("click", function() {
+  breatheBox.toggleClass("movingBox")
+}); 
