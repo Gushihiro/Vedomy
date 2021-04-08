@@ -65,6 +65,7 @@ addMoodBtn.on('click', function() {
     mood: moodRange.val(),
     sleep: sleepNum.val(),
     exercise: yesExercise.prop('checked'),
+    notExercise: noExercise.prop('checked'),
     diet: dietChoices.val(),
     thoughts: thoughtOfDay.val(),
   }
@@ -110,8 +111,10 @@ function createMoodBox(post) {
 
   if (post.exercise) {
     exerciseText = 'I exercised!'
-  } else {
+  } else if (post.notExercise) {
     exerciseText = 'I will exercise tomorrow!'
+  } else {
+    exerciseText = '';
   }
 
   var dietText;
@@ -125,33 +128,45 @@ function createMoodBox(post) {
   }
 
   var sleepText = `I slept ${post.sleep} hours.`
+
   if (post.sleep === null) {
     sleepText = '';
   }
 
-    moodBoxTemplate += `
-    <div class="card row horizontal mood-box id=${post.time.trim()}">
-      <div class="col s12 timestamp-container">
-          <div class="row status">
-          <div class="col s4 status-time">${post.time}</div>
-              <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
-              <div class="col s4 status-placeholder">placeholder</div>
-          </div>
-          <div class="divider"></div>
-          <div class="row zenthoughts-container">
-              <div class="col s2 card-image zen-box">
-                  <img class="zen-pic materialboxed circle" src="./assets/images/zen.jpg" > 
-              </div>
-              <div class="col s10 thoughts-box"><p class="thoughts-text">"${post.thoughts}"</p></div>  
-              <div class="col s12 divider"></div>
-              <div class="col s12 status">
-              <div class="col s4 status-time">${sleepText}</div>
-                  <div class="col s4 status-emoticon"><p class="feeling-text">${exerciseText}</p></div>
-                  <div class="col s4 status-placeholder">${dietText}</div>
-              </div>
-          </div>
-      </div>
-    </div>`
+var quoteIt;
+
+if (post.thoughts === '') {
+  quoteIt = `I didn't feel like journaling today.`
+} else {
+  quoteIt = `${post.thoughts}`
+}
+
+  moodBoxTemplate += `
+  <div class="card row horizontal mood-box" id=${post.time.trim()}">
+    <div class="col s12 timestamp-container">
+        <div class="row status">
+        <div class="col s4 status-time">${post.time}</div>
+            <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
+            <div class="col s4 status-placeholder"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="row zenthoughts-container">
+            <div class="col s12 m2 l2 card-image zen-box">
+                <img class="zen-pic materialboxed" id='first-zen' src="./assets/images/lotus.png" > 
+            </div>
+            <div class="col s12 m8 l8 thoughts-box"><p class="thoughts-text">${quoteIt}</p></div>
+            <div class="col s12 m2 l2 card-image zen-box">
+            <img class="zen-pic materialboxed" id='second-zen' src="./assets/images/lotus.png" > 
+            </div>  
+        </div>
+            <div class="col s12 divider"></div>
+            <div class="col s12 status">
+            <div class="col s4 status-time feeling-text">${sleepText}</div>
+                <div class="col s4 status-emoticon"><p class="feeling-text">${exerciseText}</p></div>
+                <div class="col s4 status-placeholder feeling-text">${dietText}</div>
+            </div>
+    </div>
+  </div>`
 
 $('.mood-box-content').html(moodBoxTemplate);  
 
@@ -354,9 +369,31 @@ function ckCheckbox(ckType){
 }
 
 //BreatheBox
-//function animateBox() {
-    
-//}
-boxBtn.on("click", function() {
-  breatheBox.toggleClass("movingBox")
-}); 
+
+boxTextArray = [
+  "Breathe In...",
+  "Hold...",
+  "Breathe Out...",
+  "Hold..."
+]
+
+function changeBoxText() {
+  var i = 0;
+    $(".boxText").html(boxTextArray[i]); 
+  var boxTimer = setInterval(function() {
+    i++;
+    $(".boxText").html(boxTextArray[i]);
+      if (i == boxTextArray.length) {
+        changeBoxText();
+      }
+  }, 4 * 1000);
+}
+
+  boxBtn.on("click", function() {
+    breatheBox.toggleClass("movingBox")
+    changeBoxText()
+    if ($('.boxText').innerHTML == boxTextArray[i]) {
+      clearInterval(boxTimer)
+      return changeBoxText;
+    }   
+  });

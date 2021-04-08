@@ -14,6 +14,12 @@ header {
     ;
 }
 
+.collapsible-header {
+    opacity: .7;
+    height: 3rem;
+    align-items: center;
+}
+
 .collapsible-body {
     background-color: white;
 }
@@ -51,13 +57,22 @@ img.responsive-img, video.responsive-video {
     background-color: #c1b5d6;
 }
 
+
 .row.center-align.breathe-column {
     display: flex;
     justify-content: center;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0px;
+
 }
 
+.mood-button.hide-mobile {
+    min-width: 15rem;
+}
 
+a.col.s6.waves-effect.waves-light.btn.modal-trigger {
+    width: 75%;
+}
 
 .col.s12.m4.l3.left {
     padding-left: 20px;
@@ -75,6 +90,11 @@ img.responsive-img, video.responsive-video {
     margin-top: 0px;
 }
 
+.col.s12.m4.l3.left.quote-column {
+    display: flex;
+    justify-content: center;
+}
+
 .main-body {
     padding: 30px;
     padding-top: 15px;
@@ -83,6 +103,11 @@ img.responsive-img, video.responsive-video {
 .yoga-img {
     padding: 10px;
     height: 14rem;
+}
+
+.add-update-box {
+    display: flex;
+    justify-content: center;
 }
 
 .card .card-image {
@@ -97,6 +122,13 @@ img.responsive-img, video.responsive-video {
 
 .yoga-card {
     text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+
+}
+
+.card.hoverable {
+    margin-top: 0px;
 }
 
 .food-card {
@@ -253,6 +285,7 @@ h5.col {
 
 .modal-trigger {
     margin: 0;
+    z-index: 0;
 }
 
 .checkbox-container {
@@ -288,9 +321,9 @@ h5.col {
 }
 
 #breatheBox {
-    position: absolute;
-    width: 200px;
-    height: 200px;
+    position: flex;
+    width: 100px;
+    height: 100px;
     border:1px solid black;
     background-color:cornflowerblue;
 }
@@ -306,6 +339,26 @@ h5.col {
     animation-play-state: running;
 }
 
+.boxText {
+    display:flex;
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
+.showText {
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
+#textOut {
+    display:none;
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
 .col.s12.m8.l9.mood-box-content {
     padding-right: 20px;
 }
@@ -313,6 +366,7 @@ h5.col {
 .mood-box {
     padding-top: 0px;
     padding-right: 10px;
+    margin-top: 0px;
 }
 
 .row.status {
@@ -327,17 +381,20 @@ h5.col {
 .zenthoughts-container {
     margin-top: 0px;
     padding: 10px;
-    height: 80%;
-    padding-bottom: 0px;
     margin-bottom: 0px;
 }
 
 .col.s12.status {
     font-size: smaller;
+    min-height: 18px;
 }
 
 .col.s12.divider {
-    margin-top: 10px;
+}
+
+.placeholder-text {
+    font-style: italic;
+    margin-top: 5rem;
 }
 
 .row .col.s4 {
@@ -353,13 +410,24 @@ h5.col {
     padding: 0px;
 }
 
+.card-image.waves-effect.waves-block.waves-light {
+    padding-bottom: 0px;
+}
+
 i.material-icons.light-green-text {
     vertical-align: middle;
 }
 
 .card.horizontal .card-image img {
-    border-radius: 10rem;
-    border: 2px solid #a480e4;
+    height: 6rem;
+}
+
+#first-zen {
+    float: left;
+}
+
+#second-zen {
+    float: right;
 }
 
 img.col.s2.zen-pic.materialboxed {
@@ -367,7 +435,10 @@ img.col.s2.zen-pic.materialboxed {
 }
 
 .feeling-text {
+    display: flex;
+    align-items: center;
     margin: 0 auto;
+    font-style: italic;
 }
 
 .thoughts-text {
@@ -381,12 +452,13 @@ img.col.s2.zen-pic.materialboxed {
 @keyframes breathing {
     0% {
         transform:scale(1);
+        
     }
     25% {
-        transform:scale(0.5);
+        transform:scale(2);
     }
     50% {
-        transform:scale(0.5);
+        transform:scale(2);
     }
     75% {
         transform:scale(1);
@@ -402,28 +474,4 @@ img.col.s2.zen-pic.materialboxed {
         width: 85%;
     }
 }
-@media only screen and (min-width: 993px) {
-    .container {
-        width: 85%;
-    }
-}
 
-@media only screen and (max-device-width: 480px) {
-    .show-mobile {
-      display: flex;
-    }
-    .hide-mobile {
-      display: none;
-    }
-}
-
-
-
-@media only screen and (min-device-width: 481px) {
-    .show-mobile {
-      display: none;
-    }
-    .hide-mobile {
-      display: flex;
-    }
-  }
