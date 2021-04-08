@@ -21,30 +21,25 @@ var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
 var moodBoxTemplate = '';
-var instance = M.Sidenav.getInstance($('.sidenav'));
+
+// check to see if page has been visited today
+var hasVisitedRecently = dayCheck();
 
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
-var hasVisitedRecently = dayCheck();
+// retrieve saved entries from local storage and place them in an array
+var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
+
+var instance = M.Sidenav.getInstance($('.sidenav'));
 
 getYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
 $(document).ready(function () {
-  // clears side nav 
-  sideNavPosts.empty();
-  var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 
-  // for every object in local storage:
-  for (i = 0; i < localMoodArr.length; i++) {
-
-    // Regenerates side nave links
-    createMoodBox(localMoodArr[i])
-    createSideNavLinks(localMoodArr[i]);
-    // }
-  }
+  writeMoodEntries();
 
   //initializers        
   $('#modal1').modal();
@@ -55,6 +50,25 @@ $(document).ready(function () {
 
 })
 
+// updates content of mood and side nav containers
+function writeMoodEntries () {
+
+  $("#mood-box-entries").empty(); // clear mood box
+  moodBoxTemplate = "";           // reset template
+
+  sideNavPosts.empty();
+  navTemplate = "";
+
+  // update templates for every item in local storage
+  for (i = 0; i < localMoodArr.length; i++) {
+    createMoodBox(localMoodArr[i]);       // create a mood box
+    createSideNavLinks(localMoodArr[i]);  // create a side nav link
+  }
+
+  // write
+  $("#mood-box-entries").html(moodBoxTemplate);
+  sideNavPosts.html(navTemplate);
+}
 
 addMoodBtn.on('click', function () {
 
@@ -70,21 +84,14 @@ addMoodBtn.on('click', function () {
     thoughts: thoughtOfDay.val(),
   }
 
-  // gets stred array, puts new object in, and re-stores it.
-  var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
-  localMoodArr.push(modalSubmit);
-  // console.log(localMoodArr);
+  // update mood entry array and save it to local storage
+  localMoodArr.unshift(modalSubmit);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  // creates a post, and post link in side nav
-  createMoodBox(modalSubmit);
-  createSideNavLinks(modalSubmit);
+  writeMoodEntries (); // update mood entry logs
 
   moodRange.val("");
-
-  console.log(sleepNum.val())
   sleepNum.attr('value', '');
-  console.log(sleepNum.val())
   sleepNum.val('');
   dietChoices.attr('tabindex', 0);
   thoughtOfDay.val("");
@@ -141,6 +148,7 @@ function createMoodBox(post) {
     quoteIt = `${post.thoughts}`
   }
 
+  // concat most recent entry to template
   moodBoxTemplate += `
   <div class="card row horizontal mood-box" id=${post.time.trim()}">
     <div class="col s12 timestamp-container">
@@ -166,10 +174,7 @@ function createMoodBox(post) {
                 <div class="col s4 status-placeholder feeling-text">${dietText}</div>
             </div>
     </div>
-  </div>`
-
-  $('.mood-box-content').html(moodBoxTemplate);
-
+  </div>`;
 
 }
 
@@ -196,8 +201,6 @@ function createSideNavLinks(post) {
 
   // adds an html string to the sidenav
   navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
-
-  sideNavPosts.html(navTemplate);
 }
 
 // Yoga pose API fetching/displaying
