@@ -57,14 +57,21 @@ img.responsive-img, video.responsive-video {
     background-color: #c1b5d6;
 }
 
+
 .row.center-align.breathe-column {
     display: flex;
     justify-content: center;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0px;
+
 }
 
-.col.s12.m4.l3.mood-button.hide-mobile {
-    align-self: flex-end;
+.mood-button.hide-mobile {
+    min-width: 15rem;
+}
+
+a.col.s6.waves-effect.waves-light.btn.modal-trigger {
+    width: 75%;
 }
 
 .col.s12.m4.l3.left {
@@ -99,7 +106,8 @@ img.responsive-img, video.responsive-video {
 }
 
 .add-update-box {
-    
+    display: flex;
+    justify-content: center;
 }
 
 .card .card-image {
@@ -338,6 +346,7 @@ h5.col {
 .mood-box {
     padding-top: 0px;
     padding-right: 10px;
+    margin-top: 0px;
 }
 
 .row.status {
