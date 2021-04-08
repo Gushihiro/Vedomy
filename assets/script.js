@@ -332,9 +332,31 @@ function ckCheckbox(ckType){
 }
 
 //BreatheBox
-//function animateBox() {
-    
-//}
-boxBtn.on("click", function() {
-  breatheBox.toggleClass("movingBox")
-}); 
+
+boxTextArray = [
+  "Breathe In...",
+  "Hold...",
+  "Breathe Out...",
+  "Hold..."
+]
+
+function changeBoxText() {
+  var i = 0;
+    $(".boxText").html(boxTextArray[i]); 
+  var boxTimer = setInterval(function() {
+    i++;
+    $(".boxText").html(boxTextArray[i]);
+      if (i == boxTextArray.length) {
+        changeBoxText();
+      }
+  }, 4 * 1000);
+}
+
+  boxBtn.on("click", function() {
+    breatheBox.toggleClass("movingBox")
+    changeBoxText()
+    if ($('.boxText').innerHTML == boxTextArray[i]) {
+      clearInterval(boxTimer)
+      return changeBoxText;
+    }   
+  });
