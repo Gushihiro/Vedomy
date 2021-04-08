@@ -142,7 +142,11 @@ function createMoodBox(post) {
   }
 
   moodBoxTemplate += `
+<<<<<<< HEAD
   <section class="card row horizontal mood-box" id="${post.time.trim()}">
+=======
+  <div class="card row horizontal mood-box" id="${post.time.trim()}">
+>>>>>>> develop
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
@@ -202,10 +206,14 @@ function createSideNavLinks(post) {
   // this variable will go in href, to navigate to post on page.
 
   // adds an html string to the sidenav
-  navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
+  navTemplate += `<li><a class="sidenav-close" href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
 
   sideNavPosts.html(navTemplate);
 }
+
+$(".closeNav").on("click", function() {
+  $('.sidenav').close();
+})
 
 // Yoga pose API fetching/displaying
 function getYogaApi() {
