@@ -377,19 +377,21 @@ var boxTextArray = [
 ]
 
 var boxTimer;
+var i = 0;
 
 $('#stopBtn').hide();
 
 boxBtn.on("click", function () {
   $('#stopBtn').show();
   boxBtn.hide();
-  var boxTimer;
-  var i = 0;
+  i = 0;
+
   $(".boxText").html(boxTextArray[i]);
   breatheBox.toggleClass("movingBox")
   boxTimer = setInterval(function () {
     i++;
     console.log({i, text: boxTextArray[i]})
+
     if (i >= boxTextArray.length) {
       i = 0;
     }

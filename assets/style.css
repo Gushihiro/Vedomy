@@ -178,12 +178,12 @@ p.section {
     justify-content: center;
 }
 
-.btn {
+.btn, .btn-small {
     background-color: #4527a0;
     letter-spacing: 0px;
 }
 
-.btn:hover {
+.btn:hover, .btn-small:hover {
     background-color: #7e57c2;
 }
 
