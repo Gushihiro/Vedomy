@@ -91,7 +91,7 @@ a.col.s6.waves-effect.waves-light.btn.modal-trigger {
 }
 
 .col.s12.m4.l3.left.quote-column {
-    order: -1;
+    /* order: -1; */
     display: flex;
     justify-content: center;
 }
