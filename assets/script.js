@@ -1,23 +1,23 @@
 //  JQuery DOM Variables here:
 var yogaImg = $('.yoga-img');
 var yogaName = $('.yoga-name');
-var yogaLink = $('#yoga-link')
-var closeIcon = $('#close-icon')
-var openIcon = $('#open-icon')
+var yogaLink = $('#yoga-link');
+var closeIcon = $('#close-icon');
+var openIcon = $('#open-icon');
 var sanskName = $('.sanskrit-name');
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
-var checkBox = $('.checkbox')
-var yesExercise = $('#yes-exercise')
-var noExercise = $('#no-exercise')
+var checkBox = $('.checkbox');
+var yesExercise = $('#yes-exercise');
+var noExercise = $('#no-exercise');
 var addMoodBtn = $('#add-mood');
 var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
-var breatheBox = $('#breatheBox')
+var breatheBox = $('#breatheBox');
 var boxBtn = $('#boxBtn');
-var sideNavPosts = $('.sidenav-posts')
+var sideNavPosts = $('.sidenav-posts');
 
 var navTemplate = '';
 var moodBoxTemplate = '';
@@ -33,11 +33,11 @@ var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
-getYogaApi();
-getQuotesApi();
-getRecipe(); //api key has 150 request daily quota
-
 $(document).ready(function () {
+
+  getYogaApi();
+  getQuotesApi();
+  getRecipe();
 
   writeMoodEntries();
 
@@ -65,7 +65,7 @@ function writeMoodEntries () {
     createSideNavLinks(localMoodArr[i]);  // create a side nav link
   }
 
-  // write
+  // write updated templates
   $("#mood-box-entries").html(moodBoxTemplate);
   sideNavPosts.html(navTemplate);
 }
@@ -98,6 +98,7 @@ addMoodBtn.on('click', function () {
 
 })
 
+// creates an html template for a mood entry
 function createMoodBox(post) {
 
   if (post.mood <= 1) {
@@ -175,10 +176,9 @@ function createMoodBox(post) {
             </div>
     </div>
   </div>`;
-
 }
 
-// This function creates sidenav links based off user posts
+// creates a side nav bar and concatenates it to the existing template
 function createSideNavLinks(post) {
   var statusIcon;
 
@@ -197,16 +197,17 @@ function createSideNavLinks(post) {
     statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
   }
 
-  // this variable will go in href, to navigate to post on page.
 
-  // adds an html string to the sidenav
+  // concat most recent entry to template
   navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
 }
 
 // Yoga pose API fetching/displaying
 function getYogaApi() {
+
   var randIndex = Math.floor(Math.random() * 48);
   // console.log(randIndex);
+
   fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
     .then(function (response) {
       return response.json();
@@ -230,16 +231,23 @@ function getQuotesApi() {
       return response.json();
     })
     .then(function (data) {
-      var randomIndex = Math.floor(Math.random() * data.length)
+
       // console.log(data)
-      console.log(data[randomIndex].text, data[randomIndex].author);
+
+      var randomIndex = Math.floor(Math.random() * data.length)
+      
+      // console.log(data[randomIndex].text, data[randomIndex].author);
+
       quoteHere.append(data[randomIndex].text);
+
       if (data[randomIndex].author == null) {
-        quoteAuthor.append("Author Unknown")
+        quoteAuthor.append("Author Unknown");
       } else {
-        quoteAuthor.append(data[randomIndex].author)
+        quoteAuthor.append(data[randomIndex].author);
       }
-      console.log(data[randomIndex].author)
+
+      // console.log(data[randomIndex].author);
+
     })
 };
 
@@ -270,8 +278,6 @@ function getRecipe() {
       });
   }
 }
-
-var testArray;  // DEBUGGING
 
 // takes recipe info and writes it to recipe card
 // recipeArray: an array of recipe info pulled from API data fetch request
@@ -350,7 +356,7 @@ function dayCheck() {
   }
 }
 
-// This function checks to see if checkbox is checked, then disbales the other
+// checks to see if checkbox is checked, then disables the other
 function ckCheckbox(ckType) {
   var checked = document.getElementById(ckType.id);
 
