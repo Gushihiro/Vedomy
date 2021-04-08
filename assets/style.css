@@ -2,8 +2,43 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+header {
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.collapsible {
+    position: absolute;
+    right: 0px;
+    z-index: 1
+    ;
+}
+
+.collapsible-body {
+    background-color: white;
+}
+
+.collapsible.popout>li.active {
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    margin: 16px 20px;
+}
+
+.collapsible-img {
+    width: 2rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    text-align: center;
+    margin-right: 1rem;
+}
+
 img.vedomy-logo {
     height: 13rem;
+}
+
+img.responsive-img, video.responsive-video {
+    max-width: 100%;
+    height: 15rem;
 }
 
 .subtitle {
@@ -11,10 +46,18 @@ img.vedomy-logo {
 }
 
 .divider {
-    height: 1.5px;
+    height: 1px;
     overflow: hidden;
-    background-color: #7e57c2;
+    background-color: #c1b5d6;
 }
+
+.row.center-align.breathe-column {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+
 
 .col.s12.m4.l3.left {
     padding-left: 20px;
@@ -28,10 +71,13 @@ img.vedomy-logo {
 .header-elements {
     display: flex;
     align-items: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .main-body {
     padding: 30px;
+    padding-top: 15px;
 }
 
 .yoga-img {
@@ -200,10 +246,13 @@ blockquote {
     padding-right: 10px;
 }
    
-
+h5.col {
+    margin-top: .5rem;
+    font-style: italic;
+}
 
 .modal-trigger {
-    margin: auto;
+    margin: 0;
 }
 
 .checkbox-container {
@@ -237,6 +286,79 @@ blockquote {
     background-color:cornflowerblue;
 }
 
+.col.s12.m8.l9.mood-box-content {
+    padding-right: 20px;
+}
+
+.mood-box {
+    padding-top: 0px;
+    padding-right: 10px;
+}
+
+.row.status {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+}
+
+.zenthoughts-container {
+    margin-top: 0px;
+    padding: 10px;
+    height: 80%;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.col.s12.status {
+    font-size: smaller;
+}
+
+.col.s12.divider {
+    margin-top: 10px;
+}
+
+.row .col.s4 {
+    display: flex;
+}
+
+.status-placeholder {
+    justify-content: center;
+}
+
+.card.horizontal .card-image {
+    max-width: 10rem;
+    padding: 0px;
+}
+
+i.material-icons.light-green-text {
+    vertical-align: middle;
+}
+
+.card.horizontal .card-image img {
+    border-radius: 10rem;
+    border: 2px solid #a480e4;
+}
+
+img.col.s2.zen-pic.materialboxed {
+    padding: 0px;
+}
+
+.feeling-text {
+    margin: 0 auto;
+}
+
+.thoughts-text {
+    margin: 0 auto;
+}
+
+.sidenav-trigger {
+    display: inline;
+}
+
+
 
 @media only screen and (min-width: 993px) {
     .container {
@@ -256,22 +378,7 @@ blockquote {
     .hide-mobile {
       display: none;
     }
-    .logo-column {
-        z-index: 1;
-        order: 1;
-    }
-    
-    .quote-column {
-        z-index: 2;
-        order: 2;
-    }
-    
-    .breath-index {
-        z-index: 3;
-        order: 3;
-    }
-
-  }
+}
 
 
 
