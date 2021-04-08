@@ -23,13 +23,19 @@
     <!-- FaceSpace CSS -->
     <link rel="stylesheet" href="./assets/style.css">
     
-    <title>Vedomy</title>
+    <title>vedomý</title>
     
 </head>
 
 
-<body class="deep-purple lighten-5">
-    <header class="container-fluid">
+<body class="grey lighten-4">
+    <header class="container-fluid grey lighten-4">
+        <ul class="col 12 collapsible popout">
+            <li>
+              <div class="collapsible-header"><img src="./assets/images/488f831d15c04fc596011b6b64fb2231.png" class="collapsible-img ">About this site</div>
+              <div class="collapsible-body"><span>Hey there! We've created this space for anyone who needs a second to slow down, reflect, and collect themselves. Vedomy is Czech for "Conscious", and we believe that a conscious life is a life lived in the present. A great way to live this way is doing exactly what this place is designed to help you to do- breathe, write, and reflect. Click "Add Update" to journal about your current state, and it will be logged for future reference. Use the breathe module to help slow your internal pace. Above all, enjoy your stay!</span></div>
+            </li>
+        </ul>
         <div class="row header-elements">
             <!-- Quote Section -->
             <div class="col s12 m4 l3 left quote-column">
@@ -51,16 +57,7 @@
                 <p class="subtitle center-align">A place to breathe, write, and reflect.</p>
             </div>
             <!-- Box Breathing Modal Button -->
-            <div class="col s12 m4 l3 center-align breathe-column">
-                <div class="row center-align">
-                  
-                    <a data-target="modal2" class="btn btn-floating pulse btn-large waves-effect waves-light modal-trigger col"><span class="material-icons">air</span></a>
-
-                    <h5 class="col">Breathe</h5>
-                </div>
-            </div>
-            <div class="row mood-button show-mobile">
-                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Post</a>
+            <div class="col s12 m4 l3">
             </div>
         </div>
 
@@ -78,19 +75,30 @@
             <ul class="sidenav-posts"></ul>
 
         </ul>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"></a>
-
+        
     </header>
-
+    
     <div class="divider"></div>
 
     <main class="row main-body">
+        <div class="row main-buttons">
+            <div class="col s12 m4 l3 breathe-colum">
+                <div class="row center-align center-align breathe-column">
+                    <a data-target="modal2" class="btn btn-floating pulse btn-large waves-effect waves-light modal-trigger col"><span class="material-icons">air</span></a>
+                    <h5 class="col">Breathe</h5>
+                </div>
+            </div>
+            <div class="col s12 m8 l9 add-update-box">
+                <div class="mood-button hide-mobile">
+                    <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Update</a>
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+                </div>
+            </div>
+        </div>
         <!-- Tips of the day panel -->
         <div class="col s12 m4 l3 tips-of-day">
+            
             <!-- Modal button -->
-            <div class="row mood-button hide-mobile">
-                <a class="col s6 waves-effect waves-light btn modal-trigger" href='#modal1'><i class="material-icons right">add</i>Add Update</a>
-            </div>
 
             <!-- Yoga Pose of the day Card -->
             <div class="row yoga-card">
@@ -112,6 +120,8 @@
                     </div>        
                 </div>    
             </div>
+
+            <!-- Sleep tips -->
             <div class="row">
                 <div class="col s12">
                     <div class="card hoverable">
@@ -159,28 +169,9 @@
 
         </div>
         <!-- Mood-Updates content  -->
-        <div class="col s12 m8 l9">
-            
+        <div class="col s12 m8 l9 mood-box-content"> 
+            <div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>           
          
-                <div class="col s12 m15">
-                    
-                    <div class="card horizontal">
-                    <div class="card-image" >
-                        
-                        <img src="./assets/images/zen.jpg" >
-                        <div><h6>status update</h6></div>
-                        
-                    
-                        <div class="card-stacked">
-                            <div class="card-content">
-                            <p>Feeling good about stuff</p>
-                            </div>
-                            <div class="card-action">
-                            <a href="#">This is a link</a>
-                            </div>
-                    <div>
-              </div>
-        </div>
     </main>
                         
                             
@@ -288,9 +279,16 @@
             <p class="center-align">
                 It's important to take time to find your rhythm for the day. Box-breathing is a four-part, four-second interval breathing pattern that forces you to slow down your breath, and in turn, your internal pace. Once you click begin, follow the prompts to reset yourself back to a state you can be happy in. 
             </p>
-            <div class="center-align" id="breatheBox"></div>
+            <div class="center-align valign-wrapper" id="breatheBoxContainer">
+                <div class="center-align" id="breatheBox">
+                    <p class="boxText"></p>
+                </div>
+            </div>
             <div class="breathButton">
                 <a class="waves-effect waves-light btn-small" id="boxBtn">Begin</a>
+            </div>
+            <div class="breathButton">
+                <a class="waves-effect waves-light btn-small" id="stopBtn">Stop</a>
             </div>
         </div>
         <div class="modal-footer">

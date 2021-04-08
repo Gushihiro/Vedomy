@@ -2,8 +2,49 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+header {
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.collapsible {
+    position: absolute;
+    right: 0px;
+    z-index: 1
+    ;
+}
+
+.collapsible-header {
+    opacity: .7;
+    height: 3rem;
+    align-items: center;
+}
+
+.collapsible-body {
+    background-color: white;
+}
+
+.collapsible.popout>li.active {
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    margin: 16px 20px;
+}
+
+.collapsible-img {
+    width: 2rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    text-align: center;
+    margin-right: 1rem;
+}
+
 img.vedomy-logo {
     height: 13rem;
+}
+
+img.responsive-img, video.responsive-video {
+    max-width: 100%;
+    height: 15rem;
 }
 
 .subtitle {
@@ -11,9 +52,26 @@ img.vedomy-logo {
 }
 
 .divider {
-    height: 1.5px;
+    height: 1px;
     overflow: hidden;
-    background-color: #7e57c2;
+    background-color: #c1b5d6;
+}
+
+
+.row.center-align.breathe-column {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0px;
+
+}
+
+.mood-button.hide-mobile {
+    min-width: 15rem;
+}
+
+a.col.s6.waves-effect.waves-light.btn.modal-trigger {
+    width: 75%;
 }
 
 .col.s12.m4.l3.left {
@@ -28,10 +86,18 @@ img.vedomy-logo {
 .header-elements {
     display: flex;
     align-items: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.col.s12.m4.l3.left.quote-column {
+    display: flex;
+    justify-content: center;
 }
 
 .main-body {
     padding: 30px;
+    padding-top: 15px;
 }
 
 .yoga-img {
@@ -39,13 +105,30 @@ img.vedomy-logo {
     height: 14rem;
 }
 
+.add-update-box {
+    display: flex;
+    justify-content: center;
+}
+
 .card .card-image {
     position: relative;
-    padding: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+.card-image {
+    width: 100%;
 }
 
 .yoga-card {
     text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+
+}
+
+.card.hoverable {
+    margin-top: 0px;
 }
 
 .food-card {
@@ -56,6 +139,9 @@ img.vedomy-logo {
     border-radius: 0 0 2px 2px;
 }
 
+.card-image {
+    text-align: center;
+}
 
 .yoga-content {
     padding-top: 0px;
@@ -92,12 +178,12 @@ p.section {
     justify-content: center;
 }
 
-.btn {
+.btn, .btn-small {
     background-color: #4527a0;
     letter-spacing: 0px;
 }
 
-.btn:hover {
+.btn:hover, .btn-small:hover {
     background-color: #7e57c2;
 }
 
@@ -192,15 +278,24 @@ blockquote {
     padding-right: 10px;
 }
    
-
+h5.col {
+    margin-top: .5rem;
+    font-style: italic;
+}
 
 .modal-trigger {
-    margin: auto;
+    margin: 0;
+    z-index: 0;
 }
 
 .checkbox-container {
     color: black;
     padding-left: 20px;
+}
+
+.timestamp-container {
+    border-radius: 10px 10px;
+    border-color: black;
 }
 
 [type="checkbox"]+span:not(.lever) {
@@ -217,56 +312,202 @@ blockquote {
     margin-bottom: 0px;
 }
 
-#breatheBox {
+#breatheBoxContainer {
+    position: relative;
+    margin:0 auto;
     width: 200px;
     height: 200px;
+    background-color:blueviolet;
+}
+
+#breatheBox {
+    position: flex;
+    width: 100px;
+    height: 100px;
     border:1px solid black;
     background-color:cornflowerblue;
 }
 
+.movingBox {
+    animation-name: breathing;
+    animation-duration: 16s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+
+.boxText {
+    display:flex;
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
+.showText {
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
+#textOut {
+    display:none;
+    justify-content: center;
+    margin-top: 35px;
+    align-self: center;
+}
+
+.col.s12.m8.l9.mood-box-content {
+    padding-right: 20px;
+}
+
+.mood-box {
+    padding-top: 0px;
+    padding-right: 10px;
+    margin-top: 0px;
+}
+
+.row.status {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+}
+
+.zenthoughts-container {
+    margin-top: 0px;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.col.s12.status {
+    font-size: smaller;
+    min-height: 18px;
+}
+
+.placeholder-text {
+    font-style: italic;
+    margin-top: 5rem;
+}
+
+.row .col.s4 {
+    display: flex;
+}
+
+.status-placeholder {
+    justify-content: center;
+}
+
+.card.horizontal .card-image {
+    max-width: 10rem;
+    padding: 0px;
+}
+
+.card-image.waves-effect.waves-block.waves-light {
+    padding-bottom: 0px;
+}
+
+i.material-icons.light-green-text {
+    vertical-align: middle;
+}
+
+.card.horizontal .card-image img {
+    height: 6rem;
+}
+
+#first-zen {
+    float: left;
+}
+
+#second-zen {
+    float: right;
+}
+
+img.col.s2.zen-pic.materialboxed {
+    padding: 0px;
+}
+
+.main-buttons {
+    margin-bottom: 0px;
+}
+
+.add-update-box {
+    order: 1;
+}
+
+.breathe-colum {
+    order: 2;
+}
+
+.breathe-colum, .add-update-box {
+    margin-bottom: 20px;
+}
+
+.feeling-text {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+.thoughts-text {
+    margin: 0 auto;
+}
+
+.sidenav-trigger {
+    display: inline;
+}
+
+@keyframes breathing {
+    0% {
+        transform:scale(1);
+        
+    }
+    25% {
+        transform:scale(2);
+    }
+    50% {
+        transform:scale(2);
+    }
+    75% {
+        transform:scale(1);
+    }
+    100% {
+        transform:scale(1);
+    }
+    
+}
 
 @media only screen and (min-width: 993px) {
     .container {
         width: 85%;
     }
 }
-@media only screen and (min-width: 993px) {
-    .container {
-        width: 85%;
+
+@media only screen and (max-width: 600px) {
+    /* .zen-box {
+        display: none;
+    } */
+
+    img#second-zen, img#first-zen {
+        height: 3rem;
+    }
+
+    #second-zen {
+        float: left;
     }
 }
 
-@media only screen and (max-device-width: 480px) {
-    .show-mobile {
-      display: flex;
-    }
-    .hide-mobile {
-      display: none;
-    }
-    .logo-column {
-        z-index: 1;
-        order: 1;
-    }
-    
-    .quote-column {
-        z-index: 2;
-        order: 2;
-    }
-    
-    .breath-index {
-        z-index: 3;
-        order: 3;
+@media only screen and (max-width: 480px) {
+    .header-elements {
+        flex-direction: column;
     }
 
-  }
-
-
-
-@media only screen and (min-device-width: 481px) {
-    .show-mobile {
-      display: none;
+    .col.s12.m4.l3.left.quote-column {
+        display: none;
     }
-    .hide-mobile {
-      display: flex;
-    }
-  }
+}
