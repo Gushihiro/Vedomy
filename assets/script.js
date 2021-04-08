@@ -141,12 +141,8 @@ function createMoodBox(post) {
     quoteIt = `${post.thoughts}`
   }
 
-  moodBoxTemplate += `
-<<<<<<< HEAD
-  <section class="card row horizontal mood-box" id="${post.time.trim()}">
-=======
-  <div class="card row horizontal mood-box" id="${post.time.trim()}">
->>>>>>> develop
+  moodBoxTemplate += 
+    `<section class="card row horizontal mood-box" id="${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
