@@ -16,7 +16,7 @@ var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
 var thoughtOfDay = $('#thought-of-day');
 var breatheBox = $('#breatheBox')
-var boxBtn = $('#boxBtn')
+var boxBtn = $('#boxBtn');
 var sideNavPosts = $('.sidenav-posts')
 
 var navTemplate = '';
@@ -317,9 +317,9 @@ function ckCheckbox(ckType){
 }
 
 //BreatheBox
-function animateBox() {
-    breatheBox.style.height = "100px";
-    breatheBox.style.width = "100px";
+//function animateBox() {
     
-}
-boxBtn.on("click", animateBox); 
+//}
+boxBtn.on("click", function() {
+  breatheBox.toggleClass("movingBox")
+}); 
