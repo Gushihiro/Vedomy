@@ -142,12 +142,12 @@ function createMoodBox(post) {
   }
 
   moodBoxTemplate += `
-  <div class="card row horizontal mood-box" id=${post.time.trim()}">
+  <section class="card row horizontal mood-box" id="${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
             <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
-            <div class="col s4 status-placeholder"></div>
+            <div class="col s4 status-placeholder"><button class="btn-floating btn-large waves-effect waves-light red removePost"><i class="material-icons">add</i></button></div>
         </div>
         <div class="divider"></div>
         <div class="row zenthoughts-container">
@@ -166,12 +166,19 @@ function createMoodBox(post) {
                 <div class="col s4 status-placeholder feeling-text">${dietText}</div>
             </div>
     </div>
-  </div>`
+  </section>`
 
   $('.mood-box-content').html(moodBoxTemplate);
 
 
 }
+
+function removePost($) {
+  $('.removePost').on('click', function() {
+    $(this).closest('section').remove();
+  })
+}
+
 
 // This function creates sidenav links based off user posts
 function createSideNavLinks(post) {
