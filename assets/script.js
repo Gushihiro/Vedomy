@@ -32,18 +32,18 @@ getYogaApi();
 getQuotesApi();
 getRecipe(); //api key has 150 request daily quota
 
-$(document).ready(function() {
+$(document).ready(function () {
   // clears side nav 
   sideNavPosts.empty();
   var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 
   // for every object in local storage:
-  for (i = 0; i <localMoodArr.length; i++ ) {
-    
+  for (i = 0; i < localMoodArr.length; i++) {
+
     // Regenerates side nave links
     createMoodBox(localMoodArr[i])
     createSideNavLinks(localMoodArr[i]);
-  // }
+    // }
   }
 
   //initializers        
@@ -54,10 +54,10 @@ $(document).ready(function() {
   $('.collapsible').collapsible();
 
 })
-    
 
-addMoodBtn.on('click', function() {
-  
+
+addMoodBtn.on('click', function () {
+
   // creates object based on results of modal
   var modalSubmit = {
     navTime: navBoxTime,
@@ -133,13 +133,13 @@ function createMoodBox(post) {
     sleepText = '';
   }
 
-var quoteIt;
+  var quoteIt;
 
-if (post.thoughts === '') {
-  quoteIt = `I didn't feel like journaling today.`
-} else {
-  quoteIt = `${post.thoughts}`
-}
+  if (post.thoughts === '') {
+    quoteIt = `I didn't feel like journaling today.`
+  } else {
+    quoteIt = `${post.thoughts}`
+  }
 
   moodBoxTemplate += `
   <div class="card row horizontal mood-box" id=${post.time.trim()}">
@@ -168,7 +168,7 @@ if (post.thoughts === '') {
     </div>
   </div>`
 
-$('.mood-box-content').html(moodBoxTemplate);  
+  $('.mood-box-content').html(moodBoxTemplate);
 
 
 }
@@ -177,20 +177,20 @@ $('.mood-box-content').html(moodBoxTemplate);
 function createSideNavLinks(post) {
   var statusIcon;
 
-    // depending on mood of post, will display different emoticon on link
-    if (post.mood <= 1) {
-      statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
-    } else if (post.mood > 1 & post.mood < 4) {
-      statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
-    } else if (post.mood > 3 & post.mood < 6) {
-      statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
-    } else if (post.mood > 5 & post.mood < 8) {
-      statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
-    } else if (post.mood > 7 & post.mood < 10) {
-      statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
-    } else {
-      statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
-    }
+  // depending on mood of post, will display different emoticon on link
+  if (post.mood <= 1) {
+    statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
+  } else if (post.mood > 1 & post.mood < 4) {
+    statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
+  } else if (post.mood > 3 & post.mood < 6) {
+    statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
+  } else if (post.mood > 5 & post.mood < 8) {
+    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
+  } else if (post.mood > 7 & post.mood < 10) {
+    statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+  } else {
+    statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+  }
 
   // this variable will go in href, to navigate to post on page.
 
@@ -202,47 +202,47 @@ function createSideNavLinks(post) {
 
 // Yoga pose API fetching/displaying
 function getYogaApi() {
-    var randIndex = Math.floor(Math.random() * 48);
-    // console.log(randIndex);
-    fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            var yogaData = data[randIndex]
-            yogaImg.attr('src', yogaData.img_url)
-            yogaName.text(yogaData.english_name)
-            var dropDownIcon = $('<i></i>').text('more_vert');
-            dropDownIcon.attr('class', 'material-icons right');
-            yogaName.append(dropDownIcon);
-            sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
-        });
+  var randIndex = Math.floor(Math.random() * 48);
+  // console.log(randIndex);
+  fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var yogaData = data[randIndex]
+      yogaImg.attr('src', yogaData.img_url)
+      yogaName.text(yogaData.english_name)
+      var dropDownIcon = $('<i></i>').text('more_vert');
+      dropDownIcon.attr('class', 'material-icons right');
+      yogaName.append(dropDownIcon);
+      sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
+    });
 }
 
 //Inspirational Quotes API
 function getQuotesApi() {
-    var zenQuote = 'https://type.fit/api/quotes';
-    fetch(zenQuote)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {  
-        var randomIndex = Math.floor(Math.random() * data.length)  
-        // console.log(data)
-        // console.log(data[randomIndex].text, data[randomIndex].author);
-        quoteHere.append(data[randomIndex].text);
-        if (data[randomIndex].author == null) {
-            quoteAuthor.append("Author Unknown")
-        } else {
-            quoteAuthor.append(data[randomIndex].author)
-        }
-        // console.log(data[randomIndex].author);
+  var zenQuote = 'https://type.fit/api/quotes';
+  fetch(zenQuote)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var randomIndex = Math.floor(Math.random() * data.length)
+      // console.log(data)
+      console.log(data[randomIndex].text, data[randomIndex].author);
+      quoteHere.append(data[randomIndex].text);
+      if (data[randomIndex].author == null) {
+        quoteAuthor.append("Author Unknown")
+      } else {
+        quoteAuthor.append(data[randomIndex].author)
+      }
+      console.log(data[randomIndex].author)
     })
 };
 
 // fetches recipe for display
 // passes an array of recipes to writeRecipe()
-function getRecipe () {
+function getRecipe() {
   // retrieve data from local storage
   var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
 
@@ -251,20 +251,20 @@ function getRecipe () {
 
     writeRecipe(savedRecipes.results);
 
-  // else there was nothing in local storage or > 24 hrs since last visit
-  // fetch new API data and save to local storage
+    // else there was nothing in local storage or > 24 hrs since last visit
+    // fetch new API data and save to local storage
   } else {
-    
+
     var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
 
     fetch(recipeUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      localStorage.setItem("recipes", JSON.stringify(data));
-      writeRecipe(data.results);
-    });
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        localStorage.setItem("recipes", JSON.stringify(data));
+        writeRecipe(data.results);
+      });
   }
 }
 
@@ -272,11 +272,11 @@ var testArray;  // DEBUGGING
 
 // takes recipe info and writes it to recipe card
 // recipeArray: an array of recipe info pulled from API data fetch request
-function writeRecipe (recipeArray) {
+function writeRecipe(recipeArray) {
   var randomIndex = Math.floor(Math.random() * recipeArray.length);
   dailyRecipe = recipeArray[randomIndex]; // select a random recipe from the array
 
-// write recipe title to card and add an icon
+  // write recipe title to card and add an icon
   var titleSpan = $("#recipe-title");
   titleSpan.text(dailyRecipe.title);
   var dropDownIcon = $('<i></i>').text('more_vert');
@@ -332,7 +332,7 @@ function writeRecipe (recipeArray) {
 
 // returns true if page has been visited today
 // else returns false
-function dayCheck () {
+function dayCheck() {
   var currentDay = parseInt(moment().format("DDD"));
   var referenceDay = parseInt(localStorage.getItem("refDay"));
 
@@ -340,7 +340,7 @@ function dayCheck () {
   if (referenceDay && currentDay == referenceDay) {
     return true;
 
-  // otherwise save today to be reference and return false
+    // otherwise save today to be reference and return false
   } else {
     localStorage.setItem('refDay', currentDay);
     return false;
@@ -348,52 +348,61 @@ function dayCheck () {
 }
 
 // This function checks to see if checkbox is checked, then disbales the other
-function ckCheckbox(ckType){
+function ckCheckbox(ckType) {
   var checked = document.getElementById(ckType.id);
 
   if (checked.checked) {
-    for(var i=0; i < checkBox.length; i++){
+    for (var i = 0; i < checkBox.length; i++) {
 
-        if(!checkBox[i].checked){
-            checkBox[i].disabled = true;
-        }else{
-            checkBox[i].disabled = false;
-        }
-    } 
+      if (!checkBox[i].checked) {
+        checkBox[i].disabled = true;
+      } else {
+        checkBox[i].disabled = false;
+      }
+    }
   }
   else {
-    for(var i=0; i < checkBox.length; i++){
+    for (var i = 0; i < checkBox.length; i++) {
       checkBox[i].disabled = false;
-    } 
-  }    
+    }
+  }
 }
 
 //BreatheBox
-
-boxTextArray = [
+var boxTextArray = [
   "Breathe In...",
   "Hold...",
   "Breathe Out...",
   "Hold..."
 ]
 
-function changeBoxText() {
-  var i = 0;
-    $(".boxText").html(boxTextArray[i]); 
-  var boxTimer = setInterval(function() {
-    i++;
-    $(".boxText").html(boxTextArray[i]);
-      if (i == boxTextArray.length) {
-        changeBoxText();
-      }
-  }, 4 * 1000);
-}
+var boxTimer;
 
-  boxBtn.on("click", function() {
-    breatheBox.toggleClass("movingBox")
-    changeBoxText()
-    if ($('.boxText').innerHTML == boxTextArray[i]) {
-      clearInterval(boxTimer)
-      return changeBoxText;
-    }   
-  });
+$('#stopBtn').hide();
+
+boxBtn.on("click", function () {
+  $('#stopBtn').show();
+  boxBtn.hide();
+  var boxTimer;
+  var i = 0;
+  $(".boxText").html(boxTextArray[i]);
+  breatheBox.toggleClass("movingBox")
+  boxTimer = setInterval(function () {
+    i++;
+    console.log({i, text: boxTextArray[i]})
+    if (i >= boxTextArray.length) {
+      i = 0;
+    }
+    $(".boxText").html(boxTextArray[i]);
+  }, 4 * 1000);
+});
+
+$('#stopBtn').on('click', function () {
+  boxBtn.show();
+  $('#stopBtn').hide();
+  i = 0;
+  clearInterval(boxTimer);
+  breatheBox.toggleClass("movingBox")
+  $(".boxText").empty();
+  return;
+})
