@@ -18,7 +18,27 @@ var thoughtOfDay = $('#thought-of-day');
 var breatheBox = $('#breatheBox');
 var boxBtn = $('#boxBtn');
 var sideNavPosts = $('.sidenav-posts');
+var sleepTipButton = $("#generate");
+var sleepTipElement = $("#sleep-tip");
 
+var sleepTips = ["Sleep in a Pitch Black Room", 
+                 "Keep Your Bed Time Consistent", 
+                 "Wear Blue Light Blocking Glasses Before Bed", 
+                 "Avoid Late-Night Meals",  
+                 "Be Hydrated", 
+                 "Have Pre-Sleep Routine", 
+                 "Have a “Can’t Sleep” Backup Plan"
+                ];
+
+//BreatheBox
+var boxTextArray = [
+  "Breathe In...",
+  "Hold...",
+  "Breathe Out...",
+  "Hold..."
+]
+
+var boxTimer;
 var navTemplate = '';
 var moodBoxTemplate = '';
 
@@ -34,13 +54,13 @@ var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
 $(document).ready(function () {
-
+  $('#stopBtn').hide();
   $('iframe').attr('class', 'fullwidth');
 
-  getYogaApi();
-  getQuotesApi();
+  getQuote();
+  getYoga();
+  getSleep();
   getRecipe();
-
   writeMoodEntries();
 
   //initializers        
@@ -51,6 +71,199 @@ $(document).ready(function () {
   $('.collapsible').collapsible();
 
 })
+
+// retrives quote object and passes it to writeQuote
+function getQuote () {
+
+  var dailyQuote = JSON.parse(localStorage.getItem("dailyQuote"));
+
+  // if local storage exists and page visited in last 24 hrs, use that data
+  if (dailyQuote && hasVisitedRecently) {
+  
+    writeQuote(dailyQuote);
+
+    // else there was nothing in local storage or > 24 hrs since last visit
+    // fetch new API data and save to local storage
+  } else {
+  
+    fetch('https://type.fit/api/quotes')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+    
+        var randomIndex = Math.floor(Math.random() * data.length)
+        localStorage.setItem("dailyQuote", JSON.stringify(data[randomIndex]));
+        writeQuote(data[randomIndex]);
+      })
+  }
+};
+
+// writes quote data
+function writeQuote (quoteData) {
+
+  quoteHere.append(quoteData.text);
+  
+  if (quoteData.author == null) {
+    quoteAuthor.append("Author Unknown");
+  } else {
+    quoteAuthor.append(quoteData.author);
+  }
+}
+
+// retrieves yoga object and passes it to writeYoga
+function getYoga () {
+
+  var dailyPose = JSON.parse(localStorage.getItem("dailyPose"));
+
+  // if local storage exists and page visited in last 24 hrs, use that data
+  if (dailyPose && hasVisitedRecently) {
+  
+    writeYoga(dailyPose);
+
+    // else there was nothing in local storage or > 24 hrs since last visit
+    // fetch new API data and save to local storage
+  } else {
+  
+    fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      // select a random yoga object, and write content to card
+      var randIndex = Math.floor(Math.random() * data.length);
+      localStorage.setItem("dailyPose", JSON.stringify(data[randIndex]));
+      writeYoga(data[randIndex]);
+
+    });
+  }
+}
+
+// writes yoga content
+function writeYoga (yogaData) {
+
+  yogaImg.attr('src', yogaData.img_url);
+  yogaName.text(yogaData.english_name);
+  var dropDownIcon = $('<i></i>').text('more_vert');
+  dropDownIcon.attr('class', 'material-icons right');
+  yogaName.append(dropDownIcon);
+  sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
+}
+
+// retrieves and displays a sleep tip to card
+function getSleep () {
+
+  var dailySleep = JSON.parse(localStorage.getItem("dailySleep"));
+
+  // if local storage exists and page visited in last 24 hrs, use that data
+  if (dailySleep && hasVisitedRecently) {
+  
+    sleepTipElement.text(dailySleep);
+
+    // else there was nothing in local storage or > 24 hrs since last visit
+    // get new sleep tip and save it to storage
+  } else {
+  
+    var randomIndex = Math.floor(Math.random() * sleepTips.length);
+    localStorage.setItem("dailySleep", JSON.stringify(sleepTips[randomIndex]));
+    sleepTipElement.text(sleepTips[randomIndex]);
+  }
+}
+
+// gets and displays a new sleep tip when clicked
+sleepTipButton.on("click", function () {
+  var randomIndex = Math.floor(Math.random() * sleepTips.length );
+  sleepTipElement.text(sleepTips[randomIndex]);
+});
+
+// retrives recipe object and passes it to writeRecipe
+function getRecipe () {
+
+  // retrieve data from local storage
+  var dailyRecipe = JSON.parse(localStorage.getItem("dailyRecipe"));
+
+  // if local storage exists and page visited in last 24 hrs, use that data
+  if (dailyRecipe && hasVisitedRecently) {
+
+    writeRecipe(dailyRecipe);
+
+    // else there was nothing in local storage or > 24 hrs since last visit
+    // fetch new API data and save to local storage
+  } else {
+
+    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
+
+    fetch(recipeUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+
+        var randomIndex = Math.floor(Math.random() * data.results.length);
+        localStorage.setItem("dailyRecipe", JSON.stringify(data.results[randomIndex]));
+        writeRecipe(data.results[randomIndex]);
+
+      });
+  }
+}
+
+// writes recipe data
+function writeRecipe (recipeData) {
+
+  // write recipe title to card and add an icon
+  var titleSpan = $("#recipe-title");
+  titleSpan.text(recipeData.title);
+  var dropDownIcon = $('<i></i>').text('more_vert');
+  dropDownIcon.attr('class', 'material-icons right');
+  titleSpan.append(dropDownIcon);
+
+  // write image and alt text to card
+  $("#recipe-image").attr("src", recipeData.image).attr("alt", recipeData.title);
+
+  // write source url to anchor
+  $("#recipe-source").attr("href", recipeData.sourceUrl);
+
+  // grab summary
+  var recipeSum = recipeData.summary;
+
+  // split summary into str array
+  // note that this also splits dollar amounts
+  var sumArray = recipeSum.split(".");
+
+  // create new summary to write to card
+  var revisedSummmary = "";
+
+  // loop over summary array
+  for (let i = 0; i < sumArray.length - 1; i++) {
+
+    // skip sentences that contain unwanted data
+    if (!sumArray[i].includes("<a") 
+    && !sumArray[i].includes("a>") 
+    && !sumArray[i].includes("tried")
+    && !sumArray[i].includes("made")
+    && !sumArray[i].includes("found")
+    && !sumArray[i].includes("impressed")
+    && !sumArray[i].includes("liked")
+    && !sumArray[i].includes("brought")
+    && !sumArray[i].includes("score")) {
+
+      // if the str includes a dollar sign, concat strings so $ per serving displays correctly
+      if (sumArray[i].includes("$")) {
+        revisedSummmary += sumArray[i] + "." + sumArray[i+1] + ". ";
+        i += 2;
+
+      // else concat as normal  
+      } else {
+        revisedSummmary += sumArray[i] + ". ";
+      }
+    }
+  }
+
+  // write summary to card
+  $("#recipe-summary").html(revisedSummmary);
+
+}
 
 // updates content of mood and side nav containers
 function writeMoodEntries () {
@@ -101,7 +314,7 @@ addMoodBtn.on('click', function () {
 })
 
 // creates an html template for a mood entry
-function createMoodBox(post) {
+function createMoodBox (post) {
 
   if (post.mood <= 1) {
     statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
@@ -181,7 +394,7 @@ function createMoodBox(post) {
 }
 
 // creates a side nav bar and concatenates it to the existing template
-function createSideNavLinks(post) {
+function createSideNavLinks (post) {
   var statusIcon;
 
   // depending on mood of post, will display different emoticon on link
@@ -204,146 +417,8 @@ function createSideNavLinks(post) {
   navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
 }
 
-// Yoga pose API fetching/displaying
-function getYogaApi() {
-
-  var randIndex = Math.floor(Math.random() * 48);
-  // console.log(randIndex);
-
-  fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      var yogaData = data[randIndex]
-      yogaImg.attr('src', yogaData.img_url)
-      yogaName.text(yogaData.english_name)
-      var dropDownIcon = $('<i></i>').text('more_vert');
-      dropDownIcon.attr('class', 'material-icons right');
-      yogaName.append(dropDownIcon);
-      sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
-    });
-}
-
-//Inspirational Quotes API
-function getQuotesApi() {
-  var zenQuote = 'https://type.fit/api/quotes';
-  fetch(zenQuote)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-
-      // console.log(data)
-
-      var randomIndex = Math.floor(Math.random() * data.length)
-      
-      // console.log(data[randomIndex].text, data[randomIndex].author);
-
-      quoteHere.append(data[randomIndex].text);
-
-      if (data[randomIndex].author == null) {
-        quoteAuthor.append("Author Unknown");
-      } else {
-        quoteAuthor.append(data[randomIndex].author);
-      }
-
-      // console.log(data[randomIndex].author);
-
-    })
-};
-
-// fetches recipe for display
-// passes an array of recipes to writeRecipe()
-function getRecipe() {
-  // retrieve data from local storage
-  var savedRecipes = JSON.parse(localStorage.getItem("recipes"));
-
-  // if local storage exists and page visited in last 24 hrs, use that data
-  if (savedRecipes && hasVisitedRecently) {
-
-    writeRecipe(savedRecipes.results);
-
-    // else there was nothing in local storage or > 24 hrs since last visit
-    // fetch new API data and save to local storage
-  } else {
-
-    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
-
-    fetch(recipeUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        localStorage.setItem("recipes", JSON.stringify(data));
-        writeRecipe(data.results);
-      });
-  }
-}
-
-// takes recipe info and writes it to recipe card
-// recipeArray: an array of recipe info pulled from API data fetch request
-function writeRecipe(recipeArray) {
-  var randomIndex = Math.floor(Math.random() * recipeArray.length);
-  dailyRecipe = recipeArray[randomIndex]; // select a random recipe from the array
-
-  // write recipe title to card and add an icon
-  var titleSpan = $("#recipe-title");
-  titleSpan.text(dailyRecipe.title);
-  var dropDownIcon = $('<i></i>').text('more_vert');
-  dropDownIcon.attr('class', 'material-icons right');
-  titleSpan.append(dropDownIcon);
-
-  // write image and alt text to card
-  $("#recipe-image").attr("src", dailyRecipe.image).attr("alt", dailyRecipe.title);
-
-  // write source url to anchor
-  $("#recipe-source").attr("href", dailyRecipe.sourceUrl);
-
-  // grab summary
-  var recipeSum = dailyRecipe.summary;
-
-  // split summary into str array
-  // note that this also splits dollar amounts
-  var sumArray = recipeSum.split(".");
-
-  // create new summary to write to card
-  var revisedSummmary = "";
-
-  // loop over summary array
-  for (let i = 0; i < sumArray.length - 1; i++) {
-
-    // skip sentences that contain unwanted data
-    if (!sumArray[i].includes("<a") 
-    && !sumArray[i].includes("a>") 
-    && !sumArray[i].includes("tried")
-    && !sumArray[i].includes("made")
-    && !sumArray[i].includes("found")
-    && !sumArray[i].includes("impressed")
-    && !sumArray[i].includes("liked")
-    && !sumArray[i].includes("brought")
-    && !sumArray[i].includes("score")) {
-
-      // if the str includes a dollar sign, concat strings so $ per serving displays correctly
-      if (sumArray[i].includes("$")) {
-        revisedSummmary += sumArray[i] + "." + sumArray[i+1] + ". ";
-        i += 2;
-
-      // else concat as normal  
-      } else {
-        revisedSummmary += sumArray[i] + ". ";
-      }
-    }
-  }
-
-  // write summary to card
-  $("#recipe-summary").html(revisedSummmary);
-
-}
-
 // returns true if page has been visited today
-// else returns false
-function dayCheck() {
+function dayCheck () {
   var currentDay = parseInt(moment().format("DDD"));
   var referenceDay = parseInt(localStorage.getItem("refDay"));
 
@@ -359,7 +434,7 @@ function dayCheck() {
 }
 
 // checks to see if checkbox is checked, then disables the other
-function ckCheckbox(ckType) {
+function ckCheckbox (ckType) {
   var checked = document.getElementById(ckType.id);
 
   if (checked.checked) {
@@ -378,18 +453,6 @@ function ckCheckbox(ckType) {
     }
   }
 }
-
-//BreatheBox
-var boxTextArray = [
-  "Breathe In...",
-  "Hold...",
-  "Breathe Out...",
-  "Hold..."
-]
-
-var boxTimer;
-
-$('#stopBtn').hide();
 
 boxBtn.on("click", function () {
   $('#stopBtn').show();
