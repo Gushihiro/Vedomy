@@ -22,12 +22,18 @@ var sleepTipButton = $("#generate");
 var sleepTipElement = $("#sleep-tip");
 
 var sleepTips = ["Sleep in a Pitch Black Room", 
-                 "Keep Your Bed Time Consistent", 
+                 "Keep Your Bedtime Consistent", 
                  "Wear Blue Light Blocking Glasses Before Bed", 
                  "Avoid Late-Night Meals",  
                  "Be Hydrated", 
                  "Have Pre-Sleep Routine", 
-                 "Have a “Can’t Sleep” Backup Plan"
+                 "Have a “Can’t Sleep” Backup Plan",
+                 "Increase bright light exposure during the day",
+                 "Don’t consume caffeine late in the day",
+                 "Set your bedroom temperature",
+                 "Reduce irregular or long daytime naps",
+                 "Take a relaxing bath or shower",
+                 "Exercise regularly — but not before bed",
                 ];
 
 //BreatheBox
@@ -75,14 +81,14 @@ $(document).ready(function () {
 $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
   console.log($(this).closest('section').attr('id'))
-  for (i = 0; i < localMoodArr.length; i++) {
-    console.log(localMoodArr[i].time)
-    if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
-      localMoodArr.splice(i, 1);
-      localStorage.setItem('moodArr', localMoodArr)
+    for (i = 0; i < localMoodArr.length; i++) {
+      console.log(localMoodArr[i].time)
+      if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
+        localMoodArr.splice(i, 1);
+        localStorage.setItem('moodArr', JSON.stringify(localMoodArr))
+      }
+    writeMoodEntries();
     }
-  }
-  writeMoodEntries();
 })
 
 // retrives quote object and passes it to writeQuote
