@@ -35,8 +35,6 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 
 $(document).ready(function () {
 
-  $('iframe').attr('class', 'fullwidth');
-
   getYogaApi();
   getQuotesApi();
   getRecipe();
@@ -50,6 +48,10 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
   $('.collapsible').collapsible();
 
+})
+
+$(document).on('click', '.removeButton', function() {
+  $(this).closest('section').remove();
 })
 
 // updates content of mood and side nav containers
@@ -153,12 +155,12 @@ function createMoodBox(post) {
 
   // concat most recent entry to template
   moodBoxTemplate += `
-  <div class="card row horizontal mood-box" id=${post.time.trim()}">
+  <section class="card row horizontal mood-box" id=${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
             <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
-            <div class="col s4 status-placeholder"></div>
+            <div class="col s4 status-placeholder"> <a class="btn-floating btn-large waves-effect waves-light red removeButton purple lighten-4 small"><i class="material-icons">close</i></a></div>
         </div>
         <div class="divider"></div>
         <div class="row zenthoughts-container">
@@ -177,7 +179,7 @@ function createMoodBox(post) {
               <div class="col s4 feeling-text diet-text">${dietText}</div>
             </div>
     </div>
-  </div>`;
+  </section>`;
 }
 
 // creates a side nav bar and concatenates it to the existing template

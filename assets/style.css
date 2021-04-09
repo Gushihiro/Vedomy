@@ -20,6 +20,11 @@ header {
     align-items: center;
 }
 
+.removeButton {
+    height: 2rem;
+    width: 2rem;
+}
+
 .row.spotify-widget {
     padding-top: 0px;
     margin-top: 0px;
