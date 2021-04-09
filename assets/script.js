@@ -239,9 +239,10 @@ function writeRecipe (recipeData) {
   // loop over summary array
   for (let i = 0; i < sumArray.length - 1; i++) {
 
-    // skip sentences that contain unwanted data
+    // skip sentences that contain unwanted promotional data
     if (!sumArray[i].includes("<a") 
-    && !sumArray[i].includes("a>") 
+    && !sumArray[i].includes("a>")
+    && !sumArray[i].includes("/recipes/") 
     && !sumArray[i].includes("tried")
     && !sumArray[i].includes("made")
     && !sumArray[i].includes("found")
@@ -416,7 +417,7 @@ function createSideNavLinks (post) {
 
 
   // concat most recent entry to template
-  navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
+  navTemplate += `<li><a href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
