@@ -414,7 +414,7 @@ function createSideNavLinks (post) {
 
 
   // concat most recent entry to template
-  navTemplate += `<li><a href="#${post.time.trim()}">${statusIcon}${post.navTime}</a></li>`;
+  navTemplate += `<li><a href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
