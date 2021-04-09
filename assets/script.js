@@ -14,9 +14,11 @@ var addMoodBtn = $('#add-mood');
 var moodRange = $("#test5");
 var sleepNum = $('.hour-amount');
 var dietChoices = $('.diet-choices');
+var dietChoice = $('.diet-option')
 var thoughtOfDay = $('#thought-of-day');
 var breatheBox = $('#breatheBox');
 var boxBtn = $('#boxBtn');
+var select = $('select');
 var sideNavPosts = $('.sidenav-posts');
 var sleepTipButton = $("#generate");
 var sleepTipElement = $("#sleep-tip");
@@ -57,7 +59,7 @@ var navBoxTime = moment().format("dddd, MMMM Do");
 localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 // retrieve saved entries from local storage and place them in an array
 
-var instance = M.Sidenav.getInstance($('.sidenav'));
+var instance = M.Sidenav.getInstance($('.sidenav'));;
 
 $(document).ready(function () {
   $('#stopBtn').hide();
@@ -72,7 +74,9 @@ $(document).ready(function () {
   $('#modal1').modal();
   $('#modal2').modal();
   $('select').formSelect();
-  $('.sidenav').sidenav();
+  $('.sidenav').sidenav({
+    'draggable': true
+  });
   $('.collapsible').collapsible();
 
 })
@@ -80,9 +84,7 @@ $(document).ready(function () {
 // deletes moodbox on page, and in local storage if remove button clicked
 $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
-  console.log($(this).closest('section').attr('id'))
     for (i = 0; i < localMoodArr.length; i++) {
-      console.log(localMoodArr[i].time)
       if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
         localMoodArr.splice(i, 1);
         localStorage.setItem('moodArr', JSON.stringify(localMoodArr))
@@ -325,17 +327,22 @@ addMoodBtn.on('click', function () {
 
   writeMoodEntries (); // update mood entry logs
 
+  // resets modal values
   moodRange.val("");
   sleepNum.attr('value', '');
   sleepNum.val('');
-  dietChoices.attr('tabindex', 0);
   thoughtOfDay.val("");
-
+  select.prop('selectedIndex', 0);
+  select.formSelect();
+  yesExercise.prop('checked', false)
+  noExercise.prop('checked', false)
+  yesExercise.prop('disabled', false)
+  noExercise.prop('disabled', false)
+  
 })
 
 // creates an html template for a mood entry
 function createMoodBox (post) {
-  console.log(post)
   if (post.mood <= 1) {
     statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
   } else if (post.mood > 1 & post.mood < 4) {
@@ -485,7 +492,6 @@ boxBtn.on("click", function () {
   breatheBox.toggleClass("movingBox")
   boxTimer = setInterval(function () {
     i++;
-    console.log({i, text: boxTextArray[i]})
     if (i >= boxTextArray.length) {
       i = 0;
     }
