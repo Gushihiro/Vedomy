@@ -367,7 +367,7 @@ function createMoodBox (post) {
 
   // concat most recent entry to template
   moodBoxTemplate += `
-  <div class="card row horizontal mood-box" id=${post.time.trim()}">
+  <div class="card row horizontal mood-box" id="${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
@@ -415,7 +415,7 @@ function createSideNavLinks (post) {
 
 
   // concat most recent entry to template
-  navTemplate += `<li><a href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
+  navTemplate += `<li><a class="sidenav-close" href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
