@@ -54,7 +54,8 @@ var hasVisitedRecently = dayCheck();
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
-localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
+var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
+
 // retrieve saved entries from local storage and place them in an array
 
 var instance = M.Sidenav.getInstance($('.sidenav'));
