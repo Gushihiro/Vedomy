@@ -73,6 +73,13 @@ $(document).ready(function () {
 
 $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
+  console.log($(this).closest('section').attr('id'))
+  for (i = 0; i < localMoodArr.length; i++) {
+    if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
+      localMoodArr.remove(localMoodArr[i]);
+      localStorage.setItem('moodArr', localMoodArr)
+    }
+  }
 })
 // retrives quote object and passes it to writeQuote
 function getQuote () {
@@ -318,7 +325,7 @@ addMoodBtn.on('click', function () {
 
 // creates an html template for a mood entry
 function createMoodBox (post) {
-
+  console.log(post)
   if (post.mood <= 1) {
     statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
   } else if (post.mood > 1 & post.mood < 4) {
@@ -366,6 +373,8 @@ function createMoodBox (post) {
   } else {
     quoteIt = `${post.thoughts}`
   }
+
+
 
   // concat most recent entry to template
   moodBoxTemplate += `
