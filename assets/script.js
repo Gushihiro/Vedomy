@@ -1,4 +1,4 @@
-//  JQuery DOM Variables here:
+//  JQuery DOM Variables
 var yogaImg = $('.yoga-img');
 var yogaName = $('.yoga-name');
 var yogaLink = $('#yoga-link');
@@ -38,7 +38,7 @@ var sleepTips = ["Sleep in a Pitch Black Room",
                  "Exercise regularly — but not before bed",
                 ];
 
-//BreatheBox
+// breathing exercise prompts
 var boxTextArray = [
   "Breathe In...",
   "Hold...",
@@ -56,11 +56,12 @@ var hasVisitedRecently = dayCheck();
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
-var localMoodArr = (JSON.parse(localStorage.getItem('moodArr'))) || [];
 // retrieve saved entries from local storage and place them in an array
+var localMoodArr = (JSON.parse(localStorage.getItem('moodArr'))) || [];
 
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
+// await doc readiness before fetching data
 $(document).ready(function () {
   $('#stopBtn').hide();
 
@@ -93,18 +94,18 @@ $(document).on('click', '.removeButton', function() {
     }
 })
 
-// retrives quote object and passes it to writeQuote
+// retrieves quote object and passes it to writeQuote
 function getQuote () {
 
   var dailyQuote = JSON.parse(localStorage.getItem("dailyQuote"));
 
-  // if local storage exists and page visited in last 24 hrs, use that data
+  // if page visited recently and local storage exists, use that data
   if (dailyQuote && hasVisitedRecently) {
   
     writeQuote(dailyQuote);
 
-    // else there was nothing in local storage or > 24 hrs since last visit
-    // fetch new API data and save to local storage
+    // else there was nothing in local storage or it's a different calendar day
+    // fetch new API data, save to local storage, and pass a random quote to writeQuote
   } else {
   
     fetch('https://type.fit/api/quotes')
@@ -137,13 +138,13 @@ function getYoga () {
 
   var dailyPose = JSON.parse(localStorage.getItem("dailyPose"));
 
-  // if local storage exists and page visited in last 24 hrs, use that data
+  // if page visited recently and local storage exists, use that data
   if (dailyPose && hasVisitedRecently) {
   
     writeYoga(dailyPose);
 
-    // else there was nothing in local storage or > 24 hrs since last visit
-    // fetch new API data and save to local storage
+    // else there was nothing in local storage or it's a different calendar day
+    // fetch new API data, save to local storage, and pass a random yoga object to writeYoga
   } else {
   
     fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
@@ -177,13 +178,13 @@ function getSleep () {
 
   var dailySleep = JSON.parse(localStorage.getItem("dailySleep"));
 
-  // if local storage exists and page visited in last 24 hrs, use that data
+  // if page visited recently and local storage exists, use that data
   if (dailySleep && hasVisitedRecently) {
   
     sleepTipElement.text(dailySleep);
 
-    // else there was nothing in local storage or > 24 hrs since last visit
-    // get new sleep tip and save it to storage
+    // else there was nothing in local storage or it's a different calendar day
+    // get new sleep tip, save it to local storage, and write it to card
   } else {
   
     var randomIndex = Math.floor(Math.random() * sleepTips.length);
@@ -198,21 +199,22 @@ sleepTipButton.on("click", function () {
   sleepTipElement.text(sleepTips[randomIndex]);
 });
 
-// retrives recipe object and passes it to writeRecipe
+// retrieves recipe object and passes it to writeRecipe
 function getRecipe () {
 
   // retrieve data from local storage
   var dailyRecipe = JSON.parse(localStorage.getItem("dailyRecipe"));
 
-  // if local storage exists and page visited in last 24 hrs, use that data
+  // if page visited recently and local storage exists, use that data
   if (dailyRecipe && hasVisitedRecently) {
 
     writeRecipe(dailyRecipe);
 
-    // else there was nothing in local storage or > 24 hrs since last visit
-    // fetch new API data and save to local storage
+    // else there was nothing in local storage or it's a different calendar day
+    // fetch new API data, save to local storage, and pass a random recipe object to writeRecipe
   } else {
 
+    // url returns 100 recipes tagged "healthy" with addl info, sorted by the APIs "health score"
     var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
 
     fetch(recipeUrl)
@@ -313,6 +315,7 @@ function writeMoodEntries () {
   }
 }
 
+// creates a mood entry object, saves it to local storage, and clears input fields
 addMoodBtn.on('click', function () {
 
   // creates object based on results of modal
@@ -331,7 +334,7 @@ addMoodBtn.on('click', function () {
   localMoodArr.unshift(modalSubmit);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  writeMoodEntries (); // update mood entry logs
+  writeMoodEntries (); // update mood entries on page
 
   // resets modal values
   moodRange.val("");
@@ -489,6 +492,7 @@ function ckCheckbox (ckType) {
   }
 }
 
+// begins breathing exercise
 boxBtn.on("click", function () {
   $('#stopBtn').show();
   boxBtn.hide();
@@ -504,6 +508,7 @@ boxBtn.on("click", function () {
   }, 4 * 1000);
 });
 
+// ends breathing exercise
 $('#stopBtn').on('click', function () {
   boxBtn.show();
   $('#stopBtn').hide();
