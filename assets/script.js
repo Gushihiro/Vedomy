@@ -237,9 +237,10 @@ function writeRecipe (recipeData) {
   // loop over summary array
   for (let i = 0; i < sumArray.length - 1; i++) {
 
-    // skip sentences that contain unwanted data
+    // skip sentences that contain unwanted promotional data
     if (!sumArray[i].includes("<a") 
-    && !sumArray[i].includes("a>") 
+    && !sumArray[i].includes("a>")
+    && !sumArray[i].includes("/recipes/") 
     && !sumArray[i].includes("tried")
     && !sumArray[i].includes("made")
     && !sumArray[i].includes("found")
