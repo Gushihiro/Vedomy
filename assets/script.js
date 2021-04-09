@@ -21,6 +21,7 @@ var sideNavPosts = $('.sidenav-posts');
 var sleepTipButton = $("#generate");
 var sleepTipElement = $("#sleep-tip");
 var boxTimer;
+
 var sleepTips = ["Sleep in a Pitch Black Room", 
                  "Keep Your Bedtime Consistent", 
                  "Wear Blue Light Blocking Glasses Before Bed", 
