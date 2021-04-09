@@ -55,7 +55,6 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 
 $(document).ready(function () {
   $('#stopBtn').hide();
-  $('iframe').attr('class', 'fullwidth');
 
   getQuote();
   getYoga();
@@ -72,6 +71,17 @@ $(document).ready(function () {
 
 })
 
+// deletes moodbox on page, and in local storage if remove button clicked
+$(document).on('click', '.removeButton', function() {
+  $(this).closest('section').remove();
+  console.log($(this).closest('section').attr('id'))
+  for (i = 0; i < localMoodArr.length; i++) {
+    if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
+      localMoodArr.remove(localMoodArr[i]);
+      localStorage.setItem('moodArr', localMoodArr)
+    }
+  }
+})
 // retrives quote object and passes it to writeQuote
 function getQuote () {
 
@@ -316,7 +326,7 @@ addMoodBtn.on('click', function () {
 
 // creates an html template for a mood entry
 function createMoodBox (post) {
-
+  console.log(post)
   if (post.mood <= 1) {
     statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
   } else if (post.mood > 1 & post.mood < 4) {
@@ -365,14 +375,16 @@ function createMoodBox (post) {
     quoteIt = `${post.thoughts}`
   }
 
+
+
   // concat most recent entry to template
   moodBoxTemplate += `
-  <div class="card row horizontal mood-box" id="${post.time.trim()}">
+  <section class="card row horizontal mood-box" id="${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
             <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
-            <div class="col s4 status-placeholder"></div>
+            <div class="col s4 status-placeholder"> <a class="waves-effect waves-light removeButton"><i class="material-icons close">close</i></a></div>
         </div>
         <div class="divider"></div>
         <div class="row zenthoughts-container">
@@ -391,7 +403,7 @@ function createMoodBox (post) {
               <div class="col s4 feeling-text diet-text">${dietText}</div>
             </div>
     </div>
-  </div>`;
+  </section>`;
 }
 
 // creates a side nav bar and concatenates it to the existing template
