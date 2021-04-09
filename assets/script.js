@@ -71,6 +71,7 @@ $(document).ready(function () {
 
 })
 
+// deletes moodbox on page, and in local storage if remove button clicked
 $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
   console.log($(this).closest('section').attr('id'))
@@ -378,7 +379,7 @@ function createMoodBox (post) {
 
   // concat most recent entry to template
   moodBoxTemplate += `
-  <section class="card row horizontal mood-box" id=${post.time.trim()}">
+  <section class="card row horizontal mood-box" id="${post.time.trim()}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
@@ -426,7 +427,7 @@ function createSideNavLinks (post) {
 
 
   // concat most recent entry to template
-  navTemplate += `<li><a href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
+  navTemplate += `<li><a class="sidenav-close" href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
