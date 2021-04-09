@@ -35,6 +35,8 @@ var instance = M.Sidenav.getInstance($('.sidenav'));
 
 $(document).ready(function () {
 
+  $('iframe').attr('class', 'fullwidth');
+
   getYogaApi();
   getQuotesApi();
   getRecipe();
@@ -120,7 +122,7 @@ function createMoodBox(post) {
   if (post.exercise) {
     exerciseText = 'I exercised!'
   } else if (post.notExercise) {
-    exerciseText = 'I will exercise tomorrow!'
+    exerciseText = `I'll exercise tomorrow!`
   } else {
     exerciseText = '';
   }
@@ -130,7 +132,7 @@ function createMoodBox(post) {
   if (post.diet < 3 && post.diet > 0) {
     dietText = 'I ate healthy!'
   } else if (post.diet > 2) {
-    dietText = 'Gonna try to eat better tomorrow!'
+    dietText = 'Gotta eat better!'
   } else {
     dietText = ''
   }
@@ -169,10 +171,10 @@ function createMoodBox(post) {
             </div>  
         </div>
             <div class="col s12 divider"></div>
-            <div class="col s12 status">
-            <div class="col s4 status-time feeling-text">${sleepText}</div>
-                <div class="col s4 status-emoticon"><p class="feeling-text">${exerciseText}</p></div>
-                <div class="col s4 status-placeholder feeling-text">${dietText}</div>
+            <div class="row status">
+              <div class="col s4 feeling-text sleep-text">${sleepText}</div>
+              <div class="col s4 status-emoticon"><p class="feeling-text exercise-text">${exerciseText}</p></div>
+              <div class="col s4 feeling-text diet-text">${dietText}</div>
             </div>
     </div>
   </div>`;
