@@ -59,7 +59,7 @@ var navBoxTime = moment().format("dddd, MMMM Do");
 localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 // retrieve saved entries from local storage and place them in an array
 
-var instance = M.Sidenav.getInstance($('.sidenav'));;
+var instance = M.Sidenav.getInstance($('.sidenav'));
 
 $(document).ready(function () {
   $('#stopBtn').hide();
@@ -302,9 +302,15 @@ function writeMoodEntries () {
     createSideNavLinks(localMoodArr[i]);  // create a side nav link
   }
 
+  
   // write updated templates
   $("#mood-box-entries").html(moodBoxTemplate);
   sideNavPosts.html(navTemplate);
+  console.log(moodBoxTemplate)
+  if (moodBoxTemplate === '') {
+    moodBoxTemplate =  '<div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>'
+    $("#mood-box-entries").html(moodBoxTemplate);
+  }
 }
 
 addMoodBtn.on('click', function () {
@@ -338,6 +344,7 @@ addMoodBtn.on('click', function () {
   noExercise.prop('checked', false)
   yesExercise.prop('disabled', false)
   noExercise.prop('disabled', false)
+  $('.placeholder-text').prop('display', 'none')
   
 })
 
