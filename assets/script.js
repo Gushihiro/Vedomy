@@ -373,7 +373,7 @@ function createMoodBox (post) {
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
             <div class="col s4 status-emoticon"><p class="feeling-text">I'm Feeling: ${statusIcon}</p></div>
-            <div class="col s4 status-placeholder"> <a class="btn-floating btn-large waves-effect waves-light red removeButton purple lighten-4 small"><i class="material-icons">close</i></a></div>
+            <div class="col s4 status-placeholder"> <a class="waves-effect waves-light removeButton"><i class="material-icons close">close</i></a></div>
         </div>
         <div class="divider"></div>
         <div class="row zenthoughts-container">

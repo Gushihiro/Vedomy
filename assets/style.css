@@ -20,9 +20,17 @@ header {
     align-items: center;
 }
 
-.removeButton {
+a.waves-effect.waves-light.removeButton {
     height: 2rem;
     width: 2rem;
+}
+
+i.material-icons.close {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7e57c2;
 }
 
 .row.spotify-widget {
@@ -308,9 +316,16 @@ h5.col {
     padding-left: 20px;
 }
 
-.timestamp-container {
+
+.col.s4.status-placeholder {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.col.s12.timestamp-container {
     border-radius: 10px 10px;
     border-color: black;
+    padding-right: 0px;
 }
 
 [type="checkbox"]+span:not(.lever) {
