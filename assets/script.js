@@ -1,4 +1,4 @@
-//  JQuery DOM Variables
+// JQuery DOM Variables
 var yogaImg = $('.yoga-img');
 var yogaName = $('.yoga-name');
 var yogaLink = $('#yoga-link');
