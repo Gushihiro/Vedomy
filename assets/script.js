@@ -304,11 +304,10 @@ function writeMoodEntries () {
     createSideNavLinks(localMoodArr[i]);  // create a side nav link
   }
 
-  
   // write updated templates
   $("#mood-box-entries").html(moodBoxTemplate);
   sideNavPosts.html(navTemplate);
-  console.log(moodBoxTemplate)
+
   if (moodBoxTemplate === '') {
     moodBoxTemplate =  '<div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>'
     $("#mood-box-entries").html(moodBoxTemplate);
