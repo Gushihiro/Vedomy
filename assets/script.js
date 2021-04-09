@@ -48,8 +48,8 @@ var hasVisitedRecently = dayCheck();
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
+var localMoodArr = (localStorage.getItem('moodArr')) || [];
 // retrieve saved entries from local storage and place them in an array
-var localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 
 var instance = M.Sidenav.getInstance($('.sidenav'));
 
@@ -76,12 +76,15 @@ $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
   console.log($(this).closest('section').attr('id'))
   for (i = 0; i < localMoodArr.length; i++) {
+    console.log(localMoodArr[i].time)
     if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
-      localMoodArr.remove(localMoodArr[i]);
+      localMoodArr.splice(i, 1);
       localStorage.setItem('moodArr', localMoodArr)
     }
   }
+  writeMoodEntries();
 })
+
 // retrives quote object and passes it to writeQuote
 function getQuote () {
 
