@@ -399,7 +399,6 @@ function createMoodBox (post) {
   }
 
 
-
   // concat most recent entry to template
   moodBoxTemplate += `
   <section class="card row horizontal mood-box" id="${post.time}">
