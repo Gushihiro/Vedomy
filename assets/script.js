@@ -22,12 +22,18 @@ var sleepTipButton = $("#generate");
 var sleepTipElement = $("#sleep-tip");
 
 var sleepTips = ["Sleep in a Pitch Black Room", 
-                 "Keep Your Bed Time Consistent", 
+                 "Keep Your Bedtime Consistent", 
                  "Wear Blue Light Blocking Glasses Before Bed", 
                  "Avoid Late-Night Meals",  
                  "Be Hydrated", 
                  "Have Pre-Sleep Routine", 
-                 "Have a “Can’t Sleep” Backup Plan"
+                 "Have a “Can’t Sleep” Backup Plan",
+                 "Increase bright light exposure during the day",
+                 "Don’t consume caffeine late in the day",
+                 "Set your bedroom temperature",
+                 "Reduce irregular or long daytime naps",
+                 "Take a relaxing bath or shower",
+                 "Exercise regularly — but not before bed",
                 ];
 
 //BreatheBox
@@ -48,7 +54,7 @@ var hasVisitedRecently = dayCheck();
 var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
-var localMoodArr = (localStorage.getItem('moodArr')) || [];
+localMoodArr = JSON.parse(localStorage.getItem('moodArr')) || [];
 // retrieve saved entries from local storage and place them in an array
 
 var instance = M.Sidenav.getInstance($('.sidenav'));
@@ -75,14 +81,14 @@ $(document).ready(function () {
 $(document).on('click', '.removeButton', function() {
   $(this).closest('section').remove();
   console.log($(this).closest('section').attr('id'))
-  for (i = 0; i < localMoodArr.length; i++) {
-    console.log(localMoodArr[i].time)
-    if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
-      localMoodArr.splice(i, 1);
-      localStorage.setItem('moodArr', localMoodArr)
+    for (i = 0; i < localMoodArr.length; i++) {
+      console.log(localMoodArr[i].time)
+      if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
+        localMoodArr.splice(i, 1);
+        localStorage.setItem('moodArr', JSON.stringify(localMoodArr))
+      }
+    writeMoodEntries();
     }
-  }
-  writeMoodEntries();
 })
 
 // retrives quote object and passes it to writeQuote
@@ -382,7 +388,7 @@ function createMoodBox (post) {
 
   // concat most recent entry to template
   moodBoxTemplate += `
-  <section class="card row horizontal mood-box" id="${post.time.trim()}">
+  <section class="card row horizontal mood-box" id="${post.time}">
     <div class="col s12 timestamp-container">
         <div class="row status">
         <div class="col s4 status-time">${post.time}</div>
@@ -430,7 +436,7 @@ function createSideNavLinks (post) {
 
 
   // concat most recent entry to template
-  navTemplate += `<li><a class="sidenav-close" href="#${post.time.trim()}">"${statusIcon}${post.navTime}"</a></li>`;
+  navTemplate += `<li><a class="sidenav-close" href="#${post.time}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
