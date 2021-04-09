@@ -486,6 +486,10 @@ img.col.s2.zen-pic.materialboxed {
     max-width: 50%;
 }
 
+input.select-dropdown.dropdown-trigger {
+    inline-size: min-content;
+}
+
 .breathe-colum {
     order: 2;
 }
@@ -548,8 +552,9 @@ img.col.s2.zen-pic.materialboxed {
         flex-direction: column;
     }
     .col.s4.status-placeholder {
-        display: none;
-        width: 0%;
+        width: 12.5%;
+        overflow: auto;
+
     }
     
     .row-status {
@@ -557,7 +562,7 @@ img.col.s2.zen-pic.materialboxed {
     }
     
     .col.s4.status-time {
-        width: 75%;
+        width: 50%;
         margin: 0%;
     }
 
@@ -579,7 +584,7 @@ img.col.s2.zen-pic.materialboxed {
     }
     
     .col.s4.status-emoticon {
-        width: 50%;
+        width: 37.5%;
         margin: 0;
     }
 }
