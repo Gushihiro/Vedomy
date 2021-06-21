@@ -215,7 +215,7 @@ function getRecipe () {
   } else {
 
     // url returns 100 recipes tagged "healthy" with addl info, sorted by the APIs "health score"
-    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=c4a52647f4a64446b59c7602af76c88b&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
+    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=198c96c33ce745628b902946d8818677&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
 
     fetch(recipeUrl)
       .then(function (response) {
