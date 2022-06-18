@@ -268,6 +268,28 @@ blockquote {
     margin-bottom: 0px;
 }
 
+.exercise {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal .modal-footer {
+    border-radius: 0 0 2px 2px;
+    background-color: #fafafa;
+    padding: 4px 6px;
+    height: 25px;
+    width: 95%;
+    text-align: center;
+}
+
+.modal.modal-fixed-footer .modal-footer {
+    /* position: initial !important; */
+    bottom: 37px;
+}
+
+.modal.modal-fixed-footer .modal-content {
+    overflow-y: initial;
+}
 .modal-title {
     margin-bottom: 3rem;
 }
@@ -282,6 +304,7 @@ blockquote {
 
 .modal-q.input-field.col.s12 {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .hours-title, .diet-title {
@@ -540,6 +563,10 @@ input.select-dropdown.dropdown-trigger {
 }
 
 @media only screen and (max-width: 600px) {
+
+    .modal {
+        width: 95%;
+    }
     
     img#second-zen, img#first-zen {
         height: 3rem;
@@ -597,5 +624,21 @@ input.select-dropdown.dropdown-trigger {
 
     .col.s12.m4.l3.left.quote-column {
         height: 10rem;
+    }
+
+    .hour-amount {
+        text-align: left;
+    }
+
+    .diet-choices {
+        text-align: left;
+    }
+
+    .dropdown-content {
+        width: 175px;
+    }
+
+    .responsive-img {
+        height: 10rem !important;
     }
 }

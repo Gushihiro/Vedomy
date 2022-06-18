@@ -1,54 +1,50 @@
 // JQuery DOM Variables
-var yogaImg = $('.yoga-img');
-var yogaName = $('.yoga-name');
-var yogaLink = $('#yoga-link');
-var closeIcon = $('#close-icon');
-var openIcon = $('#open-icon');
-var sanskName = $('.sanskrit-name');
+var yogaImg = $(".yoga-img");
+var yogaName = $(".yoga-name");
+var yogaLink = $("#yoga-link");
+var closeIcon = $("#close-icon");
+var openIcon = $("#open-icon");
+var sanskName = $(".sanskrit-name");
 var quoteHere = $("#quote-here");
 var quoteAuthor = $("#author");
-var checkBox = $('.checkbox');
-var yesExercise = $('#yes-exercise');
-var noExercise = $('#no-exercise');
-var addMoodBtn = $('#add-mood');
+var checkBox = $(".checkbox");
+var yesExercise = $("#yes-exercise");
+var noExercise = $("#no-exercise");
+var addMoodBtn = $("#add-mood");
 var moodRange = $("#test5");
-var sleepNum = $('.hour-amount');
-var dietChoices = $('.diet-choices');
-var dietChoice = $('.diet-option')
-var thoughtOfDay = $('#thought-of-day');
-var breatheBox = $('#breatheBox');
-var boxBtn = $('#boxBtn');
-var select = $('select');
-var sideNavPosts = $('.sidenav-posts');
+var sleepNum = $(".hour-amount");
+var dietChoices = $(".diet-choices");
+var dietChoice = $(".diet-option");
+var thoughtOfDay = $("#thought-of-day");
+var breatheBox = $("#breatheBox");
+var boxBtn = $("#boxBtn");
+var select = $("select");
+var sideNavPosts = $(".sidenav-posts");
 var sleepTipButton = $("#generate");
 var sleepTipElement = $("#sleep-tip");
 
-var sleepTips = ["Sleep in a Pitch Black Room", 
-                 "Keep Your Bedtime Consistent", 
-                 "Wear Blue Light Blocking Glasses Before Bed", 
-                 "Avoid Late-Night Meals",  
-                 "Be Hydrated", 
-                 "Have Pre-Sleep Routine", 
-                 "Have a “Can’t Sleep” Backup Plan",
-                 "Increase bright light exposure during the day",
-                 "Don’t consume caffeine late in the day",
-                 "Set your bedroom temperature",
-                 "Reduce irregular or long daytime naps",
-                 "Take a relaxing bath or shower",
-                 "Exercise regularly — but not before bed",
-                ];
+var sleepTips = [
+  "Sleep in a Pitch Black Room",
+  "Keep Your Bedtime Consistent",
+  "Wear Blue Light Blocking Glasses Before Bed",
+  "Avoid Late-Night Meals",
+  "Be Hydrated",
+  "Have Pre-Sleep Routine",
+  "Have a “Can’t Sleep” Backup Plan",
+  "Increase bright light exposure during the day",
+  "Don’t consume caffeine late in the day",
+  "Set your bedroom temperature",
+  "Reduce irregular or long daytime naps",
+  "Take a relaxing bath or shower",
+  "Exercise regularly — but not before bed",
+];
 
 // breathing exercise prompts
-var boxTextArray = [
-  "Breathe In...",
-  "Hold...",
-  "Breathe Out...",
-  "Hold..."
-]
+var boxTextArray = ["Breathe In...", "Hold...", "Breathe Out...", "Hold..."];
 
 var boxTimer;
-var navTemplate = '';
-var moodBoxTemplate = '';
+var navTemplate = "";
+var moodBoxTemplate = "";
 
 // check to see if page has been visited today
 var hasVisitedRecently = dayCheck();
@@ -57,13 +53,13 @@ var moodBoxTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
 var navBoxTime = moment().format("dddd, MMMM Do");
 
 // retrieve saved entries from local storage and place them in an array
-var localMoodArr = (JSON.parse(localStorage.getItem('moodArr'))) || [];
+var localMoodArr = JSON.parse(localStorage.getItem("moodArr")) || [];
 
-var instance = M.Sidenav.getInstance($('.sidenav'));
+var instance = M.Sidenav.getInstance($(".sidenav"));
 
 // await doc readiness before fetching data
 $(document).ready(function () {
-  $('#stopBtn').hide();
+  $("#stopBtn").hide();
 
   getQuote();
   getYoga();
@@ -71,61 +67,55 @@ $(document).ready(function () {
   getRecipe();
   writeMoodEntries();
 
-  //initializers        
-  $('#modal1').modal();
-  $('#modal2').modal();
-  $('select').formSelect();
-  $('.sidenav').sidenav({
-    'draggable': true
+  //initializers
+  $("#modal1").modal();
+  $("#modal2").modal();
+  $("select").formSelect();
+  $(".sidenav").sidenav({
+    draggable: true,
   });
-  $('.collapsible').collapsible();
-
-})
+  $(".collapsible").collapsible();
+});
 
 // deletes moodbox on page, and in local storage if remove button clicked
-$(document).on('click', '.removeButton', function() {
-  $(this).closest('section').remove();
-    for (i = 0; i < localMoodArr.length; i++) {
-      if ($(this).closest('section').attr('id') === localMoodArr[i].time) {
-        localMoodArr.splice(i, 1);
-        localStorage.setItem('moodArr', JSON.stringify(localMoodArr))
-      }
-    writeMoodEntries();
+$(document).on("click", ".removeButton", function () {
+  $(this).closest("section").remove();
+  for (i = 0; i < localMoodArr.length; i++) {
+    if ($(this).closest("section").attr("id") === localMoodArr[i].time) {
+      localMoodArr.splice(i, 1);
+      localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
     }
-})
+    writeMoodEntries();
+  }
+});
 
 // retrieves quote object and passes it to writeQuote
-function getQuote () {
-
+function getQuote() {
   var dailyQuote = JSON.parse(localStorage.getItem("dailyQuote"));
 
   // if page visited recently and local storage exists, use that data
   if (dailyQuote && hasVisitedRecently) {
-  
     writeQuote(dailyQuote);
 
     // else there was nothing in local storage or it's a different calendar day
     // fetch new API data, save to local storage, and pass a random quote to writeQuote
   } else {
-  
-    fetch('https://type.fit/api/quotes')
+    fetch("https://type.fit/api/quotes")
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-    
-        var randomIndex = Math.floor(Math.random() * data.length)
+        var randomIndex = Math.floor(Math.random() * data.length);
         localStorage.setItem("dailyQuote", JSON.stringify(data[randomIndex]));
         writeQuote(data[randomIndex]);
-      })
+      });
   }
-};
+}
 
 // writes quote data
-function writeQuote (quoteData) {
-
+function writeQuote(quoteData) {
   quoteHere.append(quoteData.text);
-  
+
   if (quoteData.author == null) {
     quoteAuthor.append("Author Unknown");
   } else {
@@ -134,59 +124,54 @@ function writeQuote (quoteData) {
 }
 
 // retrieves yoga object and passes it to writeYoga
-function getYoga () {
-
+function getYoga() {
   var dailyPose = JSON.parse(localStorage.getItem("dailyPose"));
 
   // if page visited recently and local storage exists, use that data
   if (dailyPose && hasVisitedRecently) {
-  
     writeYoga(dailyPose);
 
     // else there was nothing in local storage or it's a different calendar day
     // fetch new API data, save to local storage, and pass a random yoga object to writeYoga
   } else {
-  
-    fetch("https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-
-      // select a random yoga object, and write content to card
-      var randIndex = Math.floor(Math.random() * data.length);
-      localStorage.setItem("dailyPose", JSON.stringify(data[randIndex]));
-      writeYoga(data[randIndex]);
-
-    });
+    fetch(
+      "https://raw.githubusercontent.com/rebeccaestes/yoga_api/master/yoga_api.json"
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // select a random yoga object, and write content to card
+        var randIndex = Math.floor(Math.random() * data.length);
+        localStorage.setItem("dailyPose", JSON.stringify(data[randIndex]));
+        writeYoga(data[randIndex]);
+      });
   }
 }
 
 // writes yoga content
-function writeYoga (yogaData) {
-
-  yogaImg.attr('src', yogaData.img_url);
+function writeYoga(yogaData) {
+  yogaImg.attr("src", yogaData.img_url);
   yogaName.text(yogaData.english_name);
-  var dropDownIcon = $('<i></i>').text('more_vert');
-  dropDownIcon.attr('class', 'material-icons right');
+  var dropDownIcon = $("<i></i>").text("more_vert");
+  dropDownIcon.attr("class", "material-icons right");
   yogaName.append(dropDownIcon);
-  sanskName.text(`The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`);
+  sanskName.text(
+    `The Sanksrit name for this pose is "${yogaData.sanskrit_name}".\n 36 million people in the US regularly practice yoga.`
+  );
 }
 
 // retrieves and displays a sleep tip to card
-function getSleep () {
-
+function getSleep() {
   var dailySleep = JSON.parse(localStorage.getItem("dailySleep"));
 
   // if page visited recently and local storage exists, use that data
   if (dailySleep && hasVisitedRecently) {
-  
     sleepTipElement.text(dailySleep);
 
     // else there was nothing in local storage or it's a different calendar day
     // get new sleep tip, save it to local storage, and write it to card
   } else {
-  
     var randomIndex = Math.floor(Math.random() * sleepTips.length);
     localStorage.setItem("dailySleep", JSON.stringify(sleepTips[randomIndex]));
     sleepTipElement.text(sleepTips[randomIndex]);
@@ -195,54 +180,54 @@ function getSleep () {
 
 // gets and displays a new sleep tip when clicked
 sleepTipButton.on("click", function () {
-  var randomIndex = Math.floor(Math.random() * sleepTips.length );
+  var randomIndex = Math.floor(Math.random() * sleepTips.length);
   sleepTipElement.text(sleepTips[randomIndex]);
 });
 
 // retrieves recipe object and passes it to writeRecipe
-function getRecipe () {
-
+function getRecipe() {
   // retrieve data from local storage
   var dailyRecipe = JSON.parse(localStorage.getItem("dailyRecipe"));
 
   // if page visited recently and local storage exists, use that data
   if (dailyRecipe && hasVisitedRecently) {
-
     writeRecipe(dailyRecipe);
 
     // else there was nothing in local storage or it's a different calendar day
     // fetch new API data, save to local storage, and pass a random recipe object to writeRecipe
   } else {
-
     // url returns 100 recipes tagged "healthy" with addl info, sorted by the APIs "health score"
-    var recipeUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=198c96c33ce745628b902946d8818677&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
+    var recipeUrl =
+      "https://api.spoonacular.com/recipes/complexSearch?apiKey=198c96c33ce745628b902946d8818677&addRecipeInformation=true&number=100&tags=healthy&sort=healthiness";
 
     fetch(recipeUrl)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-
         var randomIndex = Math.floor(Math.random() * data.results.length);
-        localStorage.setItem("dailyRecipe", JSON.stringify(data.results[randomIndex]));
+        localStorage.setItem(
+          "dailyRecipe",
+          JSON.stringify(data.results[randomIndex])
+        );
         writeRecipe(data.results[randomIndex]);
-
       });
   }
 }
 
 // writes recipe data
-function writeRecipe (recipeData) {
-
+function writeRecipe(recipeData) {
   // write recipe title to card and add an icon
   var titleSpan = $("#recipe-title");
   titleSpan.text(recipeData.title);
-  var dropDownIcon = $('<i></i>').text('more_vert');
-  dropDownIcon.attr('class', 'material-icons right');
+  var dropDownIcon = $("<i></i>").text("more_vert");
+  dropDownIcon.attr("class", "material-icons right");
   titleSpan.append(dropDownIcon);
 
   // write image and alt text to card
-  $("#recipe-image").attr("src", recipeData.image).attr("alt", recipeData.title);
+  $("#recipe-image")
+    .attr("src", recipeData.image)
+    .attr("alt", recipeData.title);
 
   // write source url to anchor
   $("#recipe-source").attr("href", recipeData.sourceUrl);
@@ -259,25 +244,25 @@ function writeRecipe (recipeData) {
 
   // loop over summary array
   for (let i = 0; i < sumArray.length - 1; i++) {
-
     // skip sentences that contain unwanted promotional data
-    if (!sumArray[i].includes("<a") 
-    && !sumArray[i].includes("a>")
-    && !sumArray[i].includes("/recipes/") 
-    && !sumArray[i].includes("tried")
-    && !sumArray[i].includes("made")
-    && !sumArray[i].includes("found")
-    && !sumArray[i].includes("impressed")
-    && !sumArray[i].includes("liked")
-    && !sumArray[i].includes("brought")
-    && !sumArray[i].includes("score")) {
-
+    if (
+      !sumArray[i].includes("<a") &&
+      !sumArray[i].includes("a>") &&
+      !sumArray[i].includes("/recipes/") &&
+      !sumArray[i].includes("tried") &&
+      !sumArray[i].includes("made") &&
+      !sumArray[i].includes("found") &&
+      !sumArray[i].includes("impressed") &&
+      !sumArray[i].includes("liked") &&
+      !sumArray[i].includes("brought") &&
+      !sumArray[i].includes("score")
+    ) {
       // if the str includes a dollar sign, concat strings so $ per serving displays correctly
       if (sumArray[i].includes("$")) {
-        revisedSummmary += sumArray[i] + "." + sumArray[i+1] + ". ";
+        revisedSummmary += sumArray[i] + "." + sumArray[i + 1] + ". ";
         i += 2;
 
-      // else concat as normal  
+        // else concat as normal
       } else {
         revisedSummmary += sumArray[i] + ". ";
       }
@@ -286,120 +271,121 @@ function writeRecipe (recipeData) {
 
   // write summary to card
   $("#recipe-summary").html(revisedSummmary);
-
 }
 
 // updates content of mood and side nav containers
-function writeMoodEntries () {
-
+function writeMoodEntries() {
   $("#mood-box-entries").empty(); // clear mood box
-  moodBoxTemplate = "";           // reset template
+  moodBoxTemplate = ""; // reset template
 
   sideNavPosts.empty();
   navTemplate = "";
 
   // update templates for every item in local storage
   for (i = 0; i < localMoodArr.length; i++) {
-    createMoodBox(localMoodArr[i]);       // create a mood box
-    createSideNavLinks(localMoodArr[i]);  // create a side nav link
+    createMoodBox(localMoodArr[i]); // create a mood box
+    createSideNavLinks(localMoodArr[i]); // create a side nav link
   }
 
   // write updated templates
   $("#mood-box-entries").html(moodBoxTemplate);
   sideNavPosts.html(navTemplate);
 
-  if (moodBoxTemplate === '') {
-    moodBoxTemplate =  '<div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>'
+  if (moodBoxTemplate === "") {
+    moodBoxTemplate =
+      '<div class="center placeholder-text">Add a daily update here by using the "Add Update" button above!</div>';
     $("#mood-box-entries").html(moodBoxTemplate);
   }
 }
 
 // creates a mood entry object, saves it to local storage, and clears input fields
-addMoodBtn.on('click', function () {
-
+addMoodBtn.on("click", function () {
   // creates object based on results of modal
   var modalSubmit = {
     navTime: navBoxTime,
     time: moodBoxTime,
     mood: moodRange.val(),
     sleep: sleepNum.val(),
-    exercise: yesExercise.prop('checked'),
-    notExercise: noExercise.prop('checked'),
+    exercise: yesExercise.prop("checked"),
+    notExercise: noExercise.prop("checked"),
     diet: dietChoices.val(),
     thoughts: thoughtOfDay.val(),
-  }
+  };
 
   // update mood entry array and save it to local storage
   localMoodArr.unshift(modalSubmit);
   localStorage.setItem("moodArr", JSON.stringify(localMoodArr));
 
-  writeMoodEntries (); // update mood entries on page
+  writeMoodEntries(); // update mood entries on page
 
   // resets modal values
   moodRange.val("");
-  sleepNum.attr('value', '');
-  sleepNum.val('');
+  sleepNum.attr("value", "");
+  sleepNum.val("");
   thoughtOfDay.val("");
-  select.prop('selectedIndex', 0);
+  select.prop("selectedIndex", 0);
   select.formSelect();
-  yesExercise.prop('checked', false)
-  noExercise.prop('checked', false)
-  yesExercise.prop('disabled', false)
-  noExercise.prop('disabled', false)
-  $('.placeholder-text').prop('display', 'none')
-  
-})
+  yesExercise.prop("checked", false);
+  noExercise.prop("checked", false);
+  yesExercise.prop("disabled", false);
+  noExercise.prop("disabled", false);
+  $(".placeholder-text").prop("display", "none");
+});
 
 // creates an html template for a mood entry
-function createMoodBox (post) {
+function createMoodBox(post) {
   if (post.mood <= 1) {
-    statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
-  } else if (post.mood > 1 & post.mood < 4) {
-    statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
-  } else if (post.mood > 3 & post.mood < 6) {
-    statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
-  } else if (post.mood > 5 & post.mood < 8) {
-    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
-  } else if (post.mood > 7 & post.mood < 10) {
-    statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+    statusIcon =
+      '<i class="material-icons red-text">sentiment_very_dissatisfied</i>';
+  } else if ((post.mood > 1) & (post.mood < 4)) {
+    statusIcon =
+      '<i class="material-icons orange-text">sentiment_dissatisfied</i>';
+  } else if ((post.mood > 3) & (post.mood < 6)) {
+    statusIcon =
+      '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>';
+  } else if ((post.mood > 5) & (post.mood < 8)) {
+    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>';
+  } else if ((post.mood > 7) & (post.mood < 10)) {
+    statusIcon =
+      '<i class="material-icons light-green-text">sentiment_very_satisfied</i>';
   } else {
-    statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+    statusIcon =
+      '<i class="material-icons green-text">sentiment_very_satisfied</i>';
   }
 
   var exerciseText;
 
   if (post.exercise) {
-    exerciseText = 'I exercised!'
+    exerciseText = "I exercised!";
   } else if (post.notExercise) {
-    exerciseText = `I'll exercise tomorrow!`
+    exerciseText = `I'll exercise tomorrow!`;
   } else {
-    exerciseText = '';
+    exerciseText = "";
   }
 
   var dietText;
 
   if (post.diet < 3 && post.diet > 0) {
-    dietText = 'I ate healthy!'
+    dietText = "I ate healthy!";
   } else if (post.diet > 2) {
-    dietText = 'Gotta eat better!'
+    dietText = "Gotta eat better!";
   } else {
-    dietText = ''
+    dietText = "";
   }
 
-  var sleepText = `I slept ${post.sleep} hours.`
+  var sleepText = `I slept ${post.sleep} hours.`;
 
   if (post.sleep === null) {
-    sleepText = '';
+    sleepText = "";
   }
 
   var quoteIt;
 
-  if (post.thoughts === '') {
-    quoteIt = `I didn't feel like journaling today.`
+  if (post.thoughts === "") {
+    quoteIt = `I didn't feel like journaling today.`;
   } else {
-    quoteIt = `${post.thoughts}`
+    quoteIt = `${post.thoughts}`;
   }
-
 
   // concat most recent entry to template
   moodBoxTemplate += `
@@ -431,31 +417,35 @@ function createMoodBox (post) {
 }
 
 // creates a side nav bar and concatenates it to the existing template
-function createSideNavLinks (post) {
+function createSideNavLinks(post) {
   var statusIcon;
 
   // depending on mood of post, will display different emoticon on link
   if (post.mood <= 1) {
-    statusIcon = '<i class="material-icons red-text">sentiment_very_dissatisfied</i>'
-  } else if (post.mood > 1 & post.mood < 4) {
-    statusIcon = '<i class="material-icons orange-text">sentiment_dissatisfied</i>'
-  } else if (post.mood > 3 & post.mood < 6) {
-    statusIcon = '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>'
-  } else if (post.mood > 5 & post.mood < 8) {
-    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>'
-  } else if (post.mood > 7 & post.mood < 10) {
-    statusIcon = '<i class="material-icons light-green-text">sentiment_very_satisfied</i>'
+    statusIcon =
+      '<i class="material-icons red-text">sentiment_very_dissatisfied</i>';
+  } else if ((post.mood > 1) & (post.mood < 4)) {
+    statusIcon =
+      '<i class="material-icons orange-text">sentiment_dissatisfied</i>';
+  } else if ((post.mood > 3) & (post.mood < 6)) {
+    statusIcon =
+      '<i class="material-icons yellow-text accent-3">sentiment_neutral</i>';
+  } else if ((post.mood > 5) & (post.mood < 8)) {
+    statusIcon = '<i class="material-icons lime-text">sentiment_satisfied</i>';
+  } else if ((post.mood > 7) & (post.mood < 10)) {
+    statusIcon =
+      '<i class="material-icons light-green-text">sentiment_very_satisfied</i>';
   } else {
-    statusIcon = '<i class="material-icons green-text">sentiment_very_satisfied</i>'
+    statusIcon =
+      '<i class="material-icons green-text">sentiment_very_satisfied</i>';
   }
-
 
   // concat most recent entry to template
   navTemplate += `<li><a class="sidenav-close" href="#${post.time}">"${statusIcon}${post.navTime}"</a></li>`;
 }
 
 // returns true if page has been visited today
-function dayCheck () {
+function dayCheck() {
   var currentDay = parseInt(moment().format("DDD"));
   var referenceDay = parseInt(localStorage.getItem("refDay"));
 
@@ -465,26 +455,24 @@ function dayCheck () {
 
     // otherwise save today to be reference and return false
   } else {
-    localStorage.setItem('refDay', currentDay);
+    localStorage.setItem("refDay", currentDay);
     return false;
   }
 }
 
 // checks to see if checkbox is checked, then disables the other
-function ckCheckbox (ckType) {
+function ckCheckbox(ckType) {
   var checked = document.getElementById(ckType.id);
 
   if (checked.checked) {
     for (var i = 0; i < checkBox.length; i++) {
-
       if (!checkBox[i].checked) {
         checkBox[i].disabled = true;
       } else {
         checkBox[i].disabled = false;
       }
     }
-  }
-  else {
+  } else {
     for (var i = 0; i < checkBox.length; i++) {
       checkBox[i].disabled = false;
     }
@@ -493,11 +481,11 @@ function ckCheckbox (ckType) {
 
 // begins breathing exercise
 boxBtn.on("click", function () {
-  $('#stopBtn').show();
+  $("#stopBtn").show();
   boxBtn.hide();
   var i = 0;
   $(".boxText").html(boxTextArray[i]);
-  breatheBox.toggleClass("movingBox")
+  breatheBox.toggleClass("movingBox");
   boxTimer = setInterval(function () {
     i++;
     if (i >= boxTextArray.length) {
@@ -508,12 +496,12 @@ boxBtn.on("click", function () {
 });
 
 // ends breathing exercise
-$('#stopBtn').on('click', function () {
+$("#stopBtn").on("click", function () {
   boxBtn.show();
-  $('#stopBtn').hide();
+  $("#stopBtn").hide();
   i = 0;
   clearInterval(boxTimer);
-  breatheBox.toggleClass("movingBox")
+  breatheBox.toggleClass("movingBox");
   $(".boxText").empty();
   return;
-})
+});
